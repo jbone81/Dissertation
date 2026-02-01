@@ -1,0 +1,716 @@
+\chapter{\leavevmode\newline Research Methodology}\label{chap:Chapter_3}
+
+This chapter presents the research methodology employed to investigate professional awareness and perceptions of Digital Engineering capabilities within the information technology and information assurance domains. The study deploys a quantitative survey-based approach to collect data from IT and cybersecurity professionals, enabling systematic analysis of awareness levels, perceived value, and anticipated benefits of Digital Engineering practices for information assurance and IT service delivery. The methodology itself follows a systems engineering lifecycle approach---demonstrating the application of structured engineering principles to research design while ensuring rigorous traceability between research questions, survey instruments, and analytical approaches.
+
+\section{Research Design Overview}
+
+This research employs a quantitative, cross-sectional survey design to address the three research questions established in Chapter 1. This research selected survey methodology as the most appropriate approach for several reasons. First, the research questions focus upon measuring professional awareness and perceptions across a broad population of IT and information assurance practitioners, requiring data collection from a number of respondents sufficient to establish representative findings. Second, survey methodology enables standardized data collection that supports statistical analysis and generalization of results to the broader professional population. Third, the anonymous nature of survey research encourages candid responses about professional knowledge gaps and organizational capabilities without concerns about professional reputation or organizational disclosure. Practitioners can speak freely about what they do not know.
+
+The cross-sectional design captures professional perceptions at a single point in time, providing a snapshot of current awareness and perceived value of Digital Engineering capabilities within the IT and information assurance professional community. While this design does not enable longitudinal analysis of changing perceptions over time, it establishes baseline data that shall inform future research directions and support strategic decision-making about Digital Engineering adoption initiatives.
+
+\subsection{Justification for Survey Methodology}
+
+The selection of survey methodology over alternative research approaches reflects deliberate consideration of what this research seeks to accomplish and why that objective warrants investigation. Three questions merit explicit address: why investigate perceptions rather than implementations, why survey methodology rather than case study or pilot implementation, and why perceived value warrants dissertation-level research.
+
+\subsubsection{Why Perceptions Matter for Technology Adoption}
+
+Technology adoption research consistently demonstrates that perceived value influences adoption decisions regardless of demonstrated actual value. The Technology Acceptance Model and its extensions establish that perceived usefulness and perceived ease of use predict behavioral intention to adopt technologies. Professionals who do not perceive value in a capability will not advocate for its adoption within their organizations, regardless of technical merit demonstrated in other contexts. The literature review in Chapter 2 documents that Digital Engineering has demonstrated value in aerospace and defense contexts. However, demonstrated value in one domain does not automatically transfer to adoption in another. IT and Information Assurance professionals operate in different organizational contexts, face different constraints, and hold different professional identities than aerospace systems engineers. Whether these professionals recognize potential value in Digital Engineering capabilities for their work represents an open question that must be answered before implementation research becomes meaningful.
+
+Furthermore, if professionals are unaware of Digital Engineering capabilities, no amount of demonstrated value will drive adoption because the capabilities will not enter consideration during tool selection, process design, or strategic planning. Establishing current awareness levels identifies whether education and communication initiatives represent necessary precursors to adoption efforts. If professionals are aware but do not perceive value, the theoretical premise that Digital Engineering addresses recognized needs within these domains requires reconsideration before investing in implementation research.
+
+\subsubsection{Why Not a Case Study or Implementation Pilot}
+
+This research considered and rejected alternative approaches for specific reasons. A case study examining Digital Engineering implementation within a specific organization would provide rich contextual data about practical implementation challenges and outcomes. However, case study findings would reflect the particular organizational context, culture, technical environment, and implementation approach of that organization. The findings would not establish whether the broader professional community recognizes value in Digital Engineering or possesses awareness of these capabilities. A successful case study might demonstrate technical feasibility without indicating whether adoption would occur beyond the studied organization.
+
+An implementation pilot would face similar limitations while requiring access to organizational resources and authority to implement Digital Engineering tools and practices. Such a pilot would measure actual rather than perceived value, but would do so within a single organizational context that may not represent the broader population. Additionally, implementation research presumes that the target professional community recognizes sufficient potential value to warrant the investment required for implementation. This presumption is precisely what the current research tests.
+
+Survey research enables assessment across a broad population of practitioners, establishing baseline awareness and perceived value data that informs whether subsequent case study or implementation research would find receptive audiences. Survey methodology represents the appropriate starting point for investigating a nascent application domain where professional awareness and perceptions remain unknown.
+
+\subsubsection{Why Perceived Value Warrants Dissertation Research}
+
+The question of whether perceived value merits dissertation-level investigation reflects a particular view of research contribution. This research contributes to knowledge by addressing a documented gap: the academic literature contains no investigation of whether IT and Information Assurance professionals perceive value in Digital Engineering capabilities. The theoretical framework presented in Chapter 2 posits that Digital Engineering offers solutions to documented problems in these domains. Testing whether practitioners recognize this potential value provides empirical grounding for the theoretical framework.
+
+If research reveals that professionals recognize value in Digital Engineering capabilities, this finding validates the theoretical premise and establishes foundation for subsequent implementation research. If research reveals limited awareness or skepticism, this finding challenges the theoretical framework and identifies barriers that must be addressed before adoption can occur. Either outcome advances understanding and provides actionable direction for researchers and practitioners. The contribution lies not in advocating for Digital Engineering adoption but in establishing empirical evidence regarding professional perceptions that informs subsequent research and practice decisions.
+
+\subsection{Systems Engineering Approach to Research Design}
+
+To demonstrate strong rigor in the design, execution, analysis, and documentation of results, this research utilizes an approach that follows a systems engineering lifecycle. By applying systems engineering principles to this dissertation project, a strong degree of rigor and supporting artifacts lend structure and credibility to the dissertation process as a whole. The principal method of the dissertation effort is captured and tracked within a model to ensure traceability to decisions, citations, and artifacts---the same traceability that Digital Engineering brings to complex system development.
+
+The survey model follows a structured lifecycle consisting of six phases:
+
+\subsubsection{Strategic Phase}
+
+Captures conceptual elements including hypothesis, capabilities, constraints, goals, vision, timeline, milestones, stakeholders, and drivers. This phase establishes the foundation for all subsequent research activities by clearly articulating what the research seeks to accomplish and why it matters.
+
+\subsubsection{Requirements Phase}
+
+Derives and analyzes strategic elements to create requirements for the dissertation and associated survey. Requirements follow ISO 15288:2023 standards: hierarchical in nature and structure, atomic in composition, bidirectional in traceability, individually measurable, and explicitly tracking relationships and interdependencies.
+
+\subsubsection{Architecture Phase}
+
+Establishes the high-level outline, structure, and guidance for the design and implementation phases of the dissertation. The survey architecture defines the overall structure of sections and question flow, ensuring logical progression from awareness through applicability to perceived value.
+
+\subsubsection{Design Phase}
+
+Utilizes the architecture guidance and requirements to design the dissertation proposal and survey instrument, satisfying the architectural outline with complete traceability back to requirements and strategic elements.
+
+\subsubsection{Results Phase}
+
+Captures the survey data into the model for traceability along with results of analysis. Analysis methods and results are captured as elements within the model, enabling verification that findings address the original research questions.
+
+\subsubsection{Report Phase}
+
+The model serves as a deliverable component of the dissertation that provides a rigorous source of artifacts, methodologies employed, traceability chains, and evidentiary support for the findings of the dissertation.
+
+\subsubsection{Alignment to Dissertation Design}
+
+Figure~\ref{fig:DissertationLifecycleProcess} provides a visual representation of the dissertation process utilizing an MBSE approach. This project has completed the design phase from a systems engineering lifecycle perspective, and the artifact design phase from a dissertation lifecycle perspective.
+
+\begin{figure}[ht]
+  \centering
+  \caption{Dissertation Abstract Resource Taxonomy}
+  \label{fig:DissertationLifecycleProcess}
+  \includegraphics[width=1\linewidth]{Figures/DissertationAbstractResourceTaxonomy.png}
+\end{figure}
+
+\clearpage
+
+\subsection{Research Questions and Survey Alignment}
+
+The survey instrument was designed to directly address the three research questions:
+
+\subsubsection{Research Question 1}
+
+To what extent are information technology and information assurance professionals aware of Digital Engineering capabilities, including Model-Based Systems Engineering, digital threads, digital twin technologies, and Product Lifecycle Management principles?
+
+\subsubsection{Research Question 2}
+
+Do information technology and information assurance professionals perceive Digital Engineering capabilities as potentially valuable or important for their work in information assurance, security compliance, and IT service delivery?
+
+\subsubsection{Research Question 3}
+
+Do information technology and information assurance professionals believe that Digital Engineering practices could help them in performing their jobs, meeting compliance requirements, or enhancing organizational capabilities in information assurance and IT service delivery?
+
+Each survey section and question was mapped to these research questions to ensure comprehensive coverage of the research objectives while minimizing respondent burden through focused questioning. This mapping provides the traceability essential to demonstrating that the instrument measures what it purports to measure.
+
+Figure~\ref{fig:MBSERQ} illustrates an MBSE representation of the Research Questions as requirement type elements. The selection of requirement type element within the UAF allows for survey questions to utilize ``Satisfy'' relationship. The use of authoritative traceability within the model enables programatic evaluation of the model and simulation to validate the model.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/ResearchQuestionTaxonomy.png}
+    \caption{MBSE Instantiation of Research Questions}
+    \label{fig:MBSERQ}
+\end{figure}
+
+\section{Survey Requirements Specification}
+
+Following the systems engineering approach, specific requirements were established for the survey instrument prior to design. These requirements ensure the survey meets research objectives while maintaining ethical standards and data quality. Requirements engineering precedes design---a principle as valid in research methodology as in systems development.
+
+\subsection{Anonymity and Privacy Requirements}
+
+The following requirements govern anonymity and privacy protection:
+
+\begin{itemize}
+  \item The survey shall be anonymous, collecting no personally identifiable information during the survey process.
+  \item The survey shall not collect age, sex, gender, race, creed, gender identity, sexual orientation, income, nationality, or other non-relevant personal information.
+  \item The survey shall be protected with appropriate security controls to ensure the confidentiality, integrity, and availability of collected data.
+  \item The survey raw data shall not be sold or used for any purpose other than the dissertation research.
+\end{itemize}
+
+\subsection{Instrument Design Requirements}
+
+The following requirements govern survey instrument design:
+
+\begin{itemize}
+  \item The survey shall utilize a Likert Scale for material research questions to enable quantitative analysis.
+  \item The survey shall include applicable notices required by the University Institutional Review Board.
+  \item The survey should collect demographic information to identify the participant's professional field of study or practice.
+  \item The survey should collect demographic information about temporal experience level within the participant's field.
+\end{itemize}
+
+\subsection{Content Requirements}
+
+The survey content is structured to assess the awareness, applicability, and perceived value that participants hold toward Digital Engineering and its component disciplines. The survey addresses Digital Engineering at the enterprise level, then examines the four pillars: Model-Based Systems Engineering, the Digital Thread, Digital Twin, and Product Lifecycle Management. This structure provides a consistent question flow for participants and enables analysis of how each discipline is perceived in relation to Digital Engineering as a unified approach.
+
+\section{Target Population and Sampling}
+
+\subsection{Target Population}
+
+The target population for this study consists of professionals actively working in information technology and information assurance roles within organizations that manage information systems. This population encompasses individuals involved in IT service delivery, infrastructure management, service operations, information assurance, security operations, compliance management, and security architecture. The population spans organizational types including private sector enterprises, government agencies, educational institutions, and nonprofit organizations.
+
+The dual focus upon information technology and information assurance professionals recognizes that Digital Engineering capabilities may offer distinct value propositions for these related but different professional communities. IT professionals primarily concerned with service delivery and operational efficiency may perceive value in Digital Engineering practices differently than information assurance professionals focused upon threat mitigation, compliance verification, and security control implementation. Understanding both perspectives is necessary for thorough assessment.
+
+\subsection{Sampling Strategy}
+
+This study employs non-probability convenience sampling to recruit participants through professional networks, industry associations, and online professional communities. While probability sampling would provide stronger generalizability, the difficulty of establishing a sampling frame for all IT and information assurance professionals renders probability sampling impractical for this research. Convenience sampling enables efficient access to qualified respondents while maintaining focus upon professionals with relevant experience and expertise.
+
+To enhance the representativeness of the convenience sample, recruitment efforts target multiple channels including professional organizations such as ISACA, (ISC)\textsuperscript{2}, and ITIL professional communities; LinkedIn professional groups focused upon IT service management and information assurance; industry conferences and professional development events; and direct outreach to IT and security departments within organizations across multiple sectors. This multi-channel approach mitigates the limitations inherent in convenience sampling.
+
+\subsection{Sample Size Determination}
+
+The required sample size was calculated to achieve a maximum margin of error of five percent at the 95\% confidence level. For survey research targeting a large population where the population size exceeds 100,000 individuals, the sample size formula for estimating a proportion is:
+
+\begin{equation}
+  \label{eqn:modelSizeEquation}
+  n = \frac{Z^2 \times p \times (1-p)}{E^2}
+\end{equation}
+
+Where:
+\begin{itemize}
+  \item \(n\) = required sample size
+  \item \(Z\) = Z-score for desired confidence level (1.96 for 95\% confidence)
+  \item \(p\) = estimated population proportion (0.5 for maximum variability)
+  \item \(E\) = desired margin of error (0.05 for 5\%)
+\end{itemize}
+
+Substituting these values:
+
+\begin{equation}
+  \label{eqn:ModelSizeCalc}
+  n = \frac{1.96^2 \times 0.5 \times 0.5}{0.05^2} = \frac{3.8416 \times 0.25}{0.0025} = \frac{0.9604}{0.0025} = 384.16
+\end{equation}
+
+Therefore, a minimum of 385 completed survey responses is required to achieve the target margin of error. This calculation assumes maximum variability in responses (p = 0.5), which provides the most conservative sample size estimate. If actual response distributions demonstrate less variability, the effective margin of error will be smaller than five percent.
+
+To account for potential incomplete responses and to ensure adequate representation across professional subgroups---IT professionals versus cybersecurity professionals, varying experience levels---the target sample size for data collection is set at 450 completed surveys. This target represents approximately seventeen percent above the minimum requirement, aligning with survey research best practices recommending fifteen to twenty percent oversampling to accommodate anticipated attrition~\cite{Dillman_Smyth_Christian_2014}. Research on online survey completion rates indicates that professional surveys typically experience ten to fifteen percent incomplete response rates due to survey abandonment, partial completion, or data quality concerns requiring exclusion~\cite{Fan_Yan_2010}. The 450-response target provides sufficient buffer to ensure the minimum 385 usable responses while enabling meaningful subgroup analyses with adequate statistical power. Specifically, if the sample divides evenly between IT and cybersecurity professionals, each subgroup would include approximately 190-225 respondents, providing margins of error between six and seven percent for subgroup-specific analyses.
+
+\section{Survey Instrument Design}
+
+\subsection{Instrument Overview}
+
+The survey instrument consists of 27 questions organized into six thematic sections designed to systematically address the research questions while maintaining reasonable completion time. The estimated completion time of approximately ten minutes was established through consideration of question complexity and respondent fatigue factors, balancing comprehensive data collection against respondent engagement and completion rates. Brevity serves validity: a shorter survey that respondents complete thoughtfully yields better data than a longer survey that respondents abandon or rush through.
+
+The six sections are structured as follows:
+
+\begin{enumerate}
+  \item Section 1: Awareness and Familiarity with Digital Engineering (2 questions)
+  \item Section 2: Understanding of Digital Engineering Capabilities (6 questions)
+  \item Section 3: Applicability of Digital Engineering (6 questions)
+  \item Section 4: Value Assessment for Information Technology (5 questions)
+  \item Section 5: Value Assessment for Information Assurance and Cybersecurity (7 questions)
+  \item Section 6: Interest and Demographic Information (4 questions)
+\end{enumerate}
+
+\subsection{Question Format and Scale Selection}
+
+The survey employs two primary question formats: five-point Likert-type scales and binary (yes/no) response options. The selection of these formats was guided by psychometric research establishing their validity and reliability for measuring attitudes, perceptions, and self-reported behaviors.
+
+\subsubsection{Likert Scale Justification}
+
+The five-point Likert scale format was selected for questions measuring awareness levels, agreement with capability statements, and perceptions of value. Likert scales have been extensively validated for measuring attitudes and perceptions in social science research since their introduction by Rensis Likert in 1932. The five-point format specifically was chosen based upon research demonstrating that five to seven response options provide optimal discrimination between respondent positions while remaining cognitively manageable for respondents. More options add complexity without proportionate gain in discriminatory power.
+
+The consistent use of Likert scales across sections provides an intuitive response method for participants and enables direct comparison of responses across different constructs. The scales employed in this survey use two distinct anchor sets depending upon the construct being measured:
+
+\paragraph{Familiarity Scale (Section 1, Question 1.1)}
+\begin{enumerate}
+  \item Not at all familiar
+  \item Slightly familiar
+  \item Moderately familiar
+  \item Very familiar
+  \item Extremely familiar
+\end{enumerate}
+
+\paragraph{Agreement Scale (Sections 2-5)}
+\begin{enumerate}
+  \item Strongly disagree
+  \item Disagree
+  \item Neither agree nor disagree
+  \item Agree
+  \item Strongly agree
+\end{enumerate}
+
+The agreement scale follows established conventions in technology acceptance research, including the Technology Acceptance Model (TAM) and Unified Theory of Acceptance and Use of Technology (UTAUT) frameworks, which have demonstrated validity for measuring perceptions of technology value and usefulness across diverse populations and contexts. The inclusion of a neutral midpoint (``Neither agree nor disagree'') enables respondents to indicate genuine uncertainty rather than forcing artificial choices, which research suggests improves response validity. Figure~\ref{fig:SurveyEnumerations} demonstrates the instantiation of familiarity and agreement response scales within the model of the dissertation survey.
+
+\subsubsection{Binary and Ternary Question Justification}
+
+Binary yes/no, and ternary yes/no/unsure questions are employed for factual questions about prior exposure (Section 1, Question 1.2), interest in further learning (Section 6, Questions 6.1-6.2), and investment willingness (Sections 4-5, Questions 4.5 and 5.7). Binary/ternary formats are appropriate for these questions because they seek to classify respondents into discrete categories rather than measure degrees of agreement or perception intensity. The simplicity of binary/ternary responses also reduces cognitive load for straightforward factual questions where graduated responses would add complexity without meaningful information gain. Figure~\ref{fig:SurveyEnumerations} provides a visualization of the enumeration elements of the binary and ternary responses.
+
+\subsubsection{Categorical Questions}
+
+Section 6 includes categorical questions capturing demographic information about professional field of practice and years of experience. Following the demographic information requirements, these questions capture only sector of work and temporal experience level without collecting personally identifiable information. The experience level categories are structured to capture early career, mid-career, and late career stages:
+
+\begin{itemize}
+  \item 1-5 Years of experience (Early Career)
+  \item 6-10 Years of experience (Mid Career - Early)
+  \item 11-15 Years of experience (Mid Career - Late)
+  \item 15+ Years of experience (Late Career)
+\end{itemize}
+
+These categories enable analysis of response patterns across professional subgroups and experience levels, supporting investigation of whether awareness and perceptions vary systematically by professional background. Such variation would carry significant implications for professional development and adoption strategies. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/OverviewDiagramOfPackageEnumerations.png}
+    \caption{Survey Question Enumeration}
+    \label{fig:SurveyEnumerations}
+\end{figure}
+
+\section{Survey Section Structure and Research Question Mapping}
+
+This section details how each survey section addresses the research questions, providing explicit traceability between survey content and research objectives. This mapping ensures that every question serves a defined purpose and that the research questions receive comprehensive coverage.
+
+\subsection{Section 1: Awareness and Familiarity with Digital Engineering}
+
+Section 1 contains two questions directly addressing Research Question 1 regarding professional awareness of Digital Engineering capabilities. Figure~\ref{fig:Section1Questions} provides an MBSE based visualization as a block element.
+
+\subsubsection{Question 1.1}
+
+This question utilizes a five-point familiarity scale to measure self-reported awareness levels: ``Please rate your level of familiarity with Digital Engineering concepts and practices.'' This question provides a direct, self-assessed measure of overall Digital Engineering awareness---the baseline from which all subsequent analysis proceeds.
+
+\subsubsection{Question 1.2}
+
+This question employs a binary format to determine recent professional exposure: ``Have you encountered Digital Engineering methodologies, frameworks, or tools in your professional work within the past two years?'' This question distinguishes between theoretical awareness and practical professional experience, recognizing that knowing about Digital Engineering differs categorically from having encountered it in practice.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.75\linewidth]{Figures/OverviewDiagramOfPackageSection1.png}
+    \caption{Section One Survey Question Elements Package Diagram}
+    \label{fig:Section1Questions}
+\end{figure}
+
+\subsubsection{Mapping to Research Question 1}
+
+These questions directly measure the extent of professional awareness, providing quantifiable data on familiarity levels and recent professional exposure to Digital Engineering concepts.
+
+\subsection{Section 2: Understanding of Digital Engineering Capabilities}
+
+Section 2 contains six Likert-scale questions assessing respondent understanding of specific Digital Engineering capabilities. Figure~\ref{fig:Section2Questions} visualizes each research question as represented in the model. The questions of section 2 questions probe awareness of the four Digital Engineering pillars in the context of IT and cybersecurity applications:
+
+\subsubsection{Question 2.1}
+
+This question addresses Model-Based Systems Engineering: ``Digital Engineering includes model-based systems engineering approaches that can improve development processes.''
+
+\subsubsection{Question 2.2}
+
+This question addresses Digital Twin for IT: ``Digital Engineering can enable digital twin development and virtual prototyping for information technology systems.''
+
+\subsubsection{Question 2.3}
+
+This question addresses the Digital Thread and data-driven practices: ``Digital Engineering supports continuous integration and data-driven decision-making in technology development.''
+
+\subsubsection{Question 2.4}
+
+This question addresses Digital Twin for security: ``Digital Engineering enables digital twin technology that can simulate security scenarios and test defensive measures without impacting production systems.''
+
+\subsubsection{Question 2.5}
+
+This question addresses security validation through the Digital Thread: ``Digital Engineering supports continuous security validation and data-driven threat analysis throughout the development lifecycle.''
+
+\subsubsection{Question 2.6}
+
+This question addresses compliance automation: ``Digital Engineering can improve security control implementation through automated compliance checking and verification.''
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/OverviewDiagramOfPackageSection2.png}
+    \caption{Section Two Survey Question Elements Package Diagram}
+    \label{fig:Section2Questions}
+\end{figure}
+
+\subsubsection{Mapping to Research Question 1}
+
+This section extends Research Question 1 by measuring not only general awareness but comprehension of specific Digital Engineering pillars---MBSE, Digital Twin, the Digital Thread, and PLM---and their applications to IT and cybersecurity contexts.
+
+\subsection{Section 3: Applicability of Digital Engineering}
+
+Section 3 contains six Likert-scale questions examining perceptions of Digital Engineering applicability to information technology and information assurance domains. This section bridges awareness assessment and value perception, probing whether respondents see relevance to their professional contexts. Instantiation of section 3 survey questions within the model are visualized in Figure~\ref{fig:Section3Questions}.
+
+\subsubsection{Question 3.1}
+
+This question assesses IT sector relevance: ``Digital Engineering methodologies have relevant applications within the information technology sector.''
+
+\subsubsection{Question 3.2}
+
+This question assesses Information Assurance relevance: ``Digital Engineering methodologies have relevant applications for addressing information assurance challenges.''
+
+\subsubsection{Question 3.3}
+
+This question assesses Digital Twin organizational value: ``The ability to utilize digital twins to test changes against accurate replicas of production environments would provide value to my organization.''
+
+\subsubsection{Question 3.4}
+
+This question assesses MBSE organizational value: ``The use of digital models to map and document an organization's environment and configurations would provide value to my organization.''
+
+\subsubsection{Question 3.5}
+
+This question assesses PLM organizational value: ``The use of digital lifecycle management to meet compliance and service delivery requirements would provide value to my organization.''
+
+\subsubsection{Question 3.6}
+
+This question assesses compliance applicability: ``My organization faces regulatory or compliance requirements that could benefit from Digital Engineering approaches.''
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/Overview diagram of package Section 3.png}
+    \caption{Section Three Survey Question Elements Package Diagram}
+    \label{fig:Section3Questions}
+\end{figure}
+
+\subsubsection{Mapping to Research Questions 2 and 3}
+
+This section addresses whether respondents perceive Digital Engineering as applicable to their professional domains and whether they identify potential organizational value in specific capabilities.
+
+\subsection{Section 4: Value Assessment for Information Technology}
+
+Section 4 contains five questions assessing perceived value of Digital Engineering for IT operations specifically, and are visualized in Figure~\ref{fig:Section4Questions}
+
+\subsubsection{Question 4.1}
+
+This question measures overall IT value: ``Digital Engineering could deliver meaningful value to my organization's information technology processes.''
+
+\subsubsection{Question 4.2}
+
+This question measures cycle time benefit: ``Digital Engineering could reduce development cycle time in my organization.''
+
+\subsubsection{Question 4.3}
+
+This question measures quality benefit: ``Digital Engineering could improve product quality and reduce defects in my organization.''
+
+\subsubsection{Question 4.4}
+
+This question measures collaboration benefit: ``Digital Engineering could improve collaboration effectiveness across development teams in my organization.''
+
+\subsubsection{Question 4.5}
+
+This question measures investment willingness: ``My organization would be willing to invest in Digital Engineering capabilities if clear return on investment could be demonstrated.'' (Yes/No/Unsure)
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/OverviewDiagramOfPackageSection4.png}
+    \caption{Section Four Survey Question Elements Package Diagram}
+    \label{fig:Section4Questions}
+\end{figure}
+
+\subsubsection{Mapping to Research Questions 2 and 3}
+
+This section directly addresses whether IT professionals perceive value in Digital Engineering and believe these practices could enhance their organizational capabilities and job performance.
+
+\subsection{Section 5: Value Assessment for Information Assurance and Cybersecurity}
+
+Section 5 contains seven questions assessing perceived value of Digital Engineering for information assurance and cybersecurity operations as displayed in Figure~\ref{fig:Section5Questions}.
+
+\subsubsection{Question 5.1}
+
+This question measures overall security value: ``Digital Engineering could deliver meaningful value to my organization's information assurance and cybersecurity operations.''
+
+\subsubsection{Question 5.2}
+
+This question measures vulnerability management benefit: ``Digital Engineering could reduce the time required to identify and remediate security vulnerabilities in my organization.''
+
+\subsubsection{Question 5.3}
+
+This question measures security posture benefit: ``Digital Engineering could improve security posture and reduce successful cyber incidents in my organization.''
+
+\subsubsection{Question 5.4}
+
+This question measures threat modeling benefit: ``Digital Engineering could enhance threat modeling and risk assessment capabilities in my organization.''
+
+\subsubsection{Question 5.5}
+
+This question measures cross-team collaboration benefit: ``Digital Engineering could improve collaboration between security teams, development teams, and operations teams in my organization.''
+
+\subsubsection{Question 5.6}
+
+This question measures compliance benefit: ``Digital Engineering could help my organization achieve better compliance with security frameworks and regulatory requirements.''
+
+\subsubsection{Question 5.7}
+
+This question measures security investment willingness: ``My organization would be willing to invest in Digital Engineering capabilities for cybersecurity purposes if clear return on investment could be demonstrated.'' (Yes/No)
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/OverviewDiagramOfPackageSection5.png}
+    \caption{Section Five Survey Question Elements Package Diagram}
+    \label{fig:Section5Questions}
+\end{figure}
+
+\subsubsection{Mapping to Research Questions 2 and 3}
+
+This section directly addresses whether cybersecurity professionals perceive value in Digital Engineering for their specific domain and believe these practices could help them meet compliance requirements and enhance security capabilities.
+
+\subsection{Section 6: Interest and Demographic Information}
+
+Section 6 contains four questions capturing respondent interest in Digital Engineering learning opportunities and demographic characteristics. Figure~\ref{fig:Section6Questions} visualizes section 6 survey questions.
+
+\subsubsection{Question 6.1}
+
+This question measures learning interest: ``Would you be interested in learning more about Digital Engineering applications for information assurance and cybersecurity in your industry?''
+
+\subsubsection{Question 6.2}
+
+This question measures recommendation likelihood: ``Would you recommend that your organization explore Digital Engineering adoption for improving security operations?''
+
+\subsubsection{Question 6.3}
+
+This question captures professional field: ``Please identify your field of practice.'' (Information Technology / Security / Engineering / Other)
+
+\subsubsection{Question 6.4}
+
+This question captures experience level: ``Please indicate your level of experience in your field of practice.'' (1-5 Years / 6-10 Years / 11-15 Years / 15+ Years)
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/OverviewDiagramOfPackageSection6.png}
+    \caption{Section Six Survey Question Elements Package Diagram}
+    \label{fig:Section6Questions}
+\end{figure}
+
+\subsubsection{Mapping to Research Questions}
+
+While not directly measuring awareness or perceived value, demographic data enables investigation of whether awareness and perceptions vary by professional field or experience level, providing insights for targeted future research and professional development initiatives.
+
+\subsection{Traceability of Survey Questions}
+
+Figure~\ref{fig:ResearchQuestionTraceability} provides a comprehensive diagram which shows authoritative traceability of survey question elements to the research questions. Use of relationship traceability diagrams enables validation with programatic diagrams.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\linewidth]{Figures/ResearchQuestionTraceabilityMatrix.png}
+    \caption{Research Question Traceability}
+    \label{fig:ResearchQuestionTraceability}
+\end{figure}
+
+\section{Data Collection Procedures}
+
+\subsection{Survey Platform and Administration}
+
+The survey shall be administered electronically using an established survey platform that supports anonymous response collection, secure data storage, and compliance with research ethics requirements. Electronic administration enables efficient access to geographically distributed respondents while ensuring consistent question presentation and response capture across all participants.
+
+\subsection{Data Protection Plan}
+
+In accordance with survey requirements, the survey data shall be protected with appropriate security controls to ensure the confidentiality, integrity, and availability of collected data. The data protection plan includes:
+
+\begin{itemize}
+  \item Password protection and multifactor authentication for access to survey administration and data
+  \item Encryption at rest for stored survey responses
+  \item Encryption in transit for data transmission between respondents and the survey platform
+  \item No collection of IP addresses or other metadata that could potentially identify respondents
+  \item Secure storage in compliance with university data governance requirements
+\end{itemize}
+
+\subsection{Informed Consent}
+
+The survey begins with a comprehensive participation notice explaining the research purpose, what participation involves, confidentiality protections, voluntary nature of participation, and contact information for questions or concerns. The notice clearly states:
+
+\begin{itemize}
+  \item The survey is conducted as part of a doctoral research project at Dakota State University
+  \item Participation is completely anonymous with no personally identifiable information collected
+  \item Risks of participation are minimal and similar to those encountered in normal daily internet activity
+  \item Participation is entirely voluntary with the right to withdraw at any time before submission
+  \item Respondents must be 18 years or older to participate
+  \item No compensation or incentive is offered for participation
+  \item Completion and submission of the survey constitutes informed consent
+\end{itemize}
+
+\subsection{Recruitment and Distribution}
+
+Survey distribution shall occur through multiple channels to maximize reach and diversity of the respondent pool. Recruitment messages shall clearly describe the target population (IT and cybersecurity professionals), estimated completion time (approximately ten minutes), and research purpose. Distribution channels include direct outreach to professional networks, posting in relevant online professional communities, distribution through professional association newsletters and communication channels, and sharing through academic and industry conference participants.
+
+\section{Data Analysis Plan}
+
+\subsection{Data Preparation and Cleaning}
+
+Prior to analysis, survey responses shall be reviewed for completeness and data quality. Responses with substantial missing data (more than 20\% of questions unanswered) shall be excluded from analysis. Remaining missing values shall be handled through listwise deletion for specific analyses where required variables are missing. Data quality precedes data analysis: conclusions drawn from flawed data remain flawed regardless of analytical sophistication.
+
+\subsection{Descriptive Statistical Analysis}
+
+Descriptive statistics shall be calculated for all survey questions to characterize the distribution of responses. For Likert-scale questions, analysis shall include frequency distributions, mean scores, median scores, and standard deviations. For binary and categorical questions, analysis shall include frequency counts and percentages within each response category.
+
+\subsubsection{Research Question 1 Analysis}
+
+Analysis addressing Research Question 1 shall focus upon Sections 1 and 2 responses to characterize professional awareness of Digital Engineering capabilities. Key metrics include:
+
+\begin{itemize}
+  \item Distribution of familiarity ratings from Question 1.1, with percentage of respondents at each familiarity level
+  \item Percentage of respondents reporting professional exposure to Digital Engineering within the past two years (Question 1.2)
+  \item Mean agreement scores and standard deviations for understanding of specific capabilities (Questions 2.1-2.6)
+  \item Percentage of respondents indicating agreement (score \(\geq\) 4) with each capability statement
+\end{itemize}
+
+Results shall be reported with 95\% confidence intervals to indicate the precision of population estimates. For the target sample size of 385 respondents, the margin of error for reported proportions shall not exceed 5\%.
+
+\subsubsection{Research Question 2 Analysis}
+
+Analysis addressing Research Question 2 shall focus upon Sections 3, 4, and 5 responses measuring perceived value of Digital Engineering capabilities. Key metrics include:
+
+\begin{itemize}
+  \item Mean agreement scores and response distributions for applicability questions (Questions 3.1-3.6)
+  \item Mean agreement scores and response distributions for IT value assessment questions (Questions 4.1-4.4)
+  \item Mean agreement scores and response distributions for cybersecurity value assessment questions (Questions 5.1-5.6)
+  \item Percentage of respondents indicating organizational investment willingness (Questions 4.5 and 5.7)
+\end{itemize}
+
+Responses indicating agreement (score = 4) or strong agreement (score = 5) with value statements shall be interpreted as evidence that professionals perceive potential value in Digital Engineering capabilities.
+
+\subsubsection{Research Question 3 Analysis}
+
+Analysis addressing Research Question 3 shall focus upon questions specifically addressing job performance, compliance requirements, and organizational capability enhancement. Key questions include:
+
+\begin{itemize}
+  \item Question 3.5: Digital lifecycle management for compliance and service delivery
+  \item Question 3.6: Regulatory or compliance requirements that could benefit from Digital Engineering
+  \item Question 4.1: Meaningful value to IT processes
+  \item Questions 4.2-4.4: Specific IT operational benefits (cycle time, quality, collaboration)
+  \item Question 5.1: Meaningful value to cybersecurity operations
+  \item Questions 5.2-5.6: Specific security operational benefits (vulnerability remediation, security posture, threat modeling, collaboration, compliance)
+\end{itemize}
+
+The percentage of respondents indicating agreement with these statements shall provide direct evidence regarding whether professionals believe Digital Engineering could help them in their work.
+
+\subsection{Comparative Analysis}
+
+Comparative analyses shall examine whether awareness levels and value perceptions differ significantly between professional subgroups and experience levels. Such differences would carry significant implications for adoption strategies and professional development initiatives.
+
+\subsubsection{Professional Field Comparison}
+
+Independent samples t-tests or Mann-Whitney U tests shall compare responses between IT professionals and cybersecurity professionals (based upon Question 6.3). The choice of parametric versus non-parametric test shall be determined by assessment of normality assumptions using Shapiro-Wilk tests and visual inspection of distributions.
+
+\subsubsection{Experience Level Comparison}
+
+For comparisons across the four experience level categories (Question 6.4), one-way ANOVA or Kruskal-Wallis tests shall be employed as appropriate based upon normality assumptions. Post-hoc pairwise comparisons shall be conducted using Tukey's HSD (for ANOVA) or Dunn's test (for Kruskal-Wallis) to identify specific group differences.
+
+\subsubsection{Association Analysis}
+
+Chi-square tests of independence shall examine associations between categorical variables, such as the relationship between professional field and prior Digital Engineering exposure (Question 1.2), or between experience level and organizational investment willingness (Questions 4.5, 5.7).
+
+\subsection{Composite Score Analysis}
+
+To provide summary measures of awareness and perceived value, composite scores shall be calculated by averaging Likert responses within thematic groupings:
+
+\subsubsection{Awareness Composite}
+
+Average of Question 1.1 and Questions 2.1-2.6 (seven items measuring familiarity and understanding of Digital Engineering capabilities)
+
+\subsubsection{IT Value Perception Composite}
+
+Average of Questions 3.1, 3.3-3.5, and 4.1-4.4 (eight items measuring perceived value of Digital Engineering for IT operations)
+
+\subsubsection{Security Value Perception Composite}
+
+Average of Questions 3.2, 3.6, and 5.1-5.6 (eight items measuring perceived value of Digital Engineering for information assurance and cybersecurity)
+
+Internal consistency of composite scores shall be assessed using Cronbach's alpha, with values above 0.70 considered acceptable for research purposes. If internal consistency proves insufficient, item analysis shall be conducted to identify potentially problematic items.
+
+\subsection{Statistical Significance and Effect Sizes}
+
+Statistical significance shall be evaluated at the \(\alpha\) = 0.05 level for all inferential tests. However, given the large sample size targeted for this study, effect sizes shall be reported alongside significance tests to assess practical significance of observed differences. Statistical significance alone can mislead when sample sizes are large; effect sizes reveal whether differences matter in practice. Cohen's d shall be reported for group comparisons, with conventional thresholds of 0.2 (small), 0.5 (medium), and 0.8 (large) used for interpretation. For chi-square tests, Cram\'{e}r's V shall be reported as the effect size measure.
+
+\section{Reliability and Validity Considerations}
+
+\subsection{Content Validity}
+
+Content validity was established through systematic mapping of survey questions to research questions and through alignment with established frameworks in the Digital Engineering and technology acceptance literature. The survey instrument structure directly addresses the four pillars of Digital Engineering---MBSE, the Digital Thread, Digital Twin, and PLM---as established by INCOSE and adopted by NASA, DoD, and the Intelligence Community. Questions were reviewed to ensure they accurately represent the constructs of interest and employ appropriate professional terminology familiar to IT and information assurance practitioners.
+
+\subsection{Construct Validity}
+
+Construct validity is supported through use of established question formats and scale anchors drawn from validated instruments in technology acceptance research. The agreement scale format follows conventions from TAM and UTAUT research that have demonstrated validity for measuring technology perceptions across diverse populations. The tripartite structure of the survey examining awareness, applicability, and perceived value follows established patterns in technology adoption research that have proven effective across multiple domains.
+
+\subsection{Reliability}
+
+Internal consistency reliability shall be assessed for composite scores using Cronbach's alpha. Additionally, the standardized question format and scale anchors across sections support response consistency by presenting respondents with familiar response frameworks throughout the survey. The use of consistent Likert scale response options across Sections 2-5 reduces potential confusion and supports reliable responding.
+
+\subsection{Limitations}
+
+Several limitations should be considered when interpreting study results:
+
+\begin{itemize}
+  \item The non-probability sampling approach limits generalizability to the broader population of IT and information assurance professionals. Results should be interpreted as indicative of perceptions within the accessible population rather than definitive measures of the entire professional community.
+
+  \item Self-selection bias may result in over-representation of professionals with existing awareness or interest in Digital Engineering. Individuals who recognize the term or possess prior exposure may be more likely to complete the survey, potentially inflating reported awareness levels.
+
+  \item Social desirability bias may influence responses, particularly regarding perceived value questions. Respondents may indicate greater perceived value than they genuinely hold if they believe Digital Engineering represents a progressive or professionally desirable position.
+
+  \item Self-reported awareness and perceptions may not accurately reflect actual knowledge or organizational capabilities. Respondents may overestimate their familiarity with Digital Engineering concepts or underestimate existing capabilities within their organizations that align with Digital Engineering principles but employ different terminology.
+
+  \item The cross-sectional design captures perceptions at a single point in time during a period of rapid evolution in both Digital Engineering practices and enterprise IT methodologies. Results represent a temporal snapshot that may not reflect awareness levels or perceptions six months or a year following data collection, particularly given increasing industry attention to digital transformation initiatives.
+
+  \item Non-target respondents who complete the survey may affect results, though demographic questions enable identification and potential exclusion of responses from outside the target population.
+
+  \item The survey measures perceived value and anticipated benefits rather than actual experienced benefits. Positive perceptions do not guarantee that Digital Engineering would deliver value if implemented, nor do they indicate organizational readiness for adoption.
+\end{itemize}
+
+\section{Ethical Considerations}
+
+This research was designed in accordance with ethical principles for human subjects research and submitted for review and comment by the Dakota State University Institutional Review Board (IRB), approval by the IRB will proceed after Dissertation Proposal Defense completion. Key ethical considerations include:
+
+\subsection{Anonymity} The survey collects no personally identifiable information, ensuring respondent anonymity. Demographic questions are limited to professional field and experience level, which cannot identify individual respondents.
+
+\subsubsection{Voluntary Participation} Participation is voluntary with no consequences for non-participation. Respondents may exit the survey at any time before submission without consequence and may skip any questions they choose not to answer.
+
+\subsubsection{Minimal Risk} The research presents minimal risk to participants, with potential inconvenience limited to time required for survey completion. Risks are similar to those encountered in normal daily internet activity.
+
+\subsubsection{Informed Consent} Informed consent is obtained through the participation notice presented before survey questions, with submission constituting consent.
+
+\subsubsection{Data Protection} Data shall be stored securely using password protection, multifactor authentication, and encryption at rest and in transit. Data shall be used solely for research purposes as described in the participation notice.
+
+\subsubsection{Data Use Restrictions} Survey raw data shall not be sold or used for any purpose other than the dissertation research.
+
+\section{Research Timeline and Project Schedule}
+
+This research follows a structured implementation plan spanning approximately twenty-two months from dissertation committee formation through final defense. The timeline aligns with Dakota State University's doctoral program requirements and academic calendar while accommodating the iterative nature of quantitative survey research. Each phase builds systematically upon preceding work, ensuring adequate time for committee review, institutional oversight, data collection, and rigorous analysis. Figure \ref{fig:Schedule} presents the project schedule in graphical form.
+
+\begin{figure}[tbp]
+    \begin{centering}
+        \begin{ganttchart}[
+            vgrid,
+            time slot format=isodate-yearmonth,
+            time slot unit = month,
+            ]{2025-05}{2027-04}
+          \gantttitlecalendar{year, month}\\
+          \ganttgroup{Dissertation Proposal}{2025-06}{2026-03} \\
+          \ganttbar[progress=100]{Committee Formation}{2025-06}{2025-08} \\
+          \ganttlinkedbar[progress=75]{Write Proposal}{2025-09}{2026-03} \\
+          \ganttlinkedmilestone{Proposal Defense}{2026-03}
+          \ganttnewline[thick, black] 
+          \ganttgroup{Survey}{2026-04}{2026-11} \\
+          \ganttbar{IRB Approval}{2026-04}{2026-04} \\
+          \ganttlinkedbar{Survey Execution}{2026-05}{2026-08} \\
+          \ganttlinkedbar{Data Analysis}{2026-09}{2026-11} \\
+          \ganttlinkedmilestone{Research Complete}{2026-11} 
+          \ganttnewline[thick, black]
+          \ganttgroup{Dissertation}{2026-11}{2027-03} \\
+          \ganttbar{Write Dissertation}{2026-11}{2027-02} \\
+          \ganttlinkedmilestone{Dissertation Final Defense}{2027-03} \\
+        \end{ganttchart}
+        \caption{Dissertation Timeline}
+        \label{fig:Schedule}
+    \end{centering}
+\end{figure}
+
+\subsection{Phase 1: Committee Formation and Preparation (May 2025 -- August 2025)}
+
+The initial phase established the dissertation committee and governance structure for the research project. During this period, the candidate identified and invited faculty members. Committee formation required consideration of faculty availability, disciplinary expertise alignment with the research questions, and institutional requirements for committee composition. Preliminary discussions with committee members addressed research scope, methodology, and expected timeline. Committee formation concluded in August 2025, enabling proposal development under appropriate faculty guidance.
+
+\subsection{Phase 2: Dissertation Proposal Development (September 2025 -- February 2026)}
+
+The proposal development phase spans six months, reflecting the iterative nature of academic research design. During September and October 2025, the candidate completed initial proposal drafts encompassing the problem statement, literature review, research questions, and detailed methodology. These drafts underwent review by the dissertation chair, with feedback informing subsequent revisions. November 2025 through February 2026 involves iterative refinement based upon committee member feedback, addressing conceptual clarity, methodological rigor, literature synthesis, and alignment between research questions and analytical approaches. February 2026 focuses upon final proposal preparation, incorporating all committee feedback and ensuring compliance with Dakota State University formatting and content requirements.
+
+\subsection{Phase 3: Proposal Defense and IRB Approval (March -- April 2026)}
+
+The dissertation proposal defense occurs in March 2026, providing the committee opportunity to evaluate the research design before data collection commences. The defense presentation addresses the research problem, theoretical framework, methodology, and anticipated contributions. Successful defense results in committee approval to proceed with human subjects research application, with any required modifications addressed immediately thereafter.
+
+Following successful proposal defense, the candidate submits the Institutional Review Board application for human subjects research approval. The IRB application includes the complete research protocol, survey instrument, recruitment materials, informed consent procedures, and data protection plan. The timeline allocates April 2026 for IRB review and approval, recognizing that no participant recruitment or data collection may commence without formal IRB authorization.
+
+\subsection{Phase 4: Survey Execution (May 2026 -- August 2026)}
+
+The survey execution phase spans four months, enabling comprehensive recruitment across multiple professional channels and providing adequate response time for participants. May 2026 focuses upon survey platform configuration, recruitment material distribution, and initial participant engagement through professional networks and industry associations. June and July 2026 constitute the active data collection period, with ongoing monitoring of response rates, data quality, and sample composition. This extended collection period accommodates the schedules of working professionals who constitute the target population. August 2026 serves as a buffer period for late responses and final data collection activities, allowing for additional recruitment waves if initial response rates prove insufficient to achieve the target sample size of 385--450 completed surveys.
+
+\subsection{Phase 5: Data Analysis (September 2026 -- November 2026)}
+
+The data analysis phase requires three months to conduct thorough examination of survey results addressing all three research questions. September 2026 focuses upon data preparation, cleaning, and preliminary descriptive analysis, including response validation, missing data assessment, and calculation of basic descriptive statistics for all survey questions. October 2026 addresses the primary analyses required to answer each research question: comparative analyses across professional subgroups, composite score calculation and reliability assessment, and inferential statistical testing. November 2026 involves interpretation of results, identification of key findings, and preparation of tables and figures for the results chapter.
+
+\subsection{Phase 6: Dissertation Writing and Defense (December 2026 -- March 2027)}
+
+The dissertation writing phase spans three months. While Chapters 1 through 3 exist in proposal form, they require revision to reflect any modifications made during proposal defense and data collection. Chapters 4 and 5 must be written to present results and discuss their implications. December 2026 focuses upon completing the results chapter, presenting findings organized by research question with appropriate statistical support. January 2027 addresses the discussion chapter, interpreting results in the context of existing literature, addressing research limitations, and proposing future research directions. February 2027 involves comprehensive revision of all chapters and submission of the complete dissertation to the committee.
+
+The dissertation defense occurs in March 2027, approximately twenty-two months after the research project commenced. The defense presentation summarizes the complete research project, emphasizing key findings and their significance for Digital Engineering adoption in Information Assurance and IT Service Management contexts. Successful defense leads to degree conferral following any required minor revisions, positioning the candidate for degree completion during the spring 2027 term.
+
+\section{Chapter Summary}
+
+This chapter has presented the research methodology employed to investigate professional awareness and perceptions of Digital Engineering capabilities among IT and information assurance professionals. The research employs a quantitative survey methodology following a systems engineering lifecycle approach that ensures rigor and traceability throughout the research process. The survey instrument systematically addresses the three research questions through 27 questions organized into six thematic sections covering awareness, understanding, applicability, and perceived value for both IT and information assurance domains.
+
+A target sample of 385-450 completed responses shall provide sufficient statistical power to achieve a maximum margin of error of five percent at the 95\% confidence level. Data analysis shall employ descriptive statistics to characterize awareness levels and value perceptions, with comparative analyses examining differences across professional subgroups and experience levels. Composite scores shall summarize overall awareness and value perceptions with internal consistency assessed through Cronbach's alpha.
+
+The methodology establishes a rigorous foundation for generating empirical evidence regarding professional perceptions of Digital Engineering that can inform future research and practice in information assurance and IT service delivery. The systems engineering approach to research design ensures traceability between research questions, survey instruments, and analytical approaches---demonstrating that the same disciplinary rigor that Digital Engineering brings to complex systems can be applied to academic research itself.
+
+%Chapter 4 shall present the results of survey data collection and analysis, reporting response rates, demographic characteristics of the sample, and findings organized by research question. The results chapter shall address each research question systematically, presenting descriptive statistics, comparative analyses, and composite score assessments that characterize professional awareness and perceptions of Digital Engineering capabilities within the IT and information assurance professional community.

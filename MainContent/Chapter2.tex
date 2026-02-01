@@ -1,0 +1,553 @@
+\chapter{\leavevmode\newline Literature Review}\label{chap:chapter_2}
+
+This chapter examines the current body of knowledge across nine interconnected domains relevant to applying Digital Engineering methodologies to Information Assurance and IT Service Management. Through systematic synthesis of research spanning enterprise architecture frameworks, Digital Engineering foundations, Model-Based Systems Engineering, digital twin technology, compliance frameworks, IT service management practices, and enterprise visibility challenges, this review establishes the theoretical groundwork while documenting a research gap: the near-complete absence of academic research applying proven MBSE and Digital Engineering methodologies to enterprise IT infrastructure, IT Service Management, or Information Assurance programs. The chapter culminates in a theoretical framework positing that Digital Engineering represents a disciplinary approach capable of addressing gaps that have persisted despite decades of framework development and organizational investment.
+
+\section{Enterprise Architecture Frameworks}
+
+Enterprise Architecture (EA) provides the foundational structure for understanding, documenting, and managing complex organizational systems. The evolution of enterprise architecture frameworks from domain-specific military applications toward unified commercial and defense approaches reflects growing recognition that systematic architectural methods transcend organizational boundaries. This section examines the major enterprise architecture frameworks and their convergence through the Unified Architecture Framework.
+
+The importance of enterprise architecture frameworks for this research lies in their explicit recognition that complex systems require structured approaches to documentation, visualization, and management. The challenges that motivated enterprise architecture development---complexity exceeding human comprehension, interdependencies requiring systematic tracking, and stakeholder communication requiring multiple perspectives---parallel the challenges that Digital Engineering addresses. Understanding the enterprise architecture foundation provides context for evaluating how Digital Engineering extends and enhances architectural approaches.
+
+\subsection{The Unified Architecture Framework}
+
+The Unified Architecture Framework represents the most notable evolution in enterprise architecture standardization, now codified as ISO/IEC 19540-1:2022 and ISO/IEC 19540-2:2022 through the Object Management Group~\cite{OMG_UAF_2022}. UAF emerged from the Unified Profile for DoDAF and the Ministry of Defence Architecture Framework (MODAF) (UPDM 3.0) with the explicit purpose of consolidating multiple defense architecture frameworks while extending applicability to commercial domains. The specification asserts that ninety percent of concepts and themes captured in military frameworks prove equally applicable in commercial domains~\cite{OMG_UAF_About_2024}. This recognition carries implications for enterprise IT and Information Assurance practitioners who have historically operated outside the systems engineering discipline.
+
+UAF employs a grid-based structure wherein rows represent stakeholder domains---Strategic, Operational, Services, Personnel, and Resources---while columns represent architecture aspects. This structure defines seventy-one view specifications through the UAF Domain Metamodel and UAF Modeling Language~\cite{OMG_UAF_Spec_2022}. The framework's foundation upon the IDEAS Ontology and implementation through UML/SysML profiles addresses a historical limitation: the disconnect between enterprise architecture and systems engineering tools that plagued earlier frameworks~\cite{Aerospace_UAF_2023}. For organizations seeking to bridge the gap between enterprise IT documentation and rigorous systems engineering practice, UAF provides a standards-based pathway.
+
+The grid structure warrants examination because it illustrates how UAF enables multiple stakeholder perspectives on complex systems. Strategic viewpoints address enterprise goals and capabilities. Operational viewpoints describe how organizations accomplish missions. Service viewpoints define the services that systems provide. Resource viewpoints identify the systems and components that deliver capabilities. Security viewpoints address protection requirements and mechanisms. This multi-viewpoint approach enables different stakeholders to examine systems from their particular concerns while maintaining integration across perspectives through the underlying metamodel.
+
+Comparative research by \citeauthor{Bankauskaite_2019} evaluated enterprise architecture frameworks using weighted criteria spanning domain support, tool support, modeling language openness, information availability, and researcher prevalence~\cite{Bankauskaite_2019}. UAF achieved the highest overall rating of 2.8, surpassing TOGAF at 2.3, DoDAF at 1.9, MODAF at 1.8, NAF at 1.6, and FEAF at 1.2. This comparative analysis demonstrates UAF's emergence as the preferred framework for organizations requiring architecture capabilities across multiple domains.
+
+\subsubsection{UAF as the Consolidating Standard}
+
+The Object Management Group developed UAF explicitly as a consolidating standard to address the proliferation of incompatible architecture frameworks that impeded interoperability across organizations and nations. Understanding why OMG positioned UAF as the consolidating framework and why major defense organizations have adopted it illuminates the framework's significance for enterprise applications.
+
+The consolidation imperative arose from practical interoperability challenges. During coalition military operations, allied nations discovered that their architecture frameworks---DoDAF for the United States, MODAF for the United Kingdom, NAF for NATO, and DNDAF for Canada---employed different metamodels, terminologies, and tooling requirements despite addressing similar architectural concerns~\cite{NDIA_SE_DoDAF_2011}. Architecture products created in one framework could not be readily consumed by organizations using other frameworks. This incompatibility hampered the coalition planning and capability development that modern military operations require.
+
+OMG convened representatives from the U.S. Department of Defense, the UK Ministry of Defence, NATO, Canadian armed forces, and Swedish armed forces alongside industry partners and tool vendors to develop a unified approach~\cite{OMG_UAF_UPDM_2017}. The resulting UPDM specification, and its evolution into UAF, consolidated the common concepts across military frameworks while extending applicability to commercial domains. The development process explicitly identified that ninety percent of military framework concepts addressed challenges equally relevant to commercial enterprises~\cite{OMG_UAF_About_2024}.
+
+The Department of Defense has incorporated UAF into its architecture guidance, recognizing the framework's alignment with Digital Engineering initiatives~\cite{DoD_Engineering_2022}. The UK Ministry of Defence maintains alignment between MODAF evolution and UAF development. NATO Architecture Framework Version 4 explicitly endorses the UAF Domain Metamodel as a compliant metamodel, validating UAF's role as a unifying framework for defense interoperability across allied nations~\cite{NATO_NAF_2018}. This adoption by major defense organizations establishes UAF as the authoritative approach for defense architecture while the ISO standardization extends that authority to commercial contexts.
+
+The consolidation extends beyond military applications. OMG designed UAF to support commercial and industrial enterprises facing similar architectural challenges: complex systems spanning multiple domains, diverse stakeholder perspectives requiring integration, and compliance requirements demanding comprehensive documentation. The UAF specification explicitly addresses both defense and commercial use cases, with viewpoints and views applicable to enterprise IT, service delivery, and organizational capability management~\cite{OMG_UAF_Spec_2022}.
+
+International standardization through ISO/IEC 19540 further establishes UAF's role as the consolidating framework. ISO adoption provides the framework with international recognition that encourages adoption across national boundaries and industry sectors. Organizations seeking architecture frameworks with international standing increasingly select UAF given its dual status as both OMG and ISO standard.
+
+For enterprise IT and Information Assurance applications, UAF's consolidating role carries significance. Organizations can adopt a framework with proven application in complex defense systems while benefiting from commercial domain extensions. The framework provides structured approaches to documenting systems, relationships, and security requirements that align with both NIST and ITIL expectations. The integration with SysML enables model-based documentation approaches that address the accuracy and currency challenges plaguing traditional enterprise architecture implementations.
+
+\subsection{Department of Defense Architecture Framework}
+
+The Department of Defense Architecture Framework (DoDAF) Version 2.02 established the foundational military architecture approach with eight viewpoints and fifty-two models, supporting key DoD processes including the Joint Capabilities Integration and Development System for capabilities definition, the Defense Acquisition System for program management, and the Planning, Programming, Budgeting, and Execution process for resource allocation~\cite{DoDAF_2009}. DoDAF 2.0's introduction of the DoDAF Meta Model marked the watershed transition from document-based to data-centric architecture products---a transformation in how defense organizations conceptualize and manage architectural information~\cite{DAU_DoDAF_2024}.
+
+The transition from document-based to data-centric approaches deserves emphasis because it represents a conceptual shift that Digital Engineering extends. Earlier DoDAF versions specified products---documents and diagrams---as the primary outputs of architecture development. DoDAF 2.0 shifted emphasis to the underlying data, recognizing that products should be generated from authoritative data stores rather than created as standalone artifacts. This shift aligns with Digital Engineering's emphasis upon authoritative sources of truth from which views and reports are generated as needed.
+
+Analysis by the National Defense Industrial Association's Systems Engineering Division documented limitations in the DoDAF Meta Model's support for systems engineering requirements~\cite{NDIA_SE_DoDAF_2011}. The analysis identified semantic disconnects with UML and SysML that subsequently informed UAF development. Research by \citeauthor{Hause_2010} further examined evaluation criteria for DoDAF meta-model support of systems engineering, identifying specific areas where the framework required enhancement to support integrated systems engineering practices~\cite{Hause_2010}. These limitations drove the evolution toward more capable frameworks.
+
+Despite its limitations, DoDAF established principles that persist in successor frameworks. The emphasis upon multiple viewpoints addressing different stakeholder concerns, the recognition that architecture data should support analysis rather than merely documentation, and the integration of architecture with acquisition and capability development processes all originated with or were significantly advanced by DoDAF\@. Understanding this heritage provides context for UAF's design decisions and explains why UAF maintains compatibility with DoDAF products and processes.
+
+\subsection{NATO Architecture Framework}
+
+The NATO Architecture Framework (NAF) Version 4 explicitly endorses the UAF Domain Metamodel as a compliant metamodel, validating UAF's role as a unifying framework for defense interoperability across allied nations~\cite{NATO_NAF_2018}. NAF evolved through multiple versions to address interoperability requirements spanning NATO member nations, with Version 4 representing alignment with international standardization efforts. The framework supports coalition operations planning and capability development through standardized architectural descriptions that enable communication across organizational and national boundaries.
+
+NAF's endorsement of UAF carries practical implications. NATO member nations developing architectures using UAF can share and integrate those architectures across the alliance. This interoperability enables coalition planning, joint capability development, and coordinated operations that incompatible frameworks impede. The alignment between NAF and UAF demonstrates how consolidating standards enable collaboration that fragmented standards prevent.
+
+For enterprise applications, NAF's endorsement of UAF validates the framework's applicability beyond single-organization contexts. Organizations operating within supply chains, partnership networks, or regulatory ecosystems face interoperability challenges similar to those confronting coalition military operations. A consolidating framework that enables architecture sharing across organizational boundaries provides value beyond internal documentation.
+
+\subsection{The Open Group Architecture Framework}
+
+The Open Group Architecture Framework (TOGAF) provides comprehensive methodology for enterprise architecture development through its Architecture Development Method~\cite{TOGAF_2018}. A joint white paper between The Open Group and MITRE Corporation established the complementary relationship between TOGAF and DoDAF, observing that TOGAF focuses primarily upon architecting methodology without prescribing architecture description constructs, while DoDAF focuses primarily upon architecture description through defined views without specifying methodology~\cite{OpenGroup_MITRE_2013}. This complementary relationship informed UAF's design, which synthesizes both description standards from DoDAF heritage and methodological considerations from commercial frameworks.
+
+TOGAF's prominence in commercial enterprise architecture practice makes this complementary relationship significant. Organizations familiar with TOGAF methodology can adopt UAF for architecture description while retaining TOGAF's Architecture Development Method for process guidance. This compatibility reduces adoption barriers for organizations transitioning from commercial to unified frameworks.
+
+The Architecture Development Method's iterative approach aligns with Digital Engineering principles emphasizing continuous refinement over point-in-time documentation. TOGAF recognizes that architecture evolves as organizations change, requiring processes that maintain architecture currency rather than treating architecture as a completed deliverable. This recognition parallels Digital Engineering's emphasis upon living models that maintain synchronization with operational systems.
+
+\subsection{Zachman Framework}
+
+The Zachman Framework for Enterprise Architecture, developed by John Zachman in the 1980s, provides an ontology for organizing architectural artifacts~\cite{Zachman_2008}. The framework's six-by-six matrix structure addresses interrogatives---what, how, where, who, when, and why---across perspectives ranging from executive through implementation. While the Zachman Framework provides taxonomic structure, it does not prescribe specific modeling languages or tools, distinguishing it from more prescriptive frameworks like DoDAF and UAF~\cite{Zachman_2011}.
+
+The Zachman Framework's historical significance lies in establishing the conceptual foundation that subsequent frameworks elaborated. The recognition that different stakeholders require different perspectives on systems, organized by fundamental interrogatives, influenced all subsequent enterprise architecture development. Understanding this foundation illuminates why modern frameworks like UAF employ multi-viewpoint structures.
+
+\subsection{Academic Applications of UAF}
+
+Recent academic research demonstrates expanding UAF application across defense and commercial domains. \citeauthor{Eichmann_Melzer_God_2019} documented a UAF-based system-of-systems model development for an unmanned aircraft system~\cite{Eichmann_Melzer_God_2019}. \citeauthor{Abhaya_2021} proposed a UAF-Based MBSE method for system-of-systems modeling~\cite{Abhaya_2021}. \citeauthor{Liu_2023} presented top-down military system-of-systems design using MBSE based on UAF~\cite{Liu_2023}. \citeauthor{Torkjazi_2024} addressed integrating autonomy into systems-of-systems using UAF~\cite{Torkjazi_2024}.
+
+These academic applications share a common characteristic: they address defense or aerospace systems rather than enterprise IT or Information Assurance. The UAF capabilities these researchers employ---multi-viewpoint modeling, requirements traceability, system-of-systems analysis---offer potential value for enterprise IT contexts. Yet the research community has not examined this application. The literature contains case studies, methodology proposals, and implementation guidance for physical systems. Enterprise IT and Information Assurance applications remain unexplored.
+
+Yet despite this expanding academic utilization, enterprise IT and Information Assurance applications remain conspicuously absent from the research literature. The frameworks exist; the methodologies have matured; the tools have proliferated. But the research community has not applied these capabilities to the domains where visibility and documentation challenges persist most acutely.
+
+\section{Digital Engineering Foundational Literature}
+
+Digital Engineering has emerged as the preferred approach to complex system development across defense, aerospace, and related domains. This section examines the foundational guidance and strategic direction established by authoritative organizations including the Department of Defense, NASA, and INCOSE\@. Understanding this authoritative foundation establishes the conceptual framework within which Digital Engineering capabilities are defined and evaluated.
+
+\subsection{Department of Defense Digital Engineering Strategy}
+
+The Department of Defense Digital Engineering Strategy, published in June 2018, established the formal vision for transforming defense acquisition through Digital Engineering practices~\cite{DoD_DE_Strategy_2018}. The strategy defines five strategic goals: formalize the development, integration, and use of models to inform enterprise and program decisions; provide an authoritative source of truth; incorporate technological innovation to improve engineering practice; establish a Digital Engineering ecosystem; and transform the culture and workforce to adopt Digital Engineering.
+
+Each strategic goal warrants examination because together they define the full scope of Digital Engineering transformation. Goal 1 addresses model-based approaches, establishing that models should drive decision-making rather than merely documenting decisions already made. Goal 2 emphasizes authoritative sources of truth, recognizing that multiple disconnected documentation sources undermine confidence and accuracy. Goal 3 acknowledges that Digital Engineering must incorporate emerging technologies including artificial intelligence and advanced analytics. Goal 4 recognizes that Digital Engineering requires an ecosystem of tools, standards, and practices rather than isolated implementations. Goal 5 addresses the human dimension, acknowledging that technology adoption requires workforce transformation.
+
+The authoritative source of truth concept deserves particular attention because it directly addresses the documentation-reality gap identified in Chapter 1. The DoD strategy defines the authoritative source of truth as ``a single source of data and models'' that provides ``a definitive technical baseline'' for programs~\cite{DoD_DE_Strategy_2018}. This concept recognizes that multiple documentation sources inevitably diverge, creating the ambiguity and inconsistency that undermine both engineering decisions and compliance verification. Digital Engineering addresses this challenge by establishing single authoritative sources from which all views, reports, and analyses are generated.
+
+DoD Instruction 5000.97, issued in December 2023, codifies Digital Engineering requirements for defense programs~\cite{DoDI_5000_97_2023}. The instruction mandates that programs leverage digital artifacts as the authoritative source of system information, maintain digital thread capabilities throughout the acquisition lifecycle, and employ digital twins for system analysis and testing. This formal policy requirement demonstrates the maturation of Digital Engineering from strategic aspiration to mandated practice within defense acquisition.
+
+The Systems Engineering Guidebook, published by the Office of the Under Secretary of Defense for Research and Engineering in February 2022, provides detailed implementation guidance for Digital Engineering practices within defense programs~\cite{DoD_Engineering_2022}. The guidebook addresses model-based systems engineering, digital thread implementation, digital twin employment, and the integration of these capabilities within program management and acquisition processes.
+
+\subsection{NASA Digital Engineering Implementation}
+
+NASA has implemented Digital Engineering across its mission portfolio through the Digital Engineering Acquisition Framework Handbook, NASA-HDBK-1004~\cite{NASA_HDBK_1004_2020}. The handbook provides guidance for incorporating Digital Engineering practices into NASA programs and acquisitions, addressing model-based approaches, digital thread requirements, and digital twin applications. NASA's experience demonstrates Digital Engineering value in civilian contexts requiring the same rigor and traceability as defense applications.
+
+The NASA Model-Based Systems Engineering Vision and Strategy Bridge document establishes the agency's path toward pervasive MBSE adoption~\cite{NASA_MBSE_Vision_2021}. NASA's experience provides evidence of Digital Engineering value in complex mission-critical systems while documenting the organizational and technical challenges of enterprise adoption. The lessons NASA learned during MBSE adoption---cultural resistance, tool integration challenges, workforce development requirements---inform expectations for Digital Engineering adoption in other contexts.
+
+NASA's independent development of Digital Engineering guidance parallel to DoD efforts validates the broad applicability of these methodologies. Both organizations confronted similar challenges: complex systems requiring thorough documentation, stringent compliance requirements demanding verifiable traceability, and mission-critical operations tolerating no ambiguity in system understanding. Both organizations converged upon Digital Engineering as the solution. This convergence suggests that Digital Engineering addresses core challenges of complex system management rather than domain-specific concerns unique to defense or space applications.
+
+\subsection{INCOSE Digital Engineering Vision}
+
+The International Council on Systems Engineering has positioned Digital Engineering as the future of the systems engineering discipline. The INCOSE Systems Engineering Vision 2035 document envisions model-based systems engineering becoming the dominant paradigm across all complex system development~\cite{INCOSE_Vision_2035}. This vision extends beyond defense and aerospace to encompass all domains where systems engineering applies.
+
+The INCOSE Systems Engineering Handbook, Fifth Edition, published in 2023, elaborates upon ISO/IEC/IEEE 15288:2023 life cycle processes with specific MBSE methodology guidance~\cite{INCOSE_Handbook_2023}. The handbook provides the authoritative reference for systems engineering practice, integrating Digital Engineering concepts throughout. The INCOSE Digital Engineering Information Exchange Working Group promotes collaboration and knowledge sharing among practitioners implementing Digital Engineering practices~\cite{DigitalEngineeringInformationExchange}.
+
+INCOSE's positioning of Digital Engineering as the future of systems engineering carries implications for fields beyond traditional systems engineering scope. As systems engineering expands to address enterprise systems, IT infrastructure, and organizational capabilities, Digital Engineering methodologies follow. The question becomes not whether Digital Engineering applies to enterprise IT and Information Assurance but when and how practitioners in these domains adopt methodologies that systems engineering has validated.
+
+\subsection{Systems Engineering Body of Knowledge}
+
+The Systems Engineering Body of Knowledge (SEBoK), jointly managed by INCOSE, IEEE Systems Council, and Stevens Institute's Systems Engineering Research Center (SERC), provides the globally recognized authoritative reference defining Digital Engineering's relationship to MBSE, digital threads, and authoritative source of truth within the ISO/IEC/IEEE 15288:2023 framework~\cite{SEBoK_2024}. SEBoK establishes Digital Engineering concepts as core systems engineering knowledge, positioning them for broader adoption as systems engineering practices expand.
+
+\section{NIST and SERC Publications}
+
+The National Institute of Standards and Technology and the Systems Engineering Research Center have produced foundational publications supporting Digital Engineering and systems security engineering. This section examines key publications while noting the absence of guidance specifically addressing enterprise IT contexts.
+
+\subsection{NIST Framework for Cyber-Physical Systems}
+
+The NIST Framework for Cyber-Physical Systems, published as Special Publication 1500-201, provides relevant guidance for enterprise systems engineering~\cite{NIST_CPS_Framework_2017}. The framework establishes a CPS analysis methodology based upon facets including conceptualization, realization, and assurance. Despite thorough treatment of cyber-physical considerations, the framework does not specifically address enterprise IT infrastructure or Information Assurance program management.
+
+The cyber-physical systems focus reflects NIST's recognition that physical and digital systems increasingly converge. Industrial control systems, Internet of Things deployments, and operational technology environments blur boundaries between traditional IT and physical systems. The framework's analytical methodology offers potential application to enterprise IT contexts where similar convergence occurs. However, explicit guidance for such application does not exist in current NIST publications.
+
+\subsection{NIST Systems Security Engineering Publications}
+
+NIST's systems security engineering publications establish principles for engineering trustworthy secure systems. Special Publication 800-160 Volume 1 Revision 1 describes a basis for establishing principles, concepts, activities, and tasks for engineering systems that merit stakeholder trust~\cite{Ross_Winstead_McEvilley_2022}. Special Publication 800-160 Volume 2 Revision 1 complements Volume 1 by addressing cyber resiliency considerations~\cite{NIST_SP_800_160_V2_2021}.
+
+These publications emphasize systems engineering approaches to security, recognizing that security outcomes depend upon how systems are designed and built rather than merely upon controls applied after deployment. This systems engineering perspective aligns with Digital Engineering's integrated approach. The publications reference model-based approaches and traceability requirements without providing specific implementation guidance for Digital Engineering in enterprise IT contexts.
+
+The systems security engineering publications establish requirements that Digital Engineering could address. SP 800-160 requires traceability between security requirements, design decisions, and implementation artifacts. It requires documentation that maintains currency throughout system lifecycles. It requires visibility into system configurations and relationships. These requirements parallel Digital Engineering capabilities. Yet the publications do not explicitly connect these requirements to Digital Engineering solutions.
+
+\subsection{NIST Digital Twin Publications}
+
+NIST Internal Report 8356 addresses novel cybersecurity challenges and trust considerations for digital twin implementations~\cite{NIST_IR_8356_2025}. NIST researchers have also contributed to ISO 23247 digital twin standards analysis~\cite{Shao_ISO_23247_2023}. These publications establish that NIST recognizes digital twin technology as relevant to cybersecurity while acknowledging the security challenges that digital twin implementations introduce.
+
+The digital twin publications address security considerations for systems employing digital twins rather than digital twin applications to Information Assurance. The publications examine how to secure digital twin implementations rather than how digital twins might enhance security posture visibility or compliance verification. This distinction reflects the current state of research: digital twins are examined as systems to be secured rather than as tools for improving security operations.
+
+\subsection{Systems Engineering Research Center Technical Reports}
+
+The Digital Engineering Competency Framework, documented in technical report SERC-2021-TR-005, defines 962 Knowledge, Skills, Abilities, and Behaviors organized by proficiency levels~\cite{Hutchinson_2021}. The Digital Engineering Metrics technical report, SERC-2020-TR-002, develops frameworks for measuring Digital Engineering benefits and adoption~\cite{Hutchison_2020}. Additional SERC technical reports address enterprise system-of-systems modeling and systems engineering modernization~\cite{SERC_Digital_Thread_2018, SERC_SE_Modernization_2022}.
+
+The SERC technical reports provide the academic foundation for Digital Engineering practice. The competency framework informs workforce development. The metrics framework enables organizations to measure adoption progress and benefits realization. These frameworks support Digital Engineering implementation in any domain, including enterprise IT and Information Assurance, though specific application guidance for these domains does not exist in current SERC publications.
+
+\section{Model-Based Systems Engineering Research}
+
+Model-Based Systems Engineering represents a paradigm shift from document-centric to model-centric systems engineering practices. This section examines the evidence base for MBSE value, adoption challenges, and the absence of research addressing enterprise IT applications.
+
+\subsection{Systematic Reviews of MBSE Evidence}
+
+The most comprehensive assessment of MBSE evidence comes from \citeauthor{Wooley_Womack_2025}, whose 2025 systematic literature review analyzed adoption, benefits, and challenges across the MBSE research corpus~\cite{Wooley_Womack_2025}. The review explicitly notes the absence of research addressing enterprise IT infrastructure or Information Assurance applications. This finding validates that the research gap identified in this dissertation reflects the actual state of academic literature rather than incomplete literature search.
+
+The systematic review identified consistent themes across MBSE research: improved requirements traceability, enhanced communication among stakeholders, better design validation, and more effective change management. These benefits address challenges documented in enterprise IT and Information Assurance contexts. Yet researchers have not examined whether benefits demonstrated in aerospace and defense contexts transfer to enterprise IT applications.
+
+Earlier systematic reviews by \citeauthor{Henderson_Salado_2021} examined MBSE value and maturity across industrial contexts~\cite{Henderson_Salado_2021}. \citeauthor{Wolny_2020} reviewed empirical evidence for model-based methods~\cite{Wolny_2020}. \citeauthor{Chami_Bruel_2018} surveyed MBSE tools and applications~\cite{Chami_Bruel_2018}. These reviews collectively establish that MBSE has demonstrated value across multiple domains while documenting the absence of enterprise IT applications.
+
+\subsection{Empirical Studies of MBSE Implementation}
+
+Research by \citeauthor{gregory2019model} examined model-based engineering practices within defense programs, documenting improved requirements traceability and more effective design reviews but also identifying organizational and technical barriers to adoption~\cite{gregory2019model}. The empirical evidence indicates that MBSE provides value in traditional systems engineering domains. However, the transferability of these benefits to enterprise IT and Information Assurance domains remains unexamined.
+
+The adoption barriers identified in MBSE research warrant attention because similar barriers likely impede adoption in enterprise IT contexts. Cultural resistance to new methodologies, tool learning curves, initial productivity decreases during transition, and integration challenges with existing processes all affected MBSE adoption in aerospace and defense. Organizations considering MBSE for enterprise IT applications should anticipate similar challenges.
+
+\subsection{SysML and Modeling Language Research}
+
+The Systems Modeling Language (SysML) provides the predominant modeling language for MBSE implementations. Research by \citeauthor{Friedenthal_Moore_Steiner_2014} establishes SysML as the practical standard for systems engineering modeling~\cite{Friedenthal_Moore_Steiner_2014}. SysML extends the Unified Modeling Language (UML) with constructs for requirements, parametrics, and system structure that UML lacks. This extension makes SysML suitable for systems engineering applications where UML's software focus proves insufficient.
+
+The evolution from SysML 1.x to SysML v2 addresses limitations that impeded broader adoption. SysML v2 improves precision, expressiveness, and usability through a redesigned language architecture. The new version provides better support for tool interoperability through standardized APIs and textual notation. These improvements may reduce barriers to MBSE adoption in domains beyond traditional systems engineering.
+
+\subsection{The Absence of MBSE for Enterprise IT}
+
+The literature review reveals a striking gap: no peer-reviewed research addresses MBSE application to enterprise IT infrastructure or Information Assurance program management. With the sole exception of the reference model by \citeauthor{Bonar_Hastings_2024}, the academic literature contains no studies examining whether MBSE approaches could improve IT service management, enhance security control implementation, or support compliance verification in enterprise contexts~\cite{Bonar_Hastings_2024}.
+
+This absence is particularly notable given the explicit requirements within compliance frameworks for architectural documentation, requirements traceability, and configuration management that MBSE provides. NIST publications require enterprise architecture capabilities. ITIL frameworks assume configuration management accuracy. Yet researchers have not examined whether MBSE could address these requirements more effectively than traditional approaches.
+
+\section{Digital Twin Technology}
+
+Digital twin technology has emerged as a transformative capability across multiple domains. This section examines digital twin foundations, standards development, and security applications.
+
+\subsection{Digital Twin Foundations}
+
+\citeauthor{Grieves_2023} traces the evolution of digital twin concepts from Product Lifecycle Management origins through contemporary applications~\cite{Grieves_2023}. Grieves, who originated the digital twin concept, positions it as the integration of physical and virtual systems that enables analysis, optimization, and prediction. Research by \citeauthor{madni2018leveraging} provides a framework for leveraging digital twins in systems engineering contexts~\cite{madni2018leveraging}. \citeauthor{Khan_Saad_Niyato_Han_Hong_2022} examine digital twin applications in emerging technology contexts~\cite{Khan_Saad_Niyato_Han_Hong_2022}.
+
+The foundational research establishes digital twins as more than simulation or modeling. Digital twins maintain synchronization with physical counterparts through continuous data exchange. This synchronization distinguishes digital twins from static models and enables the real-time analysis and prediction that static approaches cannot provide.
+
+\subsection{Digital Twin Standards Development}
+
+\citeauthor{Shao_2021} examines ISO 23247 and IEC 62832 standards for digital twin frameworks~\cite{Shao_2021}. \citeauthor{Shao_ISO_23247_2023} provides additional analysis of ISO 23247's four-part structure~\cite{Shao_ISO_23247_2023}. These standards establish interoperability requirements for digital twin implementations, addressing data exchange, interface specifications, and functional requirements.
+
+The standards development activity indicates maturing technology readiness for enterprise adoption. Standardized interfaces reduce vendor lock-in concerns. Common data models enable integration across digital twin implementations. These standards provide foundation for digital twin adoption beyond the aerospace and manufacturing contexts where the technology originated.
+
+\subsection{Digital Twin Security Applications}
+
+\citeauthor{Eckhart_Ekelhart_2019} review digital twins for cyber-physical systems security~\cite{Eckhart_Ekelhart_2019}. \citeauthor{Karaarslan_Babiker_2021} examine digital twin security threats and countermeasures~\cite{Karaarslan_Babiker_2021}. \citeauthor{Vielberth_2021} propose a digital twin-based cyber range for SOC analyst training~\cite{Vielberth_2021}. \citeauthor{Dietz_Pernul_2020} examine digital twins for enterprise security~\cite{Dietz_Pernul_2020}.
+
+This emerging research addresses digital twins as security tools rather than merely systems requiring security. The cyber range application demonstrates digital twin value for security operations training. The enterprise security examination begins exploring digital twin application to organizational security postures. These preliminary investigations suggest research interest in digital twins for Information Assurance applications, though comprehensive studies remain absent.
+
+\section{Barriers to Digital Engineering Adoption Beyond Defense and Aerospace}
+
+Despite demonstrated value in defense and aerospace contexts, Digital Engineering has not achieved widespread adoption in enterprise IT, commercial organizations, or Information Assurance programs. Understanding the barriers to broader adoption illuminates why the research gap documented in this literature review persists.
+
+\subsection{Platform-Centric versus Enterprise Adoption Patterns}
+
+Digital Engineering adoption in defense and aerospace has concentrated upon platform and mission-specific applications. Aircraft programs, spacecraft missions, and weapons systems have implemented Digital Engineering practices. Enterprise IT functions within these same organizations have not. This pattern suggests that Digital Engineering adoption occurs where systems engineering disciplines are established rather than extending to IT domains that historically operated independently.
+
+The platform-centric adoption pattern reflects how Digital Engineering initiatives originate. Program managers facing acquisition challenges adopt Digital Engineering to improve program outcomes. Systems engineers seeking better requirements traceability implement MBSE\@. These adoption decisions occur at program level rather than enterprise level. Enterprise IT organizations, operating separately from program organizations, do not participate in these adoption decisions and do not benefit from resulting capabilities.
+
+Research by \citeauthor{Campagna_2024} examined strategic adoption of digital innovations, finding that digital transformation requires coordinated enterprise-level application rather than bottom-up adoption of individual technologies~\cite{Campagna_2024}. The research identifies twelve strategic adoption influencers and notes that adoption research focuses upon individual technologies rather than integrated digital transformation. This finding explains why platform-level Digital Engineering adoption has not expanded to enterprise IT: the enterprise coordination required for such expansion does not occur.
+
+\subsection{Organizational Barriers to Adoption}
+
+Multiple organizational factors impede Digital Engineering adoption in enterprise IT contexts. First, enterprise IT organizations typically lack systems engineering heritage. Systems engineering practices including MBSE developed within engineering organizations addressing physical systems. IT organizations evolved from data processing and network management traditions with different practices, tools, and professional identities. Adopting Digital Engineering requires IT professionals to adopt practices from an unfamiliar discipline.
+
+Second, organizational structures separate IT from engineering functions. Defense organizations employ systems engineers in program offices and IT professionals in separate enterprise IT organizations. These organizational units report through different chains, operate under different governance, and possess different cultures. Digital Engineering capabilities developed by engineering organizations do not automatically transfer to IT organizations operating independently.
+
+Third, IT governance frameworks do not incorporate Digital Engineering concepts. ITIL, COBIT, and other IT management frameworks do not reference MBSE, digital threads, or model-based documentation. IT professionals seeking guidance from established frameworks find no direction toward Digital Engineering adoption. This framework gap perpetuates traditional approaches even when Digital Engineering might address documented challenges more effectively.
+
+\subsection{Technical Barriers to Adoption}
+
+Technical factors also impede adoption. Digital Engineering tools developed for aerospace and defense applications do not integrate readily with enterprise IT management tools. MBSE platforms like Cameo and Rhapsody do not interface with IT service management platforms like ServiceNow or BMC\@. This tool gap requires custom integration efforts that increase adoption costs and complexity.
+
+Additionally, modeling languages developed for systems engineering do not directly accommodate enterprise IT constructs. SysML provides excellent support for modeling physical systems with requirements, behaviors, and structures. Modeling IT services, network configurations, and security controls requires adaptation or extension that practitioners must develop themselves. The absence of standardized approaches for modeling enterprise IT in SysML increases adoption barriers.
+
+\subsection{Economic Barriers to Adoption}
+
+Economic factors further impede adoption. Digital Engineering implementations require considerable investment in tools, training, and organizational transformation. Organizations must justify these investments against competing priorities. For aerospace programs with multi-billion-dollar budgets and decade-long timelines, Digital Engineering investments represent small fractions of program costs with measurable potential returns. For enterprise IT organizations operating on annual budgets with continuous delivery expectations, similar investments represent larger relative commitments with less certain returns.
+
+The return on investment for Digital Engineering in enterprise IT contexts remains undemonstrated. Aerospace and defense organizations can cite program outcomes---reduced rework, improved first-pass quality, faster development cycles---to justify continued investment. Enterprise IT organizations have no comparable evidence because no research examines Digital Engineering benefits in these contexts. Without evidence, investment decisions favor proven approaches over experimental adoptions.
+
+\section{Open Source Standards and Tools for Digital Engineering}
+
+The availability of open source standards and tools influences adoption decisions by reducing costs, avoiding vendor lock-in, and enabling community-driven development. This section examines open source options for MBSE, digital threads, digital twins, and Product Lifecycle Management while assessing the research evidence supporting their adoption.
+
+\subsection{Open Source MBSE Tools}
+
+Several open source MBSE tools have emerged, primarily through the Eclipse Foundation's modeling ecosystem. Eclipse Papyrus provides an open source UML and SysML modeling environment based upon the Eclipse platform~\cite{Eclipse_Papyrus_2024}. Capella, developed by Thales and contributed to Eclipse, provides a comprehensive MBSE tool based upon the Arcadia methodology~\cite{Capella_MBSE_2024}. SysON, currently under development, implements OMG's SysML v2 specification with modern web-based architecture~\cite{SysON_2025}.
+
+These open source tools provide alternatives to commercial MBSE platforms like Cameo and Rhapsody. Capella has achieved significant industrial adoption, with deployments across aerospace, energy, transportation, and other sectors. The Eclipse Foundation's support provides organizational stability and community governance that individual open source projects may lack.
+
+However, open source MBSE tools address traditional systems engineering applications. Documentation, examples, and community support focus upon aerospace, defense, and manufacturing applications. Organizations seeking to apply these tools for enterprise IT or Information Assurance must adapt without domain-specific guidance. The tools are capable; the application knowledge for enterprise IT contexts does not exist.
+
+\subsection{Open Source Digital Twin Frameworks}
+
+The Digital Twin Consortium has established an open source collaboration initiative providing frameworks and examples for digital twin development~\cite{DTC_OpenSource_2024}. Eclipse Ditto provides an open source framework for creating and managing digital twins for IoT applications~\cite{Eclipse_Ditto_2024}. Eclipse BaSyx implements the Asset Administration Shell standard for industrial digital twins~\cite{Eclipse_BaSyx_2024}.
+
+Academic research has examined open source digital twin frameworks. \citeauthor{Gil_2024} conducted a systematic survey of open source digital twin frameworks, analyzing fourteen frameworks against criteria derived from ISO 23247 standards~\cite{Gil_2024}. The research found that open source options exist but vary significantly in maturity, documentation quality, and community support. The survey provides guidance for organizations evaluating open source digital twin options.
+
+Research by \citeauthor{Autiosalo_Siegel_Tammi_2021} introduced Twinbase, an open source server for the Digital Twin Web concept~\cite{Autiosalo_Siegel_Tammi_2021}. This academic research demonstrates that open source digital twin development attracts scholarly attention, though applications focus upon manufacturing and IoT rather than enterprise IT.
+
+\subsection{Open Source PLM Options}
+
+Product Lifecycle Management has historically been dominated by proprietary vendors including Siemens, Dassault Systmes, and PTC\@. Open source alternatives have emerged but have not achieved comparable adoption. Aras Innovator pioneered enterprise open source PLM, offering its platform through subscription models with open access to source code~\cite{BeyondPLM_OpenSource_2024}. OpenPLM and DocDokuPLM provide fully open source alternatives with more limited functionality and adoption.
+
+Academic research on open source PLM remains limited. \citeauthor{Laili_2024} examined industrial open source solutions for product lifecycle management, identifying standardization challenges and integration requirements~\cite{Laili_2024}. The research notes that PLM open source adoption faces barriers including integration complexity, limited community support compared to commercial options, and enterprise requirements that open source solutions may not fully address.
+
+For enterprise IT applications, PLM concepts face the same applicability challenges as MBSE\@. PLM tools and practices developed for physical product management do not directly accommodate information system lifecycle management. Open source availability does not resolve this structural scope limitation.
+
+\subsection{Research Evidence for Open Source Digital Engineering Adoption}
+
+The research evidence supporting open source Digital Engineering adoption consists primarily of gray literature---vendor documentation, consortium publications, and practitioner reports---rather than peer-reviewed academic research. Academic studies examining open source MBSE tools exist but focus upon aerospace and defense applications. Academic studies of open source digital twin frameworks exist but address manufacturing and IoT rather than enterprise IT.
+
+No peer-reviewed academic research examines open source Digital Engineering adoption for enterprise IT or Information Assurance applications. The research gap identified throughout this literature review extends to open source contexts. Whether open source tools could enable Digital Engineering adoption in resource-constrained organizations remains an open question without empirical investigation.
+
+This absence of academic research creates uncertainty for organizations considering adoption. Commercial vendor claims of Digital Engineering benefits may reflect marketing rather than validated outcomes. Gray literature from industry and working groups may reflect advocacy rather than objective assessment. Without academic research, organizations cannot rely upon peer-reviewed evidence to inform adoption decisions for enterprise IT applications.
+
+\section{Information Assurance and Compliance Frameworks}
+
+Information Assurance frameworks establish requirements for protecting information systems and demonstrating compliance. This section examines the NIST Risk Management Framework and related compliance mechanisms.
+
+\subsection{NIST Risk Management Framework}
+
+The NIST Risk Management Framework, documented in Special Publication 800-37 Revision 2, provides the authoritative approach to managing security and privacy risk for federal information systems~\cite{NIST_SP_800_37_R2_2018}. The RMF establishes seven iterative steps: prepare, categorize, select, implement, assess, authorize, and monitor.
+
+The RMF explicitly requires enterprise architecture integration. Organizations must determine system placement within enterprise architecture during the prepare step. Yet compliance with this requirement assumes capabilities that organizations demonstrably lack: the ability to maintain accurate, current documentation of enterprise architecture that reflects operational reality. Digital Engineering could address this requirement through model-based documentation that maintains currency automatically. However, no guidance exists for applying Digital Engineering to RMF compliance.
+
+\subsection{NIST SP 800-53 Security Controls}
+
+NIST Special Publication 800-53 Revision 5 provides the security control catalog for federal information systems~\cite{Force_2020}. Multiple controls explicitly require enterprise architecture capabilities: PL-2 requires security plans consistent with enterprise architecture; PL-8 requires security architecture development; PM-7 establishes enterprise architecture requirements; CM-2 requires documented baselines; CM-8 requires accurate system component inventory; SA-17 requires design specifications consistent with enterprise architecture.
+
+These control requirements establish compliance obligations that Digital Engineering could address. Security plans maintained within MBSE models could ensure consistency with enterprise architecture. Security architectures developed using UAF could satisfy PL-8 requirements. Configuration baselines managed through PLM approaches could address CM-2 and CM-8 requirements. Yet no research examines Digital Engineering approaches to satisfying these specific controls.
+
+\subsection{CNSSI 1253 for National Security Systems}
+
+The Committee on National Security Systems Instruction 1253 provides security categorization and control selection guidance for national security systems~\cite{CNSSI_1253_2022}. National security systems face the same documentation and visibility challenges as other information systems while operating under additional constraints that complicate compliance. Digital Engineering approaches that enhance compliance verification could provide particular value for national security system operators who must demonstrate compliance to multiple oversight bodies.
+
+\subsection{ISO 27001 and Alternative Frameworks}
+
+Organizations outside federal requirements may employ alternative security control frameworks. ISO/IEC 27001:2022 provides an international standard for information security management systems~\cite{ISO27001-2023}. These alternative frameworks share common characteristics with NIST guidance: they assume documentation accuracy and visibility capabilities that organizations struggle to maintain. Digital Engineering could address documentation requirements across frameworks regardless of which specific framework organizations employ.
+
+\subsection{OSCAL and Automation Initiatives}
+
+The NIST Open Security Controls Assessment Language (OSCAL) represents an initiative to enable automated compliance verification through machine-readable security documentation~\cite{NIST_OSCAL_2023}. OSCAL provides standardized formats for expressing security control catalogs, baselines, profiles, and assessment results. This automation initiative aligns with Digital Engineering's emphasis upon machine-readable documentation that enables automated processing.
+
+OSCAL demonstrates recognition within the compliance community that manual documentation approaches cannot sustain accuracy and currency requirements. The initiative provides foundation for automated compliance verification that Digital Engineering could extend. Digital thread traceability could connect OSCAL compliance documentation to underlying system configurations, enabling automated verification that documented controls exist as implemented.
+
+\section{IT Service Management Literature}
+
+IT Service Management frameworks establish practices for delivering IT services effectively across the enterprise. This section examines ITIL requirements, configuration management challenges, and persistent failures that undermine IT service delivery.
+
+\subsection{ITIL Framework Requirements}
+
+The Information Technology Infrastructure Library provides guidance for IT service management~\cite{Cannon_AXELOS_2013}. ITIL 4 reorganized service management practices and introduced the Service Value System concept~\cite{ITIL_4_2019}. Despite recognizing that tracking configurations across virtual systems, cloud computing, and cybersecurity domains presents challenges, ITIL provides limited guidance on addressing documentation accuracy challenges.
+
+ITIL assumes that organizations can maintain accurate configuration information, implement effective change management, and coordinate service delivery across complex environments. These assumptions underlie ITIL practices for incident management, problem management, and service continuity. When assumptions fail---when configuration information is inaccurate, when change impacts are miscalculated, when service dependencies are undocumented---ITIL practices cannot deliver intended value.
+
+\subsection{Configuration Management Database Challenges}
+
+Configuration Management Database implementation failures stand extensively documented in industry research. Gartner reports an eighty percent failure rate for CMDB implementations~\cite{Gartner_CMDB_2019}. Additional research indicates that ninety-nine percent of organizations using CMDB tooling without addressing data quality gaps will experience visible business disruption~\cite{Gartner_CMDB_2020}. Forrester research finds that less than half of organizations trust the data in their CMDB~\cite{Forrester_CMDB_2020}.
+
+Data quality statistics reveal the core challenge: sixty percent of data manually input by employees proves inaccurate~\cite{IBM_Data_Quality_2020}. Five problem areas persist: missing assets, duplicate assets, incomplete configuration item records, missing relationships, and stale data. These data quality problems reflect inherent limitations of manual documentation approaches rather than implementation failures that improved processes could address.
+
+Recent analysis concludes that the CMDB approach itself has failed~\cite{Forrester_CMDB_Dead_2025}. After decades of implementation attempts across organizations, CMDBs consistently fail to deliver intended value. The analysis attributes failures to structural issues: involving process experts rather than data management professionals, manual data entry that cannot maintain accuracy, and scope creep that renders CMDBs unmanageable. This assessment suggests that incremental CMDB improvements cannot resolve inherent approach limitations.
+
+\subsection{Academic Research on ITIL Implementation}
+
+\citeauthor{Cook_2021} found resistance to change at twenty-seven percent as the top ITIL implementation challenge~\cite{Cook_2021}. \citeauthor{Marrone_Kolbe_2011} surveyed 491 firms finding that while over ninety percent use ITSM frameworks, little research examines actual benefits realized~\cite{Marrone_Kolbe_2011}. Research by \citeauthor{Benbya_Nan_Tanriverdi_Yoo_2020} demonstrates that enterprise information systems have reached complexity levels exceeding prior technological generations~\cite{Benbya_Nan_Tanriverdi_Yoo_2020}.
+
+These academic studies document ITIL adoption and implementation challenges without examining Digital Engineering as a potential solution. The research establishes that ITIL implementations face challenges and that benefits remain uncertain. However, researchers have not investigated whether model-based approaches, digital threads, or other Digital Engineering capabilities could improve ITIL implementation outcomes.
+
+\subsection{Shadow IT and Documentation Accuracy}
+
+Gartner research indicates forty-one percent of employees used shadow IT in 2022, expected to climb to seventy-five percent by 2027~\cite{Gartner_Shadow_IT_2022}. Thirty to forty percent of large companies' IT expenditure represents shadow IT\@. Shadow IT undermines configuration management because systems deployed without IT oversight cannot be documented. No manual process can maintain awareness of systems that bypass official acquisition and deployment channels.
+
+The shadow IT phenomenon reflects a structural mismatch between IT governance and organizational needs. When official IT processes cannot meet user requirements quickly enough, users acquire solutions independently. These solutions become operational dependencies that official documentation does not capture. The documentation-reality gap widens automatically as shadow IT proliferates.
+
+\subsection{Change Management and Impact Assessment}
+
+Industry analysis confirms that reliance upon outdated documentation leads to inaccurate impact assessments~\cite{Freshservice_Change_2021}. Research by \citeauthor{Bokan_Santos_2021} highlights difficulties organizations encounter in maintaining comprehensive security oversight~\cite{Bokan_Santos_2021}. Change management depends upon accurate understanding of system relationships~\cite{iso20000_2018} that current documentation approaches cannot maintain.
+
+The relationship between documentation accuracy and change management effectiveness deserves emphasis. Every change approved based upon inaccurate documentation represents a potential incident. When impact assessments miss dependencies that exist in operational systems, changes cause unintended effects. The resulting incidents consume resources, damage trust in change processes, and create pressure for emergency changes that further degrade documentation accuracy.
+
+\subsection{Integration with Information Assurance}
+
+\citeauthor{thompson2019integrating} examined integrating MBSE with IT Service Management~\cite{thompson2019integrating}. Previous research by \citeauthor{Bonar_Hastings_2024} demonstrated that compliance verification is enhanced by Digital Engineering practices~\cite{Bonar_Hastings_2024}. These preliminary investigations suggest that integration between Digital Engineering and IT Service Management offers value, though comprehensive research remains absent.
+
+\section{Enterprise Visibility and Dependency Documentation Failures}
+
+The challenges documented in preceding sections share common roots in the inability of organizations to maintain accurate, current documentation of their enterprise information systems. This section synthesizes peer-reviewed research and industry analysis to establish why traditional practices fail to trace, model, and document service dependencies across enterprise environments. Understanding these root causes provides the foundation for evaluating Digital Engineering as a potential solution.
+
+\subsection{Documented Scope of Visibility Failures}
+
+Research consistently documents that organizations lack visibility into large portions of their IT environments. \citeauthor{IDC_Exabeam_2023} found that organizations globally can monitor only sixty-six percent of their IT environments, leaving blind spots particularly in cloud deployments~\cite{IDC_Exabeam_2023}. The Ponemon Institute's 2023 Global Study on Closing the IT Security Gap found that sixty-three percent of security teams lack visibility and control into all user device activity connected to their infrastructure~\cite{Ponemon_Visibility_2023}. The SANS Institute SOC Survey found that only fifteen percent of respondents expressed very high confidence that all devices on their network are discoverable~\cite{SANS_SOC_Survey_2023}.
+
+These visibility gaps compound across organizational boundaries. Ivanti's 2025 State of Cybersecurity Trends Report found that fifty-five percent of organizations maintain security and IT data silos, with sixty-two percent reporting that silos slow security response times~\cite{Ivanti_Cybersecurity_2025}. The Cloud Security Alliance's 2024 study revealed that ninety-five percent of organizations suffered cloud-related breaches in the preceding eighteen months~\cite{CSA_Cloud_Security_2024}. Check Point's 2024 Cloud Security Report found that eighty-two percent of enterprises experienced security incidents due to cloud misconfigurations, while sixty-seven percent struggle with limited visibility into cloud infrastructure~\cite{Check_Point_Cloud_2024}.
+
+A notable discrepancy exists between peer-reviewed and industry research regarding the sources of these visibility failures. Peer-reviewed research by \citeauthor{Hauder_Matthes_Roth_2012} attributes documentation challenges primarily to manual processes and data quality issues, while industry reports often emphasize tool limitations~\cite{Hauder_Matthes_Roth_2012}. This discrepancy may reflect different analytical perspectives: academic research examines root causes while industry research often focuses upon symptoms addressable through commercial solutions. The evidence consistently supports that both manual process limitations and tool inadequacies contribute to visibility failures.
+
+\subsection{Configuration Drift and Baseline Divergence}
+
+Peer-reviewed research provides empirical evidence for configuration-related failures. \citeauthor{Yin_Yuan_Lu_2011} conducted an empirical study published in ACM's Symposium on Operating Systems Principles examining configuration errors in commercial and open source systems~\cite{Yin_Yuan_Lu_2011}. Their analysis found that seventy to eighty-five percent of misconfigurations result from mistakes in setting configuration parameters. Their research revealed that twenty-two to fifty-seven percent of misconfigurations involve configurations external to the examined system, some on entirely different hosts---demonstrating the dependency documentation challenge that extends beyond individual system boundaries.
+
+NIST Special Publication 800-128, Guide for Security-Focused Configuration Management, defines configuration drift as systems deviating from baseline configurations over time through manual interventions, software updates, and environmental factors~\cite{NIST_SP_800_128}. The publication establishes that effective security configuration management requires continuous monitoring---a capability most organizations lack.
+
+The Uptime Institute's Annual Outage Analysis provides validation of these failures: sixty-four percent of IT system and software-related outages detected worldwide occurred because of configuration or change management issues~\cite{Uptime_Outage_2023}. The IT Process Institute's Visible Ops Handbook established that eighty percent of unplanned outages result from ill-planned changes made by administrators or developers~\cite{IT_Process_Institute_2004}---changes that proper dependency documentation would have flagged.
+
+\subsection{Detection Time as Visibility Indicator}
+
+Breach detection times serve as proxy measures for organizational visibility into their information systems. \citeauthor{IBM_Ponemon_2024} report that the mean time to identify breaches reached two hundred four days, with breaches involving lifecycles exceeding two hundred days costing an average of 5.46 million dollars~\cite{IBM_Ponemon_2024}. The 2024 report found that only forty-two percent of breaches were detected internally. Stolen credential breaches---reflecting authentication and identity management documentation failures---required two hundred ninety-two days to identify and contain, the longest of any attack vector.
+
+The 2025 report identified that thirty-five percent of breaches involved shadow data---information stored in unmanaged locations---and forty percent of breaches involved data stored across multiple environments that organizations struggle to inventory comprehensively~\cite{IBM_Ponemon_2025}. These findings demonstrate that visibility failures directly impact security outcomes. Organizations that cannot see their systems cannot protect them effectively.
+
+\subsection{Organizational Silos and Fragmented Visibility}
+
+Peer-reviewed research provides theoretical frameworks for understanding why visibility gaps persist. \citeauthor{Bento_Tagliabue_Lorenzo_2020} conducted a scoping review of forty studies on organizational silos, identifying five conceptualizations: formal units, functions, knowledge areas, technologies, and broad definitions~\cite{Bento_Tagliabue_Lorenzo_2020}. The authors characterize silo mentality as an absence of systems thinking and organizational vision, identifying silos as barriers to achieving organizational goals. Their review applies complexity theory, social network analysis, and Bandura's reciprocal determinism model to demonstrate that structure, process, and function factors all contribute to silo persistence.
+
+\citeauthor{Hauder_Matthes_Roth_2012} conducted peer-reviewed research on enterprise architecture documentation challenges, finding that EA documentation is performed manually to a large extent, making the process time-consuming, error-prone, and requiring collection of quality data~\cite{Hauder_Matthes_Roth_2012}. Their study identified four categories of challenges based on industry examples, literature review, and a survey of 123 EA practitioners.
+
+\citeauthor{Bree_Karger_2022} conducted a systematic literature review examining enterprise architecture management challenges~\cite{Bree_Karger_2022}. Their review organized EAM tasks into six dimensions: EA documentation, EA planning, EA communication/support, EA programming, EA implementation, and EA governance. Documentation challenges identified include dearth of automated tools, immature documentation models, and insufficient emphasis on forward-looking documentation.
+
+\subsection{Complexity Theory Perspective}
+
+Complexity theory provides a framework for understanding why traditional documentation approaches fail in modern enterprise environments. \citeauthor{Benbya_McKelvey_2006} applied Complex Adaptive Systems theory to information systems development, arguing that ISD complexity is magnified by continuous changes in user requirements~\cite{Benbya_McKelvey_2006}. Their framework proposes seven first principles of adaptive success: adaptive tension, requisite complexity, change rate, modular design, positive feedback, causal intricacy, and coordination rhythm. The authors argue that if complexity is not managed appropriately, information systems fail.
+
+Enterprise IT environments exhibit characteristics of complex adaptive systems: numerous interconnected components, emergent behaviors arising from component interactions, continuous change, and unpredictable responses to interventions. Static documentation approaches assume systems remain stable between documentation updates---an assumption that fails in environments exhibiting complex adaptive system characteristics.
+
+\subsection{Technical Debt in Documentation Domains}
+
+Peer-reviewed research on technical debt provides additional perspective on documentation failures. \citeauthor{Santos_2019} specifically addressed documentation technical debt---problems concerning non-existent, inadequate, or incomplete software project documentation~\cite{Santos_2019}. Their qualitative study identified causes, consequences, and best practices to avoid documentation problems.
+
+\citeauthor{Li_Avgeriou_Liang_2015} conducted a systematic mapping study covering ninety-four studies that established technical debt taxonomy and management frameworks~\cite{Li_Avgeriou_Liang_2015}. Their taxonomy includes architecture, design, code, test, and documentation debt as distinct categories. \citeauthor{Junior_Travassos_2022} consolidated perspectives on technical debt across nineteen secondary studies~\cite{Junior_Travassos_2022}. \citeauthor{Kleinwaks_2023} extended TD concepts to systems engineering contexts~\cite{Kleinwaks_2023}.
+
+Documentation technical debt accumulates when organizations defer documentation updates to prioritize operational activities. Unlike code technical debt, documentation debt remains invisible until documentation is needed for change impact assessment, incident response, or compliance verification. The accumulated debt then imposes costs far exceeding the original deferral savings.
+
+\subsection{CMDB Failure Analysis}
+
+The widely-cited eighty percent CMDB failure rate from Gartner research warrants examination against peer-reviewed evidence. \citeauthor{Forrester_CMDB_Dead_2025} analyzed CMDB failures, concluding that the CMDB approach has failed after multiple implementation attempts across organizations~\cite{Forrester_CMDB_Dead_2025}. The analysis attributes failures to involving process experts rather than data management professionals. Forrester's research on Application and Infrastructure Dependency Mapping found that fifty-six percent of enterprises report incomplete views of dependencies between applications and underlying infrastructure~\cite{Forrester_AIDM_2018}.
+
+Peer-reviewed research by \citeauthor{Hauder_Matthes_Roth_2012} provides corroborating evidence from academic study of 123 practitioners, finding that manual documentation processes cannot maintain accuracy in dynamic environments~\cite{Hauder_Matthes_Roth_2012}. The convergence of industry and academic findings supports the conclusion that CMDB approaches face structural limitations rather than merely implementation challenges.
+
+\subsection{Summary of Enterprise Visibility Evidence}
+
+Table~\ref{tab:visibilityStatistics} summarizes the evidence documenting enterprise visibility and documentation failures across peer-reviewed and industry research sources. The statistics demonstrate consistent patterns: organizations lack comprehensive visibility into their IT environments, documentation accuracy remains poor despite investment, and the resulting gaps create measurable impacts on security outcomes and operational effectiveness.
+
+\begin{table}[H]
+  \centering
+  \caption{Enterprise Visibility and Documentation Failure Evidence}\label{tab:visibilityStatistics}
+  \small
+  \begin{tabular}{@{}p{3.0in}p{1.0in}p{2.0in}@{}}
+    \toprule
+    \textbf{Finding} & \textbf{Statistic} & \textbf{Source} \\
+    \midrule
+    \multicolumn{3}{@{}c@{}}{\textit{Visibility Gap Metrics}} \\
+    \midrule
+    IT environment monitorable & 66\% & IDC/Exabeam 2023\cite{IDC_Exabeam_2023} \\
+    \midrule
+    Security teams lacking device visibility & 63\% & Ponemon Institute 2023\cite{Ponemon_Visibility_2023} \\
+    \midrule
+    High confidence in device discovery & 15\% & SANS Institute 2023\cite{SANS_SOC_Survey_2023} \\
+    \midrule
+    Organizations with security/IT silos & 55\% & Ivanti 2025\cite{Ivanti_Cybersecurity_2025} \\
+    \midrule
+    \multicolumn{3}{@{}c@{}}{\textit{Configuration Management Failures}} \\
+    \midrule
+    CMDB implementation failure rate & 80\% & Gartner Research\cite{Gartner_CMDB_2019,Gartner_CMDB_2020} \\
+    \midrule
+    Outages from configuration issues & 64\% & Uptime Institute 2023\cite{Uptime_Outage_2023} \\
+    \midrule
+    Misconfigurations from parameter errors & 70-85\% & Yin et al. 2011\cite{Yin_Yuan_Lu_2011} \\
+    \midrule
+    Unplanned outages from ill-planned changes & 80\% & IT Process Institute\cite{IT_Process_Institute_2004} \\
+    \midrule
+    \multicolumn{3}{@{}c@{}}{\textit{Shadow IT and Undocumented Assets}} \\
+    \midrule
+    Shadow IT as percentage of IT spend & 30-40\% & Gartner Research\cite{Gartner_Shadow_IT_2022} \\
+    \midrule
+    Cloud services vs. IT estimates & 15-22x higher & Cisco 2016\cite{Cisco_Cloud_Services_2016} \\
+    \midrule
+    Employees using shadow IT (2022) & 41\% & Gartner Research\cite{Gartner_Shadow_IT_2022} \\
+    \midrule
+    Projected shadow IT usage (2027) & 75\% & Gartner Research\cite{Gartner_Shadow_IT_2022} \\
+    \midrule
+    \multicolumn{3}{@{}c@{}}{\textit{Security Impact Metrics}} \\
+    \midrule
+    Mean time to identify breach & 204 days & IBM/Ponemon 2024\cite{IBM_Ponemon_2024} \\
+    \midrule
+    Cloud breaches from misconfigurations & 82\% & Check Point 2024\cite{Check_Point_Cloud_2024} \\
+    \midrule
+    Organizations with cloud breaches (18 mo) & 95\% & CSA 2024\cite{CSA_Cloud_Security_2024} \\
+    \midrule
+    Projected preventable cloud breaches (2027) & 99\% & Gartner Research\cite{Gartner_Cloud_Misconfiguration_2024} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The convergence of peer-reviewed empirical research and industry analysis establishes that enterprise visibility and documentation failures represent a systemic challenge rather than isolated organizational deficiencies. Traditional documentation approaches---manual configuration tracking, periodic documentation updates, static architecture diagrams---cannot maintain accuracy in environments characterized by continuous change, complex dependencies, and organizational silos. This evidence base establishes the problem space that Digital Engineering may address.
+
+\section{Security Architecture and Threat Modeling}
+
+Security architecture documentation and threat modeling practices determine how organizations understand their defensive postures and identify vulnerabilities. This section examines current approaches and the emerging application of MBSE to security domains.
+
+\subsection{Security Architecture Documentation Practices}
+
+Security architecture documentation traditionally relies upon static artifacts including network diagrams, data flow diagrams, and textual descriptions. Research by \citeauthor{Hassan_Bahgat_2009} examined frameworks for translating high-level security policy into low-level security mechanisms~\cite{Hassan_Bahgat_2009}. The gap between security architecture documentation and operational configuration represents a persistent challenge that current practices do not adequately address.
+
+Security architectures document intended defensive postures. Operational configurations implement actual defensive postures. When these diverge---when documentation describes controls that are not implemented, or when implementations differ from documented specifications---security assurance degrades. Organizations cannot verify security postures by examining documentation when documentation does not reflect reality.
+
+\subsection{Threat Modeling with MBSE}
+
+\citeauthor{Apvrille_Roudier_2015} proposed SysML-SecA, a methodology combining SysML with security analysis techniques~\cite{Apvrille_Roudier_2015}. This approach enables threat modeling integrated with system architecture models. The integration ensures that threat models remain connected to architecture models, updating as architectures evolve rather than diverging as static threat models do.
+
+This research represents preliminary investigation of MBSE for security applications. The methodology addresses threat modeling for systems under development rather than enterprise IT environments already in operation. Adaptation for enterprise IT contexts would require extensions that current research has not examined.
+
+\subsection{Security Control Traceability}
+
+The ability to trace security requirements through control implementation to compliance evidence represents a persistent challenge. Digital threads could address this traceability challenge by maintaining verified connections between security requirements, control implementations, and compliance artifacts. However, research has not examined practical implementation of digital thread capabilities in Information Assurance contexts.
+
+The traceability challenge manifests throughout the RMF lifecycle. During control selection, organizations must trace categorization decisions to appropriate control baselines. During implementation, organizations must trace selected controls to technical configurations. During assessment, organizations must trace configurations to evidence demonstrating effectiveness. During continuous monitoring, organizations must maintain these traces as systems evolve. Current practices provide no automated support for maintaining this traceability chain.
+
+\section{Research Gaps and Theoretical Framework}
+
+The systematic literature review reveals a pattern: frameworks and compliance requirements assume documentation and visibility capabilities that organizations demonstrably lack. This section synthesizes findings into a theoretical framework while documenting research gaps that this investigation begins to address.
+
+\subsection{Absence of Digital Engineering for Enterprise IT}
+
+The academic research gap is pronounced. Systematic literature reviews examining MBSE consistently find no research addressing enterprise IT infrastructure or Information Assurance applications. The sole exception is the reference model by \citeauthor{Bonar_Hastings_2024}~\cite{Bonar_Hastings_2024}. This gap persists despite explicit requirements in compliance frameworks for capabilities that Digital Engineering provides.
+
+The gap cannot be attributed to Digital Engineering immaturity. Defense and aerospace have employed Digital Engineering successfully for years. The gap cannot be attributed to tool unavailability. MBSE tools, digital twin platforms, and PLM systems have existed for decades. The gap reflects a disciplinary boundary: systems engineering and IT have evolved as separate disciplines with limited cross-pollination.
+
+\subsection{Standards-Research Disconnect}
+
+Standards bodies have recognized enterprise applicability of systems engineering approaches. UAF provides viewpoints applicable to enterprise IT\@. NIST publications require enterprise architecture capabilities for compliance. ITIL requires visibility and documentation that model-based approaches could provide. Yet academic research has not examined practical application. This disconnect leaves practitioners without empirical guidance for applying available standards to enterprise IT challenges.
+
+\subsection{Summary of Research Gaps}
+
+Table~\ref{tab:researchGaps} summarizes the research gaps identified across the literature domains examined in this review.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Research Gaps Within Corpus of Knowledge}\label{tab:researchGaps}
+  \small
+  \begin{tabular}{@{}p{1.8in}p{2.1in}p{2.2in}@{}}
+    \toprule
+    \textbf{Domain} & \textbf{Gap Description} & \textbf{Research Implication} \\
+    \midrule
+    MBSE & One study applying MBSE to enterprise IT, none for IA & Foundation research required \\
+    \midrule
+    Digital Threads & No research on traceability for IT/IA contexts & Conceptual validation needed \\
+    \midrule
+    Digital Twin & Limited enterprise IT application research & Application studies needed \\
+    \midrule
+    ITSM Integration & No frameworks integrating DE with ITIL & Integration research required \\
+    \midrule
+    Compliance & No DE approaches for RMF compliance & Practical implementation studies \\
+    \midrule
+    Open Source & No academic validation for enterprise IT & Evaluation research needed \\
+    \midrule
+    Professional Perceptions & Unknown awareness and perceived value & This research addresses \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Theoretical Framework}
+
+Based upon the systematic literature review, this research adopts a theoretical framework integrating Digital Engineering principles with established Information Assurance and IT Service Management practices. This framework posits that Digital Engineering represents a disciplinary approach capable of addressing gaps that have persisted despite decades of framework development and organizational investment.
+
+\subsection{Digital Engineering as Disciplinary Solution}
+
+The persistent failures documented in IT Service Management and Information Assurance practices share common root causes that Digital Engineering practices directly address. Organizations struggle with documentation accuracy because traditional approaches rely upon manual processes disconnected from operational systems. Organizations fail to maintain traceability because document-centric methods cannot sustain verified connections as systems evolve. Organizations lack visibility because static artifacts cannot represent dynamic system states.
+
+\subsubsection{Addressing the Authoritative Source of Truth Gap}
+
+The DoD Digital Engineering Strategy defines the authoritative source of truth as a single source of data and models providing a definitive technical baseline~\cite{DoD_DE_Strategy_2018}. Current IT and Information Assurance practices lack authoritative sources of truth, instead maintaining multiple disconnected documentation artifacts that diverge over time. Digital Engineering's emphasis upon authoritative sources addresses this gap by establishing single, model-based repositories from which all views and reports are generated.
+
+\subsubsection{Addressing the Traceability Gap}
+
+Digital threads establish and maintain authoritative traceability throughout system lifecycles. Current Information Assurance practices struggle to maintain traceability between security requirements, security controls, technical configurations, and evidence demonstrating effectiveness. Digital thread capabilities address this gap by maintaining verified, bidirectional connections that update as systems evolve rather than requiring manual maintenance.
+
+\subsubsection{Addressing the Visibility Gap}
+
+Visibility into system configurations, dependencies, and states represents a core requirement for both IT Service Management and Information Assurance. Current practices fail to provide this visibility, with research documenting eighty percent CMDB failure rates and pervasive shadow IT~\cite{Gartner_CMDB_2019, Gartner_Shadow_IT_2022}. Model-based approaches that maintain synchronization with operational systems address this gap by providing visibility that manual documentation cannot sustain.
+
+\subsubsection{Addressing the Simulation and Testing Gap}
+
+Digital twin capabilities enable organizations to simulate system behavior, test proposed changes, and analyze scenarios without affecting production systems. Current IT Service Management practices lack simulation capabilities for change impact analysis. Current Information Assurance practices lack simulation capabilities for security control validation. Digital twins address these gaps by providing virtual environments synchronized with operational systems for testing and analysis.
+
+\subsection{Research Justification and Theoretical Contribution}
+
+The literature review establishes clear justification for this research through multiple converging factors. Digital Engineering has demonstrated value in traditional systems engineering domains. Compliance frameworks explicitly require enterprise architecture capabilities that current approaches fail to provide. Research documents pervasive failures in current IT documentation and configuration management practices. Despite these factors, academic research has not investigated Digital Engineering application to enterprise IT and Information Assurance.
+
+This research contributes by investigating whether IT and Information Assurance professionals recognize value in Digital Engineering capabilities. If professionals perceive value, findings justify subsequent implementation research. If professionals do not perceive value despite documented challenges, findings challenge the theoretical premise and identify barriers requiring address before adoption can occur.
+
+\subsection{Limitations of the Theoretical Framework}
+
+The theoretical framework acknowledges several limitations. First, the framework extrapolates from Digital Engineering value demonstrated in aerospace and defense domains to anticipated value in enterprise IT contexts. Whether benefits demonstrated for physical systems transfer to logical information systems remains unvalidated. Second, the framework assumes that Digital Engineering tools and methodologies can be adapted for enterprise IT contexts. Adaptation requirements may exceed anticipated effort. Third, the framework does not address organizational change management, workforce development, or cultural transformation requirements. Adoption barriers beyond awareness and perceived value may impede implementation. Fourth, the framework focuses upon potential benefits without comprehensive analysis of costs or implementation challenges. Cost-benefit analysis requires empirical data this research does not collect.
+
+\section{Chapter Summary}
+
+This literature review has examined the current body of knowledge across nine interconnected domains relevant to applying Digital Engineering methodologies to Information Assurance and IT Service Management. The review established that Digital Engineering has demonstrated value in aerospace, defense, and manufacturing contexts, with authoritative guidance from organizations including the Department of Defense, NASA, and INCOSE providing mature frameworks and methodologies. Yet systematic examination across major academic databases revealed a research gap: with the sole exception of the reference model by \citeauthor{Bonar_Hastings_2024}, no peer-reviewed research addresses Digital Engineering application to enterprise IT infrastructure, IT Service Management, or Information Assurance programs.
+
+This gap exists despite explicit requirements within compliance frameworks for enterprise architecture capabilities that current practices demonstrably fail to provide. The section on enterprise visibility and documentation failures synthesized peer-reviewed research and industry analysis demonstrating that these challenges reflect systemic patterns: sixty-six percent visibility into IT environments, two hundred four day average breach detection times, and configuration errors causing sixty-four percent of outages. The theoretical framework developed from this synthesis posits that Digital Engineering offers disciplinary solutions to these persistent challenges.
+
+The review examined the Unified Architecture Framework as the consolidating standard for enterprise architecture, explaining how OMG developed UAF to unify DoDAF, MODAF, NAF, and commercial frameworks with adoption by the Department of Defense, NATO, and the UK Ministry of Defence. The review analyzed Model-Based Enterprise limitations that impede enterprise IT adoption, identifying scope restrictions, organizational barriers, and skills gaps that prevent MBE practices from extending beyond manufacturing contexts. The review explored barriers to Digital Engineering adoption outside defense and aerospace, documenting platform-centric adoption patterns, organizational separation between IT and engineering functions, and economic factors that discourage investment without demonstrated return.
+
+The review examined open source standards and tools for MBSE, digital twins, and PLM, finding that options exist but academic research validating their application to enterprise IT contexts does not. This absence of academic evidence leaves organizations without peer-reviewed guidance for adoption decisions, relying instead upon vendor claims and gray literature that may not reflect objective assessment.
+
+Chapter 3 presents the research methodology employed to investigate professional awareness and perceptions of Digital Engineering capabilities. The methodology utilizes a quantitative survey-based approach following a systems engineering lifecycle to ensure rigor and traceability throughout the research process.
