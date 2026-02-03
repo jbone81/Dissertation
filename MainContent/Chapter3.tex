@@ -647,30 +647,31 @@ This research was designed in accordance with ethical principles for human subje
 
 \section{Research Timeline and Project Schedule}
 
-This research follows a structured implementation plan spanning approximately twenty-two months from dissertation committee formation through final defense. The timeline aligns with Dakota State University's doctoral program requirements and academic calendar while accommodating the iterative nature of quantitative survey research. Each phase builds systematically upon preceding work, ensuring adequate time for committee review, institutional oversight, data collection, and rigorous analysis. Figure \ref{fig:Schedule} presents the project schedule in graphical form.
+This research follows a structured implementation plan spanning approximately twenty-two months from dissertation committee formation through final defense. The timeline aligns with Dakota State University's doctoral program requirements and academic calendar while accommodating the iterative nature of quantitative survey research. Each phase builds systematically upon preceding work, ensuring adequate time for committee review, institutional oversight, data collection, and rigorous analysis. Figure \ref{fig:Schedule} presents the project schedule as a gantt chart.
 
 \begin{figure}[tbp]
-    \begin{centering}
+        \begin{centering}
         \begin{ganttchart}[
             vgrid,
+            hgrid,
             time slot format=isodate-yearmonth,
             time slot unit = month,
             ]{2025-05}{2027-04}
           \gantttitlecalendar{year, month}\\
-          \ganttgroup{Dissertation Proposal}{2025-06}{2026-03} \\
-          \ganttbar[progress=100]{Committee Formation}{2025-06}{2025-08} \\
-          \ganttlinkedbar[progress=75]{Write Proposal}{2025-09}{2026-03} \\
+          \ganttgroup{Proposal}{2025-06}{2026-03} \\
+          \ganttbar{Committee Formation}{2025-06}{2025-08} \\
+          \ganttlinkedbar{Write Proposal}{2025-09}{2026-03} \\
           \ganttlinkedmilestone{Proposal Defense}{2026-03}
           \ganttnewline[thick, black] 
           \ganttgroup{Survey}{2026-04}{2026-11} \\
           \ganttbar{IRB Approval}{2026-04}{2026-04} \\
           \ganttlinkedbar{Survey Execution}{2026-05}{2026-08} \\
-          \ganttlinkedbar{Data Analysis}{2026-09}{2026-11} \\
-          \ganttlinkedmilestone{Research Complete}{2026-11} 
+          \ganttlinkedbar{Data Analysis}{2026-09}{2026-10} \\
+          \ganttlinkedmilestone{Research Complete}{2026-10} 
           \ganttnewline[thick, black]
           \ganttgroup{Dissertation}{2026-11}{2027-03} \\
           \ganttbar{Write Dissertation}{2026-11}{2027-02} \\
-          \ganttlinkedmilestone{Dissertation Final Defense}{2027-03} \\
+          \ganttlinkedmilestone{Final Defense}{2027-03}
         \end{ganttchart}
         \caption{Dissertation Timeline}
         \label{fig:Schedule}
@@ -703,7 +704,7 @@ The data analysis phase requires three months to conduct thorough examination of
 
 The dissertation writing phase spans three months. While Chapters 1 through 3 exist in proposal form, they require revision to reflect any modifications made during proposal defense and data collection. Chapters 4 and 5 must be written to present results and discuss their implications. December 2026 focuses upon completing the results chapter, presenting findings organized by research question with appropriate statistical support. January 2027 addresses the discussion chapter, interpreting results in the context of existing literature, addressing research limitations, and proposing future research directions. February 2027 involves comprehensive revision of all chapters and submission of the complete dissertation to the committee.
 
-The dissertation defense occurs in March 2027, approximately twenty-two months after the research project commenced. The defense presentation summarizes the complete research project, emphasizing key findings and their significance for Digital Engineering adoption in Information Assurance and IT Service Management contexts. Successful defense leads to degree conferral following any required minor revisions, positioning the candidate for degree completion during the spring 2027 term.
+The dissertation final defense occurs in March 2027, approximately twenty-two months after the research project commenced. The defense presentation summarizes the complete research project, emphasizing key findings and their significance for Digital Engineering adoption in Information Assurance and IT Service Management contexts. Successful defense leads to degree conferral following any required minor revisions, positioning the candidate for degree completion during the spring 2027 term.
 
 \section{Chapter Summary}
 
