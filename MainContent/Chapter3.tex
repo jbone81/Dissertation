@@ -1,6 +1,6 @@
 \chapter{\leavevmode\newline Research Methodology}\label{chap:Chapter_3}
 
-This chapter presents the research methodology employed to investigate professional awareness and perceptions of Digital Engineering capabilities within the information technology and information assurance domains. The study deploys a quantitative survey-based approach to collect data from IT and cybersecurity professionals, enabling systematic analysis of awareness levels, perceived value, and anticipated benefits of Digital Engineering practices for information assurance and IT service delivery. The methodology itself follows a systems engineering lifecycle approach---demonstrating the application of structured engineering principles to research design while ensuring rigorous traceability between research questions, survey instruments, and analytical approaches.
+This chapter presents the research methodology employed to investigate professional awareness and perceptions of Digital Engineering capabilities within the information technology and information assurance domains. The study deploys a quantitative survey-based approach to collect data from IT and information assurance professionals, enabling systematic analysis of awareness levels, perceived value, and anticipated benefits of Digital Engineering practices for information assurance and IT service delivery. The methodology itself follows a systems engineering lifecycle approach---demonstrating the application of structured engineering principles to research design while ensuring rigorous traceability between research questions, survey instruments, and analytical approaches.
 
 \section{Research Design Overview}
 
@@ -132,6 +132,10 @@ The following requirements govern survey instrument design:
 
 The survey content is structured to assess the awareness, applicability, and perceived value that participants hold toward Digital Engineering and its component disciplines. The survey addresses Digital Engineering at the enterprise level, then examines the four pillars: Model-Based Systems Engineering, the Digital Thread, Digital Twin, and Product Lifecycle Management. This structure provides a consistent question flow for participants and enables analysis of how each discipline is perceived in relation to Digital Engineering as a unified approach.
 
+The value assessment questions in Sections 3 through 5 employ positively framed capability statements (e.g., ``Digital Engineering could deliver meaningful value'' or ``could reduce development cycle time''). This framing reflects a deliberate design decision informed by the research objectives and target population characteristics. The research questions ask whether professionals perceive value in Digital Engineering capabilities; positively framed statements directly measure this construct by presenting capabilities and assessing agreement. An instrument measuring perceived value necessarily presents value propositions for evaluation. Negatively framed items (e.g., ``Digital Engineering would not improve security posture'') would introduce cognitive complexity through double negatives when combined with disagreement responses, a confound well documented in survey methodology literature that disproportionately affects respondents unfamiliar with the subject matter.
+
+To mitigate the acquiescence bias risk inherent in consistently framed questions, several instrument-level safeguards are employed. The neutral midpoint (``Neither agree nor disagree'') provides a non-affirmative response option for respondents who are genuinely uncertain or indifferent. The binary and ternary investment willingness questions (Questions 4.5 and 5.7) offer explicit ``No'' and ``Unsure'' options that capture skepticism and uncertainty without requiring disagreement with a positively framed statement. Section 1 familiarity self-assessment provides an independent baseline against which value perception scores can be interpreted; respondents reporting low familiarity who nonetheless indicate high agreement with value statements can be identified and examined as a potential indicator of acquiescence rather than genuine perception. During analysis, response pattern analysis shall examine whether any respondents demonstrate uniform agreement across all items, a pattern suggestive of satisficing or acquiescence rather than considered evaluation.
+
 \section{Target Population and Sampling}
 
 \subsection{Target Population}
@@ -172,7 +176,7 @@ Substituting these values:
 
 Therefore, a minimum of 385 completed survey responses is required to achieve the target margin of error. This calculation assumes maximum variability in responses (p = 0.5), which provides the most conservative sample size estimate. If actual response distributions demonstrate less variability, the effective margin of error will be smaller than five percent.
 
-To account for potential incomplete responses and to ensure adequate representation across professional subgroups---IT professionals versus cybersecurity professionals, varying experience levels---the target sample size for data collection is set at 450 completed surveys. This target represents approximately seventeen percent above the minimum requirement, aligning with survey research best practices recommending fifteen to twenty percent oversampling to accommodate anticipated attrition~\cite{Dillman_Smyth_Christian_2014}. Research on online survey completion rates indicates that professional surveys typically experience ten to fifteen percent incomplete response rates due to survey abandonment, partial completion, or data quality concerns requiring exclusion~\cite{Fan_Yan_2010}. The 450-response target provides sufficient buffer to ensure the minimum 385 usable responses while enabling meaningful subgroup analyses with adequate statistical power. Specifically, if the sample divides evenly between IT and cybersecurity professionals, each subgroup would include approximately 190-225 respondents, providing margins of error between six and seven percent for subgroup-specific analyses.
+To account for potential incomplete responses and to ensure adequate representation across professional subgroups---IT professionals versus security professionals, varying experience levels---the target sample size for data collection is set at 450 completed surveys. This target represents approximately seventeen percent above the minimum requirement, aligning with survey research best practices recommending fifteen to twenty percent oversampling to accommodate anticipated attrition~\cite{Dillman_Smyth_Christian_2014}. Research on online survey completion rates indicates that professional surveys typically experience ten to fifteen percent incomplete response rates due to survey abandonment, partial completion, or data quality concerns requiring exclusion~\cite{Fan_Yan_2010}. The 450-response target provides sufficient buffer to ensure the minimum 385 usable responses while enabling meaningful subgroup analyses with adequate statistical power. Specifically, if the sample divides evenly between IT and security professionals, each subgroup would include approximately 190-225 respondents, providing margins of error between six and seven percent for subgroup-specific analyses.
 
 \section{Survey Instrument Design}
 
@@ -198,6 +202,10 @@ The survey employs two primary question formats: five-point Likert-type scales a
 \subsubsection{Likert Scale Justification}
 
 The five-point Likert scale format was selected for questions measuring awareness levels, agreement with capability statements, and perceptions of value. Likert scales have been extensively validated for measuring attitudes and perceptions in social science research since their introduction by Rensis Likert in 1932. The five-point format specifically was chosen based upon research demonstrating that five to seven response options provide optimal discrimination between respondent positions while remaining cognitively manageable for respondents. More options add complexity without proportionate gain in discriminatory power.
+
+The analytical treatment of Likert scale data warrants explicit methodological comment. A longstanding debate in psychometric and social science research concerns whether Likert scale responses constitute ordinal data (where distances between scale points are not necessarily equal) or may be treated as interval data (where parametric statistical methods such as means and standard deviations are appropriate). Jamieson~\cite{Jamieson_2004} argues that Likert data are strictly ordinal and that parametric analyses may produce misleading results. Norman~\cite{Norman_2010}, drawing upon extensive simulation research, demonstrates that parametric methods are sufficiently robust to yield valid results with Likert data even when distributional assumptions are violated. Subsequent research by Sullivan and Artino~\cite{Sullivan_Artino_2013} and de Winter and Dodou~\cite{deWinter_Dodou_2010} supports Norman's position, finding that parametric tests applied to five-point Likert data produce conclusions consistent with non-parametric alternatives across a wide range of distributional conditions.
+
+This research follows the analytical convention adopted by the majority of technology acceptance and survey research: parametric descriptive statistics (means, standard deviations) are reported for Likert items and composite scores to enable comparison with the broader literature, while non-parametric alternatives are employed for inferential testing when distributional assumptions are not met. Specifically, Shapiro-Wilk tests and visual inspection of distributions determine whether parametric tests (t-tests, ANOVA) or non-parametric alternatives (Mann-Whitney U, Kruskal-Wallis) are applied for group comparisons. Medians and interquartile ranges are reported alongside means and standard deviations for individual Likert items, providing readers with both parametric and ordinal summaries. This dual-reporting approach ensures transparency and enables readers who hold either position in the ordinal-interval debate to evaluate the findings against their preferred analytical framework.
 
 The consistent use of Likert scales across sections provides an intuitive response method for participants and enables direct comparison of responses across different constructs. The scales employed in this survey use two distinct anchor sets depending upon the construct being measured:
 
@@ -233,7 +241,7 @@ Section 6 includes categorical questions capturing demographic information about
   \item 1-5 Years of experience (Early Career)
   \item 6-10 Years of experience (Mid Career - Early)
   \item 11-15 Years of experience (Mid Career - Late)
-  \item 15+ Years of experience (Late Career)
+  \item 16+ Years of experience (Late Career)
 \end{itemize}
 
 These categories enable analysis of response patterns across professional subgroups and experience levels, supporting investigation of whether awareness and perceptions vary systematically by professional background. Such variation would carry significant implications for professional development and adoption strategies. 
@@ -274,7 +282,7 @@ These questions directly measure the extent of professional awareness, providing
 
 \subsection{Section 2: Understanding of Digital Engineering Capabilities}
 
-Section 2 contains six Likert-scale questions assessing respondent understanding of specific Digital Engineering capabilities. Figure~\ref{fig:Section2Questions} visualizes each research question as represented in the model. The questions of section 2 questions probe awareness of the four Digital Engineering pillars in the context of IT and cybersecurity applications:
+Section 2 contains six Likert-scale questions assessing respondent understanding of specific Digital Engineering capabilities. Figure~\ref{fig:Section2Questions} visualizes each research question as represented in the model. The questions of Section 2 probe awareness of the four Digital Engineering pillars in the context of IT and information assurance applications:
 
 \subsubsection{Question 2.1}
 
@@ -309,7 +317,7 @@ This question addresses compliance automation: ``Digital Engineering can improve
 
 \subsubsection{Mapping to Research Question 1}
 
-This section extends Research Question 1 by measuring not only general awareness but comprehension of specific Digital Engineering pillars---MBSE, Digital Twin, the Digital Thread, and PLM---and their applications to IT and cybersecurity contexts.
+This section extends Research Question 1 by measuring not only general awareness but comprehension of specific Digital Engineering pillars---MBSE, Digital Twin, the Digital Thread, and PLM---and their applications to IT and information assurance contexts. A methodological distinction warrants clarification: Section 2 questions employ agreement scales rather than direct awareness measures. Agreement with a capability statement (e.g., ``Digital Engineering includes model-based systems engineering approaches that can improve development processes'') captures a construct more precisely characterized as informed comprehension---whether respondents recognize and affirm the described capability relationship---rather than simple awareness of terminology. This design choice reflects the research objective of assessing whether professionals understand what Digital Engineering capabilities entail, not merely whether they have heard the term. Section 1 captures the latter construct directly through familiarity self-assessment; Section 2 probes deeper by testing whether familiarity corresponds to substantive understanding of capability descriptions. Taken together, Sections 1 and 2 provide a layered assessment of Research Question 1 that distinguishes surface-level awareness from functional comprehension.
 
 \subsection{Section 3: Applicability of Digital Engineering}
 
@@ -415,7 +423,7 @@ This question measures compliance benefit: ``Digital Engineering could help my o
 
 \subsubsection{Question 5.7}
 
-This question measures security investment willingness: ``My organization would be willing to invest in Digital Engineering capabilities for cybersecurity purposes if clear return on investment could be demonstrated.'' (Yes/No)
+This question measures security investment willingness: ``My organization would be willing to invest in Digital Engineering capabilities for cybersecurity purposes if clear return on investment could be demonstrated.'' (Yes/No/Unsure)
 
 \begin{figure}[ht]
     \centering
@@ -426,7 +434,7 @@ This question measures security investment willingness: ``My organization would 
 
 \subsubsection{Mapping to Research Questions 2 and 3}
 
-This section directly addresses whether cybersecurity professionals perceive value in Digital Engineering for their specific domain and believe these practices could help them meet compliance requirements and enhance security capabilities.
+This section directly addresses whether information assurance professionals perceive value in Digital Engineering for their specific domain and believe these practices could help them meet compliance requirements and enhance security capabilities.
 
 \subsection{Section 6: Interest and Demographic Information}
 
@@ -442,11 +450,11 @@ This question measures recommendation likelihood: ``Would you recommend that you
 
 \subsubsection{Question 6.3}
 
-This question captures professional field: ``Please identify your field of practice.'' (Information Technology / Security / Engineering / Other)
+This question captures professional field: ``Please indicate your field of practice.'' (Information Technology / Security / Engineering / Other). The use of ``Security'' rather than ``Information Assurance'' as a response category reflects a practical design choice: working professionals identify their field using varied terminology including cybersecurity, information security, and information assurance. The broader term ``Security'' captures respondents across these self-identification preferences without excluding professionals who may not associate their work with the specific term ``information assurance'' despite performing roles that fall within that discipline as defined in Chapter 1.
 
 \subsubsection{Question 6.4}
 
-This question captures experience level: ``Please indicate your level of experience in your field of practice.'' (1-5 Years / 6-10 Years / 11-15 Years / 15+ Years)
+This question captures experience level: ``Please indicate your level of experience in your field of practice.'' (1-5 Years / 6-10 Years / 11-15 Years / 16+ Years)
 
 \begin{figure}[ht]
     \centering
@@ -504,7 +512,7 @@ The survey begins with a comprehensive participation notice explaining the resea
 
 \subsection{Recruitment and Distribution}
 
-Survey distribution shall occur through multiple channels to maximize reach and diversity of the respondent pool. Recruitment messages shall clearly describe the target population (IT and cybersecurity professionals), estimated completion time (approximately ten minutes), and research purpose. Distribution channels include direct outreach to professional networks, posting in relevant online professional communities, distribution through professional association newsletters and communication channels, and sharing through academic and industry conference participants.
+Survey distribution shall occur through multiple channels to maximize reach and diversity of the respondent pool. Recruitment messages shall clearly describe the target population (IT and information assurance professionals), estimated completion time (approximately ten minutes), and research purpose. Distribution channels include direct outreach to professional networks, posting in relevant online professional communities, distribution through professional association newsletters and communication channels, and sharing through academic and industry conference participants.
 
 \section{Data Analysis Plan}
 
@@ -563,7 +571,7 @@ Comparative analyses shall examine whether awareness levels and value perception
 
 \subsubsection{Professional Field Comparison}
 
-Independent samples t-tests or Mann-Whitney U tests shall compare responses between IT professionals and cybersecurity professionals (based upon Question 6.3). The choice of parametric versus non-parametric test shall be determined by assessment of normality assumptions using Shapiro-Wilk tests and visual inspection of distributions.
+Independent samples t-tests or Mann-Whitney U tests shall compare responses between IT professionals and security professionals (based upon Question 6.3). The choice of parametric versus non-parametric test shall be determined by assessment of normality assumptions using Shapiro-Wilk tests and visual inspection of distributions.
 
 \subsubsection{Experience Level Comparison}
 
@@ -595,6 +603,34 @@ Internal consistency of composite scores shall be assessed using Cronbach's alph
 
 Statistical significance shall be evaluated at the \(\alpha\) = 0.05 level for all inferential tests. However, given the large sample size targeted for this study, effect sizes shall be reported alongside significance tests to assess practical significance of observed differences. Statistical significance alone can mislead when sample sizes are large; effect sizes reveal whether differences matter in practice. Cohen's d shall be reported for group comparisons, with conventional thresholds of 0.2 (small), 0.5 (medium), and 0.8 (large) used for interpretation. For chi-square tests, Cram\'{e}r's V shall be reported as the effect size measure.
 
+\subsection{Management of Type I and Type II Errors}
+
+The analytical design incorporates multiple provisions to manage the risk of both Type I errors (false positives---concluding that a difference or association exists when it does not) and Type II errors (false negatives---failing to detect a genuine difference or association). These provisions operate at the levels of sample design, instrument design, and analytical procedure.
+
+\subsubsection{Type I Error Management}
+
+The primary Type I error concern in this study arises from the conduct of multiple statistical tests across 27 survey items and multiple subgroup comparisons. When numerous tests are performed at the \(\alpha\) = 0.05 significance level, the family-wise error rate increases, elevating the probability that at least one test produces a spurious significant result. To manage this inflation, the analytical approach employs the Holm-Bonferroni sequential correction procedure for families of related comparisons. The Holm-Bonferroni method provides stronger Type I error control than unadjusted testing while maintaining greater statistical power than the classical Bonferroni correction, which can be overly conservative when applied to large families of tests.
+
+Comparisons are organized into logical families reflecting the research question structure: awareness items (Section 1 and Section 2 questions addressing Research Question 1), applicability items (Section 3 questions bridging Research Questions 2 and 3), IT value items (Section 4 questions addressing Research Questions 2 and 3), and information assurance value items (Section 5 questions addressing Research Questions 2 and 3). Within each family, the Holm-Bonferroni correction adjusts significance thresholds to maintain the family-wise error rate at \(\alpha\) = 0.05. Cross-family comparisons, such as overall awareness versus overall perceived value correlations, are treated as planned comparisons evaluated at the unadjusted \(\alpha\) = 0.05 level, as these represent distinct theoretical questions rather than multiple tests of similar hypotheses.
+
+The emphasis upon effect sizes alongside significance testing provides an additional safeguard against Type I error interpretation. Even when statistical tests yield significant p-values after correction, effect size assessment ensures that observed differences reflect practically meaningful magnitudes rather than trivial differences detected through large sample power.
+
+\subsubsection{Type II Error Management}
+
+Type II error risk is managed primarily through sample size design. The target sample of 385--450 completed responses provides sufficient statistical power to detect meaningful differences in the primary analyses. For the primary descriptive analyses addressing Research Question 1, the sample size ensures that reported proportions and means achieve margins of error within five percentage points at the 95\% confidence level, providing adequate precision to characterize awareness levels and value perceptions.
+
+For comparative analyses between professional subgroups, power considerations informed the oversampling target. Assuming an approximately even split between IT and information assurance respondents, each subgroup comprises approximately 190--225 respondents. At these subgroup sizes, independent samples t-tests achieve statistical power exceeding 0.80 to detect medium effect sizes (Cohen's d = 0.5) at \(\alpha\) = 0.05, consistent with conventional power analysis thresholds recommended for behavioral science research. For smaller effect sizes (Cohen's d = 0.3), power at these subgroup sizes approaches 0.60, which represents a recognized limitation for detecting subtle differences between professional groups. This power limitation is acknowledged and reported alongside subgroup analyses so that non-significant results are interpreted appropriately---as insufficient evidence rather than as evidence of no difference.
+
+For experience level comparisons across four categories, the distribution of respondents across categories may result in unequal cell sizes that reduce power for specific pairwise comparisons. The analytical plan addresses this by reporting confidence intervals for all group means, enabling assessment of overlap and practical significance even when formal tests fail to reach significance. Non-parametric alternatives (Kruskal-Wallis with Dunn's post-hoc test) are employed when distributional assumptions are not met, as these tests maintain appropriate Type II error rates under non-normal conditions.
+
+\subsubsection{Instrument-Level Error Reduction}
+
+The survey instrument design contributes to error management through several structural features. The use of established five-point Likert scales with validated anchor sets reduces measurement error that could contribute to both Type I and Type II errors by ensuring that response variability reflects genuine differences in perception rather than response format artifacts. Consistent scale formatting across Sections 2 through 5 reduces within-respondent variability attributable to format switching, improving signal-to-noise ratios in comparative analyses.
+
+The inclusion of both broad constructs (overall awareness, overall value perception) and specific sub-constructs (awareness of individual Digital Engineering pillars, value for specific operational domains) enables triangulation of findings. Convergent results across related items strengthen confidence in significant findings (reducing false positive concern), while divergent results prompt examination of whether non-significant findings reflect genuine null effects or insufficient measurement sensitivity (informing Type II error assessment).
+
+Composite score analysis, with internal consistency assessed through Cronbach's alpha, further mitigates measurement error by aggregating multiple indicators of each construct. Composite scores based upon reliable item sets exhibit less measurement error than individual items, improving the precision of group comparisons and reducing Type II error risk for analyses involving aggregated constructs.
+
 \section{Reliability and Validity Considerations}
 
 \subsection{Content Validity}
@@ -608,6 +644,16 @@ Construct validity is supported through use of established question formats and 
 \subsection{Reliability}
 
 Internal consistency reliability shall be assessed for composite scores using Cronbach's alpha. Additionally, the standardized question format and scale anchors across sections support response consistency by presenting respondents with familiar response frameworks throughout the survey. The use of consistent Likert scale response options across Sections 2-5 reduces potential confusion and supports reliable responding.
+
+\subsection{Pilot Testing and Instrument Refinement}
+
+The survey instrument underwent pilot testing during the Spring 2024 semester prior to formal dissertation proposal development. The pilot study administered an earlier version of the instrument to IT and information assurance professionals, serving multiple purposes: evaluating question clarity and comprehension among respondents representative of the target population, assessing completion time and respondent fatigue, identifying ambiguous or confusing question formulations, and generating preliminary data to inform the structural design and thematic organization of the final instrument.
+
+Data collected during the pilot study provided empirical evidence that directly shaped the design and structure of the survey questions presented in this methodology. Pilot results informed several consequential design decisions reflected in the current instrument. Question wording was refined to reduce ambiguity in how Digital Engineering concepts were described, balancing the competing requirements of providing sufficient context for respondents unfamiliar with Digital Engineering terminology while avoiding language that could prime respondents toward particular response patterns. Section ordering was adjusted based upon pilot completion patterns to place awareness questions before value assessment questions, establishing a cognitive progression from recognition through evaluation. The pilot also validated the estimated completion time and confirmed that the five-point Likert scale format produced adequate response distribution across scale points without floor or ceiling effects.
+
+The pilot study's contribution extends beyond instrument refinement to substantive validation of the research premise. Pilot data confirmed that the target population includes substantial variation in Digital Engineering awareness levels, validating the foundational assumption that awareness and perceived value remain open empirical questions requiring investigation. The observed variance in pilot responses across both awareness and value dimensions confirmed that the instrument captures meaningful differences among respondents rather than producing uniform response distributions that would limit analytical value.
+
+The pilot testing process complemented the content validity established through systematic mapping of survey questions to research questions and alignment with established Digital Engineering and technology acceptance frameworks. Where the content validity process ensured that the instrument measures the intended constructs, pilot testing confirmed that respondents interpret questions as intended and can provide meaningful responses within the designed format. The combination of theoretical grounding through framework alignment and empirical refinement through pilot testing strengthens confidence in the instrument's ability to generate valid, reliable data addressing the research questions.
 
 \subsection{Limitations}
 
@@ -629,9 +675,25 @@ Several limitations should be considered when interpreting study results:
   \item The survey measures perceived value and anticipated benefits rather than actual experienced benefits. Positive perceptions do not guarantee that Digital Engineering would deliver value if implemented, nor do they indicate organizational readiness for adoption.
 \end{itemize}
 
+\subsection{Response Bias Mitigation}
+
+Several design decisions embedded within the survey instrument and recruitment strategy proactively mitigate identified sources of response bias. These measures complement the acknowledged limitations by reducing their anticipated impact upon data quality and interpretive validity.
+
+Self-selection bias, whereby respondents with prior Digital Engineering awareness disproportionately choose to participate, is mitigated through recruitment messaging that explicitly frames the survey as targeting all IT and information assurance professionals regardless of Digital Engineering familiarity. Recruitment materials emphasize that the research seeks perspectives from professionals across the awareness spectrum and that no prior knowledge of Digital Engineering is required or expected. This framing encourages participation from professionals who might otherwise self-exclude upon encountering unfamiliar terminology.
+
+The survey questions in Sections 2 through 5 incorporate minimal contextual descriptions of Digital Engineering capabilities within the question stems. This design choice reflects a deliberate balance between two competing methodological concerns. On one hand, questions devoid of contextual information would measure only pre-existing awareness, excluding respondents unfamiliar with Digital Engineering terminology from providing meaningful responses about perceived value. On the other hand, extensive descriptions risk priming respondents toward positive assessments. The instrument resolves this tension by providing sufficient context for respondents to form an informed judgment about each capability statement without advocating for or characterizing the capability in evaluative terms. Each question describes what a Digital Engineering capability does in neutral, functional language, enabling respondents to assess whether that function would provide value within their professional context based upon their own domain expertise. This approach ensures that respondents unfamiliar with Digital Engineering terminology are not confused by questions referencing concepts they have not encountered, while avoiding framing that suggests a preferred response direction.
+
+Social desirability bias is mitigated through the anonymous survey design, which removes professional reputation concerns that might otherwise influence responses. The absence of personally identifiable information collection, combined with clear communication of anonymity protections in the informed consent notice, encourages candid responses about knowledge gaps and skepticism toward unfamiliar methodologies.
+
+Acquiescence bias, the tendency for respondents to agree with statements regardless of content, is addressed through the inclusion of the neutral midpoint option in Likert scale responses. The ``Neither agree nor disagree'' response enables genuine expression of uncertainty or indifference rather than forcing agreement or disagreement. Additionally, the binary and ternary response options for investment willingness questions (Questions 4.5 and 5.7) include an ``Unsure'' option that captures genuine uncertainty without channeling indecisive respondents toward affirmative responses.
+
+Wave analysis comparing early and late respondents shall be conducted during data analysis to assess whether response patterns differ systematically between initial and subsequent response waves. Significant differences between early and late respondents may indicate non-response bias, as late respondents are often considered more representative of non-respondents. Demographic composition of the sample shall be compared against known characteristics of the IT and information assurance professional population to assess representativeness, with any identified disparities reported as potential limitations on generalizability.
+
+An additional analytical safeguard enables post-hoc assessment of potential priming effects from the contextual descriptions embedded in survey questions. Comparison of value perception scores (Sections 4 and 5) between respondents reporting high Digital Engineering familiarity (Question 1.1 scores of four or five) and those reporting low familiarity (scores of one or two) provides a diagnostic for priming influence. If both familiarity groups report similarly elevated perceived value, the priming hypothesis gains support, suggesting that question descriptions may have influenced responses independent of prior knowledge. If high-familiarity respondents report substantially higher perceived value than low-familiarity respondents, the measurements more likely reflect genuine perception differences informed by prior knowledge and professional experience rather than question framing effects. This comparison does not eliminate priming concerns but provides empirical evidence for assessing their magnitude and interpretive implications.
+
 \section{Ethical Considerations}
 
-This research was designed in accordance with ethical principles for human subjects research and submitted for review and comment by the Dakota State University Institutional Review Board (IRB), approval by the IRB will proceed after Dissertation Proposal Defense completion. Key ethical considerations include:
+This research was designed in accordance with ethical principles for human subjects research and submitted for review and comment by the Dakota State University Institutional Review Board (IRB); approval by the IRB shall proceed after Dissertation Proposal Defense completion. Key ethical considerations include:
 
 \subsection{Anonymity} The survey collects no personally identifiable information, ensuring respondent anonymity. Demographic questions are limited to professional field and experience level, which cannot identify individual respondents.
 
@@ -649,7 +711,7 @@ This research was designed in accordance with ethical principles for human subje
 
 This research follows a structured implementation plan spanning approximately twenty-two months from dissertation committee formation through final defense. The timeline aligns with Dakota State University's doctoral program requirements and academic calendar while accommodating the iterative nature of quantitative survey research. Each phase builds systematically upon preceding work, ensuring adequate time for committee review, institutional oversight, data collection, and rigorous analysis. Figure \ref{fig:Schedule} presents the project schedule as a gantt chart.
 
-\begin{figure}[tbp]
+\begin{figure}[ht]
         \begin{centering}
         \begin{ganttchart}[
             vgrid,
@@ -658,9 +720,9 @@ This research follows a structured implementation plan spanning approximately tw
             time slot unit = month,
             ]{2025-05}{2027-04}
           \gantttitlecalendar{year, month}\\
-          \ganttgroup{Proposal}{2025-06}{2026-03} \\
-          \ganttbar{Committee Formation}{2025-06}{2025-08} \\
-          \ganttlinkedbar{Write Proposal}{2025-09}{2026-03} \\
+          \ganttgroup{Proposal}{2025-05}{2026-03} \\
+          \ganttbar{Committee Formation}{2025-05}{2025-08} \\
+          \ganttbar{Write Proposal}{2025-09}{2026-03} \\
           \ganttlinkedmilestone{Proposal Defense}{2026-03}
           \ganttnewline[thick, black] 
           \ganttgroup{Survey}{2026-04}{2026-11} \\
@@ -680,13 +742,13 @@ This research follows a structured implementation plan spanning approximately tw
 
 \subsection{Phase 1: Committee Formation and Preparation (May 2025 -- August 2025)}
 
-The initial phase established the dissertation committee and governance structure for the research project. During this period, the candidate identified and invited faculty members. Committee formation required consideration of faculty availability, disciplinary expertise alignment with the research questions, and institutional requirements for committee composition. Preliminary discussions with committee members addressed research scope, methodology, and expected timeline. Committee formation concluded in August 2025, enabling proposal development under appropriate faculty guidance.
+The initial phase established the dissertation committee and governance structure for the research project. During this period, the candidate identified and invited faculty members with relevant expertise. Committee formation required consideration of faculty availability, disciplinary expertise alignment with the research questions, and institutional requirements for committee composition. Preliminary discussions with committee members addressed research scope, methodology, and expected timeline. Committee formation concluded in January 2026, enabling proposal development under appropriate faculty guidance.
 
 \subsection{Phase 2: Dissertation Proposal Development (September 2025 -- February 2026)}
 
 The proposal development phase spans six months, reflecting the iterative nature of academic research design. During September and October 2025, the candidate completed initial proposal drafts encompassing the problem statement, literature review, research questions, and detailed methodology. These drafts underwent review by the dissertation chair, with feedback informing subsequent revisions. November 2025 through February 2026 involves iterative refinement based upon committee member feedback, addressing conceptual clarity, methodological rigor, literature synthesis, and alignment between research questions and analytical approaches. February 2026 focuses upon final proposal preparation, incorporating all committee feedback and ensuring compliance with Dakota State University formatting and content requirements.
 
-\subsection{Phase 3: Proposal Defense and IRB Approval (March -- April 2026)}
+\subsection{Phase 3: Proposal Defense and IRB Approval (March 2026 -- April 2026)}
 
 The dissertation proposal defense occurs in March 2026, providing the committee opportunity to evaluate the research design before data collection commences. The defense presentation addresses the research problem, theoretical framework, methodology, and anticipated contributions. Successful defense results in committee approval to proceed with human subjects research application, with any required modifications addressed immediately thereafter.
 
@@ -708,9 +770,11 @@ The dissertation final defense occurs in March 2027, approximately twenty-two mo
 
 \section{Chapter Summary}
 
-This chapter has presented the research methodology employed to investigate professional awareness and perceptions of Digital Engineering capabilities among IT and information assurance professionals. The research employs a quantitative survey methodology following a systems engineering lifecycle approach that ensures rigor and traceability throughout the research process. The survey instrument systematically addresses the three research questions through 27 questions organized into six thematic sections covering awareness, understanding, applicability, and perceived value for both IT and information assurance domains.
+This chapter has presented the research methodology employed to investigate professional awareness and perceptions of Digital Engineering capabilities among IT and information assurance professionals. The research employs a quantitative survey methodology following a systems engineering lifecycle approach that ensures rigor and traceability throughout the research process. The survey instrument, refined through pilot testing conducted during the Spring 2024 semester, systematically addresses the three research questions through 27 questions organized into six thematic sections covering awareness, understanding, applicability, and perceived value for both IT and information assurance domains.
 
-A target sample of 385-450 completed responses shall provide sufficient statistical power to achieve a maximum margin of error of five percent at the 95\% confidence level. Data analysis shall employ descriptive statistics to characterize awareness levels and value perceptions, with comparative analyses examining differences across professional subgroups and experience levels. Composite scores shall summarize overall awareness and value perceptions with internal consistency assessed through Cronbach's alpha.
+A target sample of 385-450 completed responses shall provide sufficient statistical power to achieve a maximum margin of error of five percent at the 95\% confidence level. Data analysis shall employ descriptive statistics to characterize awareness levels and value perceptions, with comparative analyses examining differences across professional subgroups and experience levels. Composite scores shall summarize overall awareness and value perceptions with internal consistency assessed through Cronbach's alpha. The analytical plan addresses the ordinal-interval debate surrounding Likert scale data through dual-reporting of parametric and non-parametric summaries, and manages Type I error inflation from multiple comparisons through the Holm-Bonferroni sequential correction procedure applied within logical families of related tests.
+
+The methodology incorporates proactive response bias mitigation through recruitment messaging designed to encourage participation across the awareness spectrum, survey question design that provides minimal contextual information sufficient for informed response without evaluative priming, and planned wave analysis to assess non-response bias. These provisions complement the acknowledged limitations of non-probability sampling and self-selection to strengthen confidence in the validity of collected data.
 
 The methodology establishes a rigorous foundation for generating empirical evidence regarding professional perceptions of Digital Engineering that can inform future research and practice in information assurance and IT service delivery. The systems engineering approach to research design ensures traceability between research questions, survey instruments, and analytical approaches---demonstrating that the same disciplinary rigor that Digital Engineering brings to complex systems can be applied to academic research itself.
 
