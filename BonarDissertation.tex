@@ -26,7 +26,7 @@
 \usepackage{booktabs, multirow} % for borders and merged ranges
 \usepackage{tocloft}
 \renewcommand{\cftchapfont}{\bfseries}
-\renewcommand{\cftchappagefont}{\bfseries} 
+\renewcommand{\cftchappagefont}{\bfseries}
 \renewcommand{\cftchappresnum}{Chapter }
 \renewcommand{\cftchapaftersnum}{:}
 \renewcommand\cftchapafterpnum{\vskip 1pt}
@@ -81,6 +81,13 @@
 
 \pagenumbering{roman}
 \setcounter{page}{2}
+
+\begin{center}
+  \vspace*{8in}
+  \textcopyright \yourYear{} by \yourName \\
+  ALL RIGHTS RESERVED
+\end{center}
+\clearpage
 
 % Revision History
 %=========================================
@@ -137,7 +144,6 @@
 \end{singlespace}
 \clearpage
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Main Content
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -177,7 +183,7 @@
   \printbibliography[title={References}]
 \end{singlespace}
 \clearpage
- 
+
 % Appendices
 \input{MainContent/AppendixA.tex}
 \clearpage
