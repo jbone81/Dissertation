@@ -1,5 +1,5 @@
 \documentclass[12pt,oneside]{book}
-\usepackage[letterpaper, left=1.2in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage[letterpaper, left=1in, right=1in, top=1in, bottom=1in]{geometry}
 \usepackage{fancyhdr}
 %\pagestyle{fancy}    % add Heading of Chapter on top of each page
 \usepackage[T1]{fontenc}
@@ -26,7 +26,7 @@
 \usepackage{booktabs, multirow} % for borders and merged ranges
 \usepackage{tocloft}
 \renewcommand{\cftchapfont}{\bfseries}
-\renewcommand{\cftchappagefont}{\bfseries}
+\renewcommand{\cftchappagefont}{\bfseries} 
 \renewcommand{\cftchappresnum}{Chapter }
 \renewcommand{\cftchapaftersnum}{:}
 \renewcommand\cftchapafterpnum{\vskip 1pt}
@@ -40,6 +40,7 @@
 \settowidth{\cfttabnumwidth}{\cfttabpresnum}
 \renewcommand{\cfttabaftersnumb}{\qquad\quad}
 
+\usepackage{microtype}
 \usepackage[nottoc,notlof,notlot]{tocbibind}
 \usepackage{soul}% for underlines
 \usepackage[table]{xcolor} % for cell colors
@@ -47,7 +48,6 @@
 \usepackage{setspace}
 % \usepackage{textcomp}
 \usepackage{xcolor}
-\usepackage[bookmarks=true, hidelinks]{hyperref}
 
 \usepackage[utf8]{inputenc}
 \usepackage{appendix}
@@ -56,8 +56,12 @@
 \usepackage{pdflscape}
 \usepackage{pgfgantt}
 
+\usepackage{varioref}
+\usepackage[linktocpage=true,bookmarks=true,hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
 %\usepackage[backend=biber,style=ieee,sorting=none]{biblatex} % ieee citation style
-\usepackage[backend=biber,style=apa]{biblatex} % apa citation style
+\usepackage[backend=biber,style=apa,language=american,maxnames=4,minnames=3,sortcites=true]{biblatex} % apa citation style
+\DeclareLanguageMapping{american}{american-apa}
 
 %\usepackage{natbib}
 \setcounter{tocdepth}{2}
@@ -81,14 +85,10 @@
 
 \pagenumbering{roman}
 \setcounter{page}{2}
-
-\begin{center}
-  \vspace*{8in}
-  \textcopyright \yourYear{} by \yourName \\
-  ALL RIGHTS RESERVED
-\end{center}
+% Copyright
+%========================================
+\input{Additional/Copyright.tex}
 \clearpage
-
 % Revision History
 %=========================================
 \input{Additional/RevisionHistory.tex}
@@ -144,6 +144,7 @@
 \end{singlespace}
 \clearpage
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Main Content
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -183,7 +184,7 @@
   \printbibliography[title={References}]
 \end{singlespace}
 \clearpage
-
+ 
 % Appendices
 \input{MainContent/AppendixA.tex}
 \clearpage
