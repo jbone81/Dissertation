@@ -1,0 +1,93 @@
+\documentclass[border=10pt]{standalone}
+\input{sysml_style.tex}
+\begin{document}
+\begin{tikzpicture}
+  % ===================== Row 1 =====================
+  % --- Enumerations package (6 enums, 3 cols x 2 rows) ---
+  \enumbox{}{e1}{BinaryAffirmation}{1. Yes\\2. No}
+  \enumbox{right=5mm of e1.north east,anchor=north west}{e2}{LikertAgreement}{1. Strongly disagree\\2. Disagree\\3. Neither agree nor disagree\\4. Agree\\5. Strongly agree}
+  \enumbox{right=5mm of e2.north east,anchor=north west}{e3}{LikertFamiliarity}{1. Not at all familiar\\2. Somewhat familiar\\3. Moderately familiar\\4. Very familiar\\5. Extremely familiar}
+  % place row 2 below a fit of the whole first row so the tall 5-literal boxes are cleared
+  \node[fit=(e1)(e2)(e3),inner sep=0pt] (erow1) {};
+  \enumbox{below=6mm of erow1.south west,anchor=north west}{e4}{PracticeExperience}{1-5 Years\\6-10 Years\\11-15 Years\\16+ Years}
+  \enumbox{right=5mm of e4.north east,anchor=north west}{e5}{PracticeField}{IT\\Information Assurance / Cyber Security\\Engineering\\Other}
+  \enumbox{right=5mm of e5.north east,anchor=north west}{e6}{TernaryAffirmation}{Yes\\No\\Unsure}
+  \pkgframe{(e1)(e2)(e3)(e4)(e5)(e6)}{pEnum}{Enumerations}
+
+  % --- Section 1 (2 blocks, stacked) ---
+  \cblock{right=10mm of pEnum.north east,anchor=north west,yshift=-9mm}{s1a}{Question 1.1}
+  \cblock{below=5mm of s1a.south west,anchor=north west}{s1b}{Question 1.2}
+  \pkgframe{(s1a)(s1b)}{pS1}{Section 1}
+
+  % --- Section 2 (2 cols x 3 rows) ---
+  \cblock{right=10mm of pS1.north east,anchor=north west,yshift=-9mm}{s2a}{Question 2.1}
+  \cblock{right=4mm of s2a.north east,anchor=north west}{s2b}{Question 2.2}
+  \cblock{below=4mm of s2a.south west,anchor=north west}{s2c}{Question 2.3}
+  \cblock{right=4mm of s2c.north east,anchor=north west}{s2d}{Question 2.4}
+  \cblock{below=4mm of s2c.south west,anchor=north west}{s2e}{Question 2.5}
+  \cblock{right=4mm of s2e.north east,anchor=north west}{s2f}{Question 2.6}
+  \pkgframe{(s2a)(s2b)(s2c)(s2d)(s2e)(s2f)}{pS2}{Section 2}
+
+  % --- Section 3 (2 cols x 3 rows) ---
+  \cblock{right=10mm of pS2.north east,anchor=north west,yshift=-9mm}{s3a}{Question 3.1}
+  \cblock{right=4mm of s3a.north east,anchor=north west}{s3b}{Question 3.2}
+  \cblock{below=4mm of s3a.south west,anchor=north west}{s3c}{Question 3.3}
+  \cblock{right=4mm of s3c.north east,anchor=north west}{s3d}{Question 3.4}
+  \cblock{below=4mm of s3c.south west,anchor=north west}{s3e}{Question 3.5}
+  \cblock{right=4mm of s3e.north east,anchor=north west}{s3f}{Question 3.6}
+  \pkgframe{(s3a)(s3b)(s3c)(s3d)(s3e)(s3f)}{pS3}{Section 3}
+
+  % ===================== Row 2 =====================
+  % --- Section 4 (2 cols; 4 + 1 centered) ---
+  \cblock{below=16mm of pEnum.south west,anchor=north west,xshift=3mm}{s4a}{Question 4.1}
+  \cblock{right=4mm of s4a.north east,anchor=north west}{s4b}{Question 4.2}
+  \cblock{below=4mm of s4a.south west,anchor=north west}{s4c}{Question 4.3}
+  \cblock{right=4mm of s4c.north east,anchor=north west}{s4d}{Question 4.4}
+  \cblock{below=4mm of s4c.south west,anchor=north west}{s4e}{Question 4.5}
+  \pkgframe{(s4a)(s4b)(s4c)(s4d)(s4e)}{pS4}{Section 4}
+
+  % --- Section 5 (2 cols; 6 + 1) ---
+  \cblock{right=10mm of pS4.north east,anchor=north west,yshift=-9mm}{s5a}{Question 5.1}
+  \cblock{right=4mm of s5a.north east,anchor=north west}{s5b}{Question 5.2}
+  \cblock{below=4mm of s5a.south west,anchor=north west}{s5c}{Question 5.3}
+  \cblock{right=4mm of s5c.north east,anchor=north west}{s5d}{Question 5.4}
+  \cblock{below=4mm of s5c.south west,anchor=north west}{s5e}{Question 5.5}
+  \cblock{right=4mm of s5e.north east,anchor=north west}{s5f}{Question 5.6}
+  \cblock{below=4mm of s5e.south west,anchor=north west}{s5g}{Question 5.7}
+  \pkgframe{(s5a)(s5b)(s5c)(s5d)(s5e)(s5f)(s5g)}{pS5}{Section 5}
+
+  % --- Section 6 (2 cols x 2 rows) ---
+  \cblock{right=10mm of pS5.north east,anchor=north west,yshift=-9mm}{s6a}{Question 6.1}
+  \cblock{right=4mm of s6a.north east,anchor=north west}{s6b}{Question 6.2}
+  \cblock{below=4mm of s6a.south west,anchor=north west}{s6c}{Question 6.3}
+  \cblock{right=4mm of s6c.north east,anchor=north west}{s6d}{Question 6.4}
+  \pkgframe{(s6a)(s6b)(s6c)(s6d)}{pS6}{Section 6}
+
+  % ===================== Root package + UML containment tree (orthogonal) =====================
+  \node[draw=pkgBorder,line width=0.6pt,fill=pkgFill,below=16mm of pS4.south west,anchor=north west,text width=34mm,align=center,inner ysep=3.5mm,font=\sffamily\bfseries] (root) {Survey Questions};
+  \node[draw=pkgBorder,line width=0.6pt,fill=pkgFill,anchor=south west,minimum width=10mm,minimum height=2.8mm,inner sep=0pt] at ([xshift=0.3pt,yshift=-0.3pt]root.north west) {};
+  \tikzset{compline/.style={draw=frameBorder,line width=0.6pt}}
+  \coordinate (ytr)  at ($(root.south)+(0,-8mm)$);   % bottom trunk level
+  \coordinate (ymid) at ($(pEnum.south)+(0,-7mm)$);  % row1/row2 collector level
+  \coordinate (xL)   at ($(pS4.west)+(-8mm,0)$);     % left routing channel
+  \coordinate (xR)   at ($(pS6.east)+(8mm,0)$);      % right routing channel
+  % containment symbol (circle-plus) on Survey Questions, dropping to the bottom trunk
+  \node[draw=frameBorder,circle,line width=0.5pt,inner sep=0pt,minimum size=3.4mm] (cc) at (root.south) {};
+  \draw[compline] (cc.north)--(cc.south) (cc.west)--(cc.east);
+  \draw[compline] (cc.south) -- (cc.south|-ytr);
+  % bottom trunk
+  \draw[compline] (xL|-ytr) -- (xR|-ytr);
+  % row-2 packages: straight drop to the trunk
+  \foreach \p in {pS4,pS5,pS6} \draw[compline] (\p.south) -- (\p.south|-ytr);
+  % row-1 packages: down to the collector, out to a side channel, down to the trunk
+  \draw[compline] (pEnum.south) -- (pEnum.south|-ymid) -- (xL|-ymid) -- (xL|-ytr);
+  \draw[compline] (pS1.south)   -- (pS1.south|-ymid)   -- (xL|-ymid);
+  \draw[compline] (pS2.south)   -- (pS2.south|-ymid)   -- (xR|-ymid) -- (xR|-ytr);
+  \draw[compline] (pS3.south)   -- (pS3.south|-ymid)   -- (xR|-ymid);
+
+  \begin{scope}[on background layer]
+    \node[fit=(pEnum)(pS3)(pS6)(root)(xL|-ytr)(xR|-ytr), inner sep=8mm] (frame) {};
+  \end{scope}
+  \packageframe{\textbf{Package Diagram} Survey Questions [\,OverviewDiagramOfPackageSurveyQuestions\,]}
+\end{tikzpicture}
+\end{document}

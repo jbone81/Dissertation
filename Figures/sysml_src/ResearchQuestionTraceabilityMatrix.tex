@@ -1,0 +1,39 @@
+\documentclass[border=8pt]{standalone}
+\usepackage{array,booktabs,graphicx}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\definecolor{secfill}{RGB}{253,246,225}
+\definecolor{reqrowfill}{RGB}{245,220,235}
+\definecolor{satblue}{RGB}{40,70,190}
+\newcommand{\sat}{\textcolor{satblue}{$\nearrow$}}
+\newcommand{\qh}[1]{\rotatebox{90}{\footnotesize #1}}
+\renewcommand{\arraystretch}{1.05}
+\begin{document}
+\sffamily\footnotesize
+\setlength{\tabcolsep}{2.0pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{28mm}c|*{2}{c}|*{6}{c}|*{6}{c}|*{5}{c}|*{7}{c}|*{4}{c}@{}}
+\toprule
+\textbf{Satisfy: \sat} & \rotatebox{90}{\footnotesize\textbf{Total}}
+ & \multicolumn{2}{c|}{\textbf{Sec.\ 1}}
+ & \multicolumn{6}{c|}{\textbf{Section 2}}
+ & \multicolumn{6}{c|}{\textbf{Section 3}}
+ & \multicolumn{5}{c|}{\textbf{Section 4}}
+ & \multicolumn{7}{c|}{\textbf{Section 5}}
+ & \multicolumn{4}{c}{\textbf{Section 6}} \\
+\cmidrule(l){3-4}\cmidrule(l){5-10}\cmidrule(l){11-16}\cmidrule(l){17-21}\cmidrule(l){22-28}\cmidrule(l){29-32}
+\textbf{Research Questions} & &
+ \qh{Q1.1} & \qh{Q1.2} &
+ \qh{Q2.1} & \qh{Q2.2} & \qh{Q2.3} & \qh{Q2.4} & \qh{Q2.5} & \qh{Q2.6} &
+ \qh{Q3.1} & \qh{Q3.2} & \qh{Q3.3} & \qh{Q3.4} & \qh{Q3.5} & \qh{Q3.6} &
+ \qh{Q4.1} & \qh{Q4.2} & \qh{Q4.3} & \qh{Q4.4} & \qh{Q4.5} &
+ \qh{Q5.1} & \qh{Q5.2} & \qh{Q5.3} & \qh{Q5.4} & \qh{Q5.5} & \qh{Q5.6} & \qh{Q5.7} &
+ \qh{Q6.1} & \qh{Q6.2} & \qh{Q6.3} & \qh{Q6.4} \\
+\midrule
+\cellcolor{reqrowfill}Research Question 1 & 8 & \sat & \sat & \sat & \sat & \sat & \sat & \sat & \sat &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+\cellcolor{reqrowfill}Research Question 2 & 10 &  &  &  &  &  &  &  &  & \sat & \sat & \sat & \sat & \sat & \sat & \sat &  &  &  & \sat & \sat &  &  &  &  &  & \sat &  &  &  &  \\
+\cellcolor{reqrowfill}Research Question 3 & 14 &  &  &  &  &  &  &  &  &  &  & \sat & \sat & \sat & \sat & \sat & \sat & \sat & \sat &  & \sat & \sat & \sat & \sat & \sat & \sat &  &  &  &  &  \\
+\cellcolor{reqrowfill}Demographics & 2 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \sat & \sat \\
+\cellcolor{reqrowfill}Supporting & 2 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \sat & \sat &  &  \\
+\bottomrule
+\end{tabular}
+\end{document}

@@ -1,0 +1,16 @@
+\documentclass[border=10pt]{standalone}
+\input{sysml_style.tex}
+\begin{document}
+\begin{tikzpicture}
+  \blockbox{}{q1}{Question 2.1}{Likert( : LikertAgreement )}
+  \blockbox{right=10mm of q1.north east,anchor=north west}{q2}{Question 2.2}{Likert( : LikertAgreement )}
+  \blockbox{below=8mm of q1.south west,anchor=north west}{q3}{Question 2.3}{Likert( : LikertAgreement )}
+  \blockbox{right=10mm of q3.north east,anchor=north west}{q4}{Question 2.4}{Likert( : LikertAgreement )}
+  \blockbox{below=8mm of q3.south west,anchor=north west}{q5}{Question 2.5}{Likert( : LikertAgreement )}
+  \blockbox{right=10mm of q5.north east,anchor=north west}{q6}{Question 2.6}{Likert( : LikertAgreement )}
+  \begin{scope}[on background layer]
+    \node[fit=(q1)(q2)(q3)(q4)(q5)(q6), inner sep=9mm] (frame) {};
+  \end{scope}
+  \packageframe{\textbf{Package Diagram} Section 2 [\,OverviewDiagramOfPackageSection2\,]}
+\end{tikzpicture}
+\end{document}

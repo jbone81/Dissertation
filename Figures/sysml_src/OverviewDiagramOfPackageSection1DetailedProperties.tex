@@ -1,0 +1,16 @@
+\documentclass[border=10pt]{standalone}
+\input{sysml_style.tex}
+\begin{document}
+\begin{tikzpicture}
+  \blockboxwide{}{q11}{Question 1.1}
+    {Documentation = ``Please rate your level of familiarity with Digital Engineering concepts and practices.''\\ Satisfies = \reqmark\ Research Question 1}
+    {Likert( : LikertFamiliarity )}
+  \blockboxwide{below=9mm of q11.south west,anchor=north west}{q12}{Question 1.2}
+    {Documentation = ``Have you encountered Digital Engineering methodologies, frameworks, or tools in your professional work within the past two years?''\\ Satisfies = \reqmark\ Research Question 1}
+    {Binary( : BinaryAffirmation )}
+  \begin{scope}[on background layer]
+    \node[fit=(q11)(q12), inner sep=9mm] (frame) {};
+  \end{scope}
+  \packageframe{\textbf{Package Diagram} Section 1 [\,OverviewDiagramOfPackageSection1\,]}
+\end{tikzpicture}
+\end{document}

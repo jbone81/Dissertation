@@ -1,0 +1,31 @@
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+\textbf{Scenario} & \textbf{Condition} & \textbf{Sensitivity} & \textbf{Specificity} & \textbf{Precision} \\
+\midrule
+Negative control & no contamination & --- & 100.0\% & --- \\
+\midrule
+Exact-duplicate clusters & 5\% contam. & 100.0\% & 99.8\% & 95.9\% \\
+ & 15\% contam. & 100.0\% & 100.0\% & 99.8\% \\
+ & 30\% contam. & 100.0\% & 100.0\% & 100.0\% \\
+ & 45\% contam. & 100.0\% & 100.0\% & 100.0\% \\
+\addlinespace
+Near-duplicate satellites & 5\% contam. & 100.0\% & 99.9\% & 98.2\% \\
+ & 15\% contam. & 100.0\% & 100.0\% & 99.8\% \\
+ & 30\% contam. & 100.0\% & 100.0\% & 100.0\% \\
+ & 45\% contam. & 100.0\% & 100.0\% & 100.0\% \\
+\addlinespace
+Straight-line clusters & 5\% contam. & 100.0\% & 99.9\% & 98.3\% \\
+ & 15\% contam. & 100.0\% & 100.0\% & 99.8\% \\
+ & 30\% contam. & 100.0\% & 99.9\% & 99.7\% \\
+ & 45\% contam. & 100.0\% & 99.9\% & 99.9\% \\
+\addlinespace
+Coordinated (engineered demo.) & 5\% contam. & 100.0\% & 100.0\% & 100.0\% \\
+ & 15\% contam. & 100.0\% & 100.0\% & 100.0\% \\
+ & 30\% contam. & 100.0\% & 100.0\% & 100.0\% \\
+ & 45\% contam. & 100.0\% & 100.0\% & 100.0\% \\
+\addlinespace
+\midrule
+Evasive adversary & response-varying & 0.0\% & 100.0\% & 0.0\% \\
+LLM-generated & low-entropy synthetic & 0.0\% & 99.9\% & 0.0\% \\
+\bottomrule
+\end{tabular}

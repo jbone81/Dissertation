@@ -1,0 +1,740 @@
+\section{The Independent Analysis, Reproduced: Code and Output}
+
+The methodology above defines each procedure and works a representative case by hand. This section supplies the executable proof, drawn from the independent statistical analysis and its companion computational notebook. The analysis is a fully scripted Python program (NumPy, pandas, SciPy, and statsmodels, with semopy for the confirmatory measurement model used in the post-hoc validity check) that recomputes every value reported in Chapter~4 directly from the raw response file. Each analysis below presents the exact code followed by its verbatim output, so that no reported quantity rests on assertion: each one is reproducible from the response data by running the code shown. The ordering follows the methodology sections above, and the figures these computations produce appear, with alternative-text descriptions, in Chapter~4.
+
+\subsection{Setup and Data Loading}
+Loads the response file and maps the raw columns onto the Chapter~3 question numbering.
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+import os, json, warnings
+import numpy as np
+import pandas as pd
+from scipy import stats
+import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
+warnings.filterwarnings("ignore")
+pd.set_option("display.max_columns", 60)
+pd.set_option("display.width", 160)
+
+# The notebook lives in Analysis/; the workbook is one directory up.
+ROOT = os.path.dirname(os.getcwd()) if os.path.basename(os.getcwd()) == "Analysis" else os.getcwd()
+SRC = os.path.join(ROOT, "Survey Responses Final Export.xlsx")   # formerly "...Final Dump.xlsx"
+assert os.path.exists(SRC), f"Cannot find {SRC}"
+raw = pd.read_excel(SRC)
+cols = list(raw.columns)
+print("Rows:", len(raw), "| Columns:", len(cols))
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+Rows: 1411 | Columns: 35
+\end{verbatim}}
+
+\subsection{Data Cleaning and Sample}
+Decodes each Likert response to its integer score and confirms the missing-data rule; no retained response crosses the twenty-percent exclusion threshold. The analytic sample follows a documented funnel: $1{,}600$ raw submissions, from which a pre-registered quality screen removed $188$ (completion under three minutes, an open interval exceeding five days, or answering at most Section~1), and a post-hoc response-authenticity screen removed one further submission belonging to a coordinated automated cluster (a single identical response vector submitted $71$ times at roughly one-minute completions), giving the genuine $N=1{,}411$. Complete data on all $23$ Likert items are present for $1{,}390$ respondents ($98.5\%$).
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+LIKERT = ["Q1.1"]+[f"Q2.{i}" for i in range(1,7)]+[f"Q3.{i}" for i in range(1,7)]+\
+         [f"Q4.{i}" for i in range(1,5)]+[f"Q5.{i}" for i in range(1,7)]
+BINARY  = ["Q1.2","Q6.1","Q6.2"]
+TERNARY = ["Q4.5","Q5.7"]
+
+def to_score(v):
+    if pd.isna(v): return np.nan
+    s = str(v).strip()
+    return int(s[0]) if s and s[0].isdigit() else np.nan
+
+for q in LIKERT:
+    df[q] = df[q].map(to_score)
+for q in BINARY+TERNARY+["Q6.3","Q6.4"]:
+    df[q] = df[q].map(lambda v: np.nan if pd.isna(v) else str(v).strip())
+
+N_TOTAL = len(df)
+complete_likert = int(df[LIKERT].notna().all(axis=1).sum())
+missing = pd.Series({q:int(df[q].isna().sum()) for q in LIKERT+BINARY+TERNARY+["Q6.3","Q6.4"]})
+print(f"N total = {N_TOTAL}")
+print(f"Complete across all 23 Likert items = {complete_likert} ({100*complete_likert/N_TOTAL:.1f}%)")
+print("Max item-level missing =", int(missing.max()))
+missing[missing>0]
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+N total = 1411
+Complete across all 23 Likert items = 1390 (98.5%)
+Max item-level missing = 6
+Q2.2    6
+Q2.3    4
+Q2.4    4
+Q2.5    3
+Q2.6    4
+Q3.1    1
+Q3.2    3
+Q3.3    4
+Q3.4    4
+Q3.5    3
+Q3.6    3
+Q4.2    4
+Q4.3    3
+Q4.4    3
+Q5.1    2
+Q5.2    3
+Q5.3    3
+Q5.4    3
+Q5.5    3
+Q5.6    3
+Q1.2    2
+Q6.2    6
+dtype: int64
+\end{verbatim}}
+
+\subsection{Item-Level Descriptive Statistics}
+Computes the mean, standard deviation, median, interquartile range, agreement rate, and Wilson interval for every Likert item (methodology: \emph{Descriptive Statistics}).
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+def ci_mean(x, conf=0.95):
+    x = pd.Series(x).dropna(); n = len(x)
+    if n < 2: return (np.nan, np.nan)
+    se = x.std(ddof=1)/np.sqrt(n)
+    h = se*stats.t.ppf((1+conf)/2, n-1)
+    return (x.mean()-h, x.mean()+h)
+
+def ci_wilson(k, n, conf=0.95):
+    if n == 0: return (np.nan, np.nan)
+    z = stats.norm.ppf((1+conf)/2); p = k/n; den = 1+z**2/n
+    centre = (p+z**2/(2*n))/den
+    half = z*np.sqrt(p*(1-p)/n + z**2/(4*n**2))/den
+    return (centre-half, centre+half)
+
+rows = []
+for q in LIKERT:
+    x = df[q].dropna(); n = len(x); k = int((x>=4).sum())
+    lo,hi = ci_mean(x); plo,phi = ci_wilson(k,n)
+    rows.append({"Item":q, "n":n, "Mean":round(x.mean(),2), "SD":round(x.std(ddof=1),2),
+                 "Mdn":x.median(), "IQR":f"{x.quantile(.25):.0f}-{x.quantile(.75):.0f}",
+                 "Agree%":round(100*k/n,1), "CI_low":round(100*plo,1), "CI_high":round(100*phi,1)})
+desc = pd.DataFrame(rows).set_index("Item")
+desc
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+         n  Mean    SD  Mdn  IQR  Agree%  CI_low  CI_high
+Item
+Q1.1  1411  1.94  1.20  2.0  1-2    17.6    15.7     19.6
+Q2.1  1411  4.42  0.57  4.0  4-5    95.7    94.6     96.7
+Q2.2  1405  4.38  0.56  4.0  4-5    95.8    94.6     96.7
+Q2.3  1407  4.39  0.57  4.0  4-5    95.8    94.6     96.7
+Q2.4  1407  4.50  0.58  5.0  4-5    95.7    94.5     96.7
+Q2.5  1408  4.29  0.72  4.0  4-5    84.6    82.6     86.4
+Q2.6  1407  4.41  0.57  4.0  4-5    95.7    94.5     96.7
+Q3.1  1410  4.27  0.72  4.0  4-5    84.6    82.6     86.4
+Q3.2  1408  4.39  0.57  4.0  4-5    95.7    94.6     96.7
+Q3.3  1407  4.51  0.58  5.0  4-5    95.8    94.6     96.7
+Q3.4  1407  4.42  0.57  4.0  4-5    95.9    94.7     96.8
+Q3.5  1408  4.30  0.72  4.0  4-5    84.8    82.8     86.6
+Q3.6  1408  3.89  0.81  4.0  3-5    61.1    58.5     63.6
+Q4.1  1411  4.39  0.57  4.0  4-5    95.9    94.7     96.8
+Q4.2  1407  4.29  0.71  4.0  4-5    85.5    83.6     87.2
+Q4.3  1408  4.30  0.72  4.0  4-5    84.8    82.8     86.6
+Q4.4  1408  4.12  0.64  4.0  4-5    84.7    82.7     86.4
+Q5.1  1409  4.12  0.64  4.0  4-5    85.0    83.0     86.7
+Q5.2  1408  4.13  0.80  4.0  3-5    73.8    71.4     76.0
+Q5.3  1408  4.31  0.72  4.0  4-5    84.8    82.8     86.6
+Q5.4  1408  4.32  0.75  4.0  4-5    83.0    81.0     84.9
+Q5.5  1408  4.22  0.71  4.0  4-5    83.3    81.3     85.2
+Q5.6  1408  4.23  0.71  4.0  4-5    83.5    81.5     85.4
+\end{verbatim}}
+
+\subsection{Composites and Cronbach's Alpha}
+Forms the three composites and computes Cronbach's $\alpha$ for each (methodology: \emph{Composite Scores and Internal Consistency}).
+\noindent\textbf{Code:}\nopagebreak
+{\scriptsize\begin{verbatim}
+composites = {
+    "Awareness":  ["Q1.1"]+[f"Q2.{i}" for i in range(1,7)],
+    "IT_Value":   ["Q3.1","Q3.3","Q3.4","Q3.5","Q4.1","Q4.2","Q4.3","Q4.4"],
+    "Sec_Value":  ["Q3.2","Q3.6","Q5.1","Q5.2","Q5.3","Q5.4","Q5.5","Q5.6"],
+}
+def cronbach_alpha(frame):
+    f = frame.dropna(); k = f.shape[1]
+    item_var = f.var(axis=0, ddof=1).sum()
+    total_var = f.sum(axis=1).var(ddof=1)
+    return (k/(k-1))*(1-item_var/total_var), len(f)
+
+rows = []
+for name, items in composites.items():
+    s = df[items].mean(axis=1); df[f"COMP_{name}"] = s
+    a, na = cronbach_alpha(df[items]); lo,hi = ci_mean(s)
+    rows.append({"Composite":name, "k":len(items), "Mean":round(s.mean(),3),
+                 "SD":round(s.std(ddof=1),3), "Median":round(s.median(),3),
+                 "CI":f"[{lo:.3f}, {hi:.3f}]", "alpha":round(a,3)})
+pd.DataFrame(rows).set_index("Composite")
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+           k   Mean     SD  Median              CI  alpha
+Composite                                                
+Awareness  7  4.044  0.478   4.000  [4.019, 4.069]  0.792
+IT_Value   8  4.325  0.463   4.375  [4.301, 4.349]  0.858
+Sec_Value  8  4.202  0.509   4.250  [4.176, 4.229]  0.858
+\end{verbatim}}
+
+\subsection{Shapiro--Wilk Normality Tests}
+Applies the Shapiro--Wilk normality test to each composite (methodology: \emph{Tests of Normality}).
+\noindent\textbf{Code:}\nopagebreak
+{\scriptsize\begin{verbatim}
+for name in composites:
+    s = df[f"COMP_{name}"].dropna()
+    W,p = stats.shapiro(s.sample(min(5000,len(s)), random_state=1))
+    print(f"{name:10s}  W={W:.4f}  p={p:.2e}  -> {'non-normal' if p<0.05 else 'normal'}")
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+Awareness   W=0.9780  p=7.49e-14  -> non-normal
+IT_Value    W=0.9571  p=5.93e-20  -> non-normal
+Sec_Value   W=0.9647  p=4.80e-18  -> non-normal
+\end{verbatim}}
+
+\subsection{Effect-Size Estimators}
+Defines the effect-size estimators: Cohen's $d$, the rank-biserial correlation, and the large-sample confidence interval for $d$ (methodology: \emph{Effect Sizes}).
+\noindent\textbf{Code:}\nopagebreak
+{\scriptsize\begin{verbatim}
+def cohen_d(a,b):
+    a,b = np.asarray(a), np.asarray(b); na,nb = len(a),len(b)
+    sp = np.sqrt(((na-1)*a.var(ddof=1)+(nb-1)*b.var(ddof=1))/(na+nb-2))
+    return (a.mean()-b.mean())/sp if sp>0 else np.nan
+def rank_biserial(U,n1,n2):
+    return 1 - 2*U/(n1*n2)
+def d_ci(d, n1, n2):
+    """Large-sample 95% CI for Cohen's d (Hedges & Olkin, 1985)."""
+    se = np.sqrt((n1+n2)/(n1*n2) + d**2/(2*(n1+n2)))
+    return d-1.96*se, d+1.96*se
+print("Effect-size helpers defined.")
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+Effect-size helpers defined.
+\end{verbatim}}
+
+\subsection{Field Comparison: Mann--Whitney, Cohen's d, Rank-Biserial}
+Compares Information Technology and Information Assurance on each composite with the Mann--Whitney $U$ test, Cohen's $d$ with its interval, and the rank-biserial correlation (methodology: \emph{Group Comparison by Professional Field}).
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+it_mask = df["Q6.3"]=="Information Technology"
+ia_mask = df["Q6.3"]=="Information Assurance / Cyber Security"
+rows = []
+for name in composites:
+    a = df.loc[it_mask, f"COMP_{name}"].dropna()
+    b = df.loc[ia_mask, f"COMP_{name}"].dropna()
+    U,p = stats.mannwhitneyu(a,b,alternative="two-sided")
+    t,tp = stats.ttest_ind(a,b,equal_var=False)
+    d = round(cohen_d(a,b),3); lo,hi = d_ci(d,len(a),len(b))  # round d as in the published table pipeline
+    rows.append({"Composite":name,"IT n":len(a),"IA n":len(b),
+                 "IT M":round(a.mean(),3),"IA M":round(b.mean(),3),
+                 "U":U,"p":f"{p:.2e}","Cohen d":round(d,3),
+                 "d 95% CI":f"[{lo:.2f}, {hi:.2f}]",
+                 "r_rb":round(rank_biserial(U,len(a),len(b)),3)})
+pd.DataFrame(rows).set_index("Composite")
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+           IT n  IA n   IT M   IA M         U          p  Cohen d      d 95% CI   r_rb
+Composite
+Awareness   501   501  4.379  3.732  218765.5   8.46e-93    1.641  [1.50, 1.78] -0.743
+IT_Value    501   501  4.669  3.980  227984.0  1.29e-111    1.940  [1.79, 2.09] -0.817
+Sec_Value   501   501  4.566  3.820  227813.5  4.60e-111    1.944  [1.79, 2.09] -0.815
+\end{verbatim}}
+
+\subsection{Item-Level Comparison with Holm--Bonferroni}
+Repeats the comparison item by item and applies the Holm--Bonferroni step-down correction within each item family.
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+families = {
+    "Awareness (S1-S2)": ["Q1.1"]+[f"Q2.{i}" for i in range(1,7)],
+    "Applicability (S3)": [f"Q3.{i}" for i in range(1,7)],
+    "IT Value (S4)": [f"Q4.{i}" for i in range(1,5)],
+    "IA Value (S5)": [f"Q5.{i}" for i in range(1,7)],
+}
+def holm(pairs):
+    m = len(pairs); order = sorted(pairs, key=lambda kv: kv[1])
+    out = {}; prev = 0.0
+    for i,(k,p) in enumerate(order):
+        adj = min(1.0,(m-i)*p); adj = max(adj,prev); prev = adj
+        out[k] = {"p":p,"p_adj":adj,"reject":adj<0.05}
+    return out
+
+allrows = []
+for fam, items in families.items():
+    pairs = []; cache = {}
+    for q in items:
+        a = df.loc[it_mask,q].dropna(); b = df.loc[ia_mask,q].dropna()
+        U,p = stats.mannwhitneyu(a,b,alternative="two-sided")
+        cache[q] = {"IT M":round(a.mean(),2),"IA M":round(b.mean(),2),
+                    "r_rb":round(rank_biserial(U,len(a),len(b)),3)}
+        pairs.append((q,p))
+    h = holm(pairs)
+    for q in items:
+        allrows.append({"Family":fam,"Item":q,**cache[q],
+                        "p_Holm":f"{h[q]['p_adj']:.1e}","Sig":"yes" if h[q]['reject'] else "no"})
+pd.DataFrame(allrows).set_index(["Family","Item"])
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+                         IT M  IA M   r_rb    p_Holm  Sig
+Family             Item
+Awareness (S1-S2)  Q1.1  2.88  1.20 -0.775  6.4e-115  yes
+                   Q2.1  4.65  4.17 -0.415   5.8e-37  yes
+                   Q2.2  4.60  4.15 -0.395   4.3e-34  yes
+                   Q2.3  4.61  4.16 -0.398   2.1e-34  yes
+                   Q2.4  4.73  4.25 -0.416   1.3e-37  yes
+                   Q2.5  4.53  4.02 -0.365   2.1e-27  yes
+                   Q2.6  4.65  4.17 -0.428   3.6e-39  yes
+Applicability (S3) Q3.1  4.62  3.93 -0.519   2.9e-53  yes
+                   Q3.2  4.74  4.05 -0.613   1.0e-79  yes
+                   Q3.3  4.85  4.13 -0.634   1.0e-85  yes
+                   Q3.4  4.80  4.05 -0.660   2.4e-91  yes
+                   Q3.5  4.64  3.97 -0.494   9.1e-49  yes
+                   Q3.6  4.21  3.54 -0.448   5.5e-39  yes
+IT Value (S4)      Q4.1  4.73  4.03 -0.621   1.1e-81  yes
+                   Q4.2  4.61  3.93 -0.503   2.5e-50  yes
+                   Q4.3  4.69  3.94 -0.553   7.0e-61  yes
+                   Q4.4  4.42  3.85 -0.445   1.0e-41  yes
+IA Value (S5)      Q5.1  4.47  3.76 -0.564   5.1e-66  yes
+                   Q5.2  4.43  3.78 -0.444   2.3e-38  yes
+                   Q5.3  4.70  3.92 -0.573   5.4e-65  yes
+                   Q5.4  4.69  3.95 -0.525   1.6e-55  yes
+                   Q5.5  4.64  3.77 -0.637   2.6e-78  yes
+                   Q5.6  4.64  3.78 -0.639   9.8e-79  yes
+\end{verbatim}}
+
+\subsection{Experience: Kruskal--Wallis, Eta-Squared, and Dunn}
+Compares the four experience cohorts with the Kruskal--Wallis test, computes $\eta^2$, and runs Dunn's post-hoc test with Holm adjustment (methodology: \emph{Group Comparison by Experience Level}).
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+EXP = ["1-5 Years","6-10 Years","11-15 Years","16+ Years"]
+def dunn(groups, names):
+    allv = np.concatenate(groups); ranks = stats.rankdata(allv); N=len(allv)
+    idx=0; rg=[]
+    for g in groups: rg.append(ranks[idx:idx+len(g)]); idx+=len(g)
+    Rbar=[r.mean() for r in rg]; ns=[len(g) for g in groups]
+    _,counts = np.unique(allv, return_counts=True)
+    ties=(counts**3-counts).sum(); sigma2=(N*(N+1)/12)-ties/(12*(N-1))
+    pairs=[]
+    for i in range(len(groups)):
+        for j in range(i+1,len(groups)):
+            se=np.sqrt(sigma2*(1/ns[i]+1/ns[j])); z=(Rbar[i]-Rbar[j])/se
+            p=2*(1-stats.norm.cdf(abs(z))); pairs.append((f"{names[i]} vs {names[j]}",p,round(z,2)))
+    h=holm([(k,p) for k,p,_ in pairs])
+    return pd.DataFrame([{"pair":k,"z":z,"p_adj":f"{h[k]['p_adj']:.2e}","sig":h[k]['reject']} for k,p,z in pairs])
+
+for name in composites:
+    groups=[df.loc[df["Q6.4"]==l,f"COMP_{name}"].dropna().values for l in EXP]
+    H,p = stats.kruskal(*groups); Ntot=sum(len(g) for g in groups)
+    eta2=(H-len(groups)+1)/(Ntot-len(groups))
+    print(f"=== {name} ===  H={H:.1f}  df={len(groups)-1}  p={p:.2e}  eta^2={eta2:.3f}")
+    print({l:round(g.mean(),3) for l,g in zip(EXP,groups)})
+    display(dunn(groups,EXP))
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\tiny\begin{verbatim}
+=== Awareness ===  H=213.1  df=3  p=6.24e-46  eta^2=0.149
+{'1-5 Years': np.float64(4.063), '6-10 Years': np.float64(4.236), '11-15 Years': np.float64(3.735), '16+ Years': np.float64(4.008)}
+                        pair      z     p_adj    sig
+0    1-5 Years vs 6-10 Years  -6.09  4.58e-09   True
+1   1-5 Years vs 11-15 Years   9.51  0.00e+00   True
+2     1-5 Years vs 16+ Years   0.82  4.11e-01  False
+3  6-10 Years vs 11-15 Years  14.56  0.00e+00   True
+4    6-10 Years vs 16+ Years   2.39  5.11e-02  False
+5   11-15 Years vs 16+ Years  -1.89  1.18e-01  False=== IT_Value ===  H=229.4  df=3  p=1.88e-49  eta^2=0.161
+{'1-5 Years': np.float64(4.402), '6-10 Years': np.float64(4.462), '11-15 Years': np.float64(3.982), '16+ Years': np.float64(4.59)}
+                        pair      z     p_adj    sig
+0    1-5 Years vs 6-10 Years  -2.20  8.42e-02  False
+1   1-5 Years vs 11-15 Years  12.52  0.00e+00   True
+2     1-5 Years vs 16+ Years  -1.79  1.46e-01  False
+3  6-10 Years vs 11-15 Years  14.09  0.00e+00   True
+4    6-10 Years vs 16+ Years  -1.22  2.21e-01  False
+5   11-15 Years vs 16+ Years  -5.33  3.88e-07   True=== Sec_Value ===  H=291.2  df=3  p=7.80e-63  eta^2=0.205
+{'1-5 Years': np.float64(4.323), '6-10 Years': np.float64(4.352), '11-15 Years': np.float64(3.769), '16+ Years': np.float64(4.431)}
+                        pair      z     p_adj    sig
+0    1-5 Years vs 6-10 Years  -0.80  1.00e+00  False
+1   1-5 Years vs 11-15 Years  15.07  0.00e+00   True
+2     1-5 Years vs 16+ Years  -0.84  1.00e+00  False
+3  6-10 Years vs 11-15 Years  15.35  0.00e+00   True
+4    6-10 Years vs 16+ Years  -0.63  1.00e+00  False
+5   11-15 Years vs 16+ Years  -5.12  1.24e-06   True
+\end{verbatim}}
+
+\subsection{Associations: Chi-Square and Cram\'er's V}
+Tests the categorical associations with the Pearson chi-square test and Cram\'er's $V$ (methodology: \emph{Association Analysis}).
+\noindent\textbf{Code:}\nopagebreak
+{\scriptsize\begin{verbatim}
+def chi_assoc(rowvar, colvar, roworder=None, colorder=None):
+    sub = df[[rowvar,colvar]].dropna()
+    ct = pd.crosstab(sub[rowvar], sub[colvar])
+    if roworder: ct = ct.reindex(roworder).dropna(how="all")
+    if colorder: ct = ct.reindex(columns=colorder).dropna(axis=1,how="all")
+    chi2,p,dof,_ = stats.chi2_contingency(ct)
+    n = ct.values.sum(); k = min(ct.shape)-1
+    V = np.sqrt(chi2/(n*k)) if k>0 else np.nan
+    return ct, chi2, dof, p, V
+
+field_order=["Information Assurance / Cyber Security","Information Technology","Engineering"]
+for lab,(rv,cv,ro,co) in {
+    "Field x exposure":("Q6.3","Q1.2",field_order,["Yes","No"]),
+    "Experience x IT investment":("Q6.4","Q4.5",EXP,["Yes","No","Unsure"]),
+    "Experience x Sec investment":("Q6.4","Q5.7",EXP,["Yes","No","Unsure"]),
+}.items():
+    ct,chi2,dof,p,V = chi_assoc(rv,cv,ro,co)
+    print(f"{lab}: chi2({dof})={chi2:.1f}, p={p:.2e}, Cramer V={V:.3f}, n={ct.values.sum()}")
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+Field x exposure: chi2(2)=60.3, p=7.92e-14, Cramer V=0.212, n=1339
+Experience x IT investment: chi2(6)=6.0, p=4.21e-01, Cramer V=0.046, n=1411
+Experience x Sec investment: chi2(6)=2.2, p=9.02e-01, Cramer V=0.028, n=1411
+\end{verbatim}}
+
+\subsection{Bias Diagnostics}
+Runs the three bias diagnostics: the wave (non-response) analysis, the priming diagnostic, and the straight-lining check (methodology: \emph{Bias Diagnostics}).
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+# Wave -- "Completion time" is the submission timestamp, so sorting it orders by arrival
+ds = df.sort_values("Completion time"); half=len(ds)//2
+early, late = ds.iloc[:half], ds.iloc[half:]
+print("WAVE (early vs late):")
+for name in composites:
+    a=early[f"COMP_{name}"].dropna(); b=late[f"COMP_{name}"].dropna()
+    U,p=stats.mannwhitneyu(a,b,alternative="two-sided")
+    print(f"  {name:10s} early={a.mean():.3f} late={b.mean():.3f} d={cohen_d(a,b):+.3f} p={p:.2e}")
+# Priming
+high=df[df["Q1.1"].isin([4,5])]; low=df[df["Q1.1"].isin([1,2])]
+print("\nPRIMING (high vs low familiarity):")
+for name in ["IT_Value","Sec_Value"]:
+    a=high[f"COMP_{name}"].dropna(); b=low[f"COMP_{name}"].dropna()
+    U,p=stats.mannwhitneyu(a,b,alternative="two-sided")
+    print(f"  {name:10s} high={a.mean():.3f} low={b.mean():.3f} diff={a.mean()-b.mean():+.3f} d={cohen_d(a,b):.3f} p={p:.2e}")
+
+# Straight-lining / acquiescence check across the 22 agreement-scale items
+AGREE22 = ([f"Q2.{i}" for i in range(1,7)]+[f"Q3.{i}" for i in range(1,7)]
+           +[f"Q4.{i}" for i in range(1,5)]+[f"Q5.{i}" for i in range(1,7)])
+batt = df[AGREE22]; complete = batt.notna().all(axis=1)
+rowsd = batt[complete].std(axis=1, ddof=0)
+nC = int(complete.sum()); sd0 = int((rowsd==0).sum()); flat = int((rowsd<=0.25).sum())
+print(f"\nSTRAIGHT-LINING (22 agreement items, n={nC} with complete battery):")
+print(f"  identical response to all 22 (within-respondent SD=0): {sd0} ({100*sd0/nC:.1f}%)")
+print(f"  near-flat (SD <= 0.25):                                {flat} ({100*flat/nC:.1f}%)")
+print(f"  median within-respondent SD:                           {rowsd.median():.3f}")
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+WAVE (early vs late):
+  Awareness  early=4.033 late=4.054 d=-0.044 p=5.23e-01
+  IT_Value   early=4.321 late=4.328 d=-0.016 p=8.02e-01
+  Sec_Value  early=4.192 late=4.212 d=-0.040 p=5.27e-01
+
+PRIMING (high vs low familiarity):
+  IT_Value   high=4.751 low=4.212 diff=+0.539 d=1.302 p=2.71e-67
+  Sec_Value  high=4.654 low=4.081 diff=+0.573 d=1.253 p=2.78e-61
+
+STRAIGHT-LINING (22 agreement items, n=1390 with complete battery):
+  identical response to all 22 (within-respondent SD=0): 22 (1.6%)
+  near-flat (SD <= 0.25):                                79 (5.7%)
+  median within-respondent SD:                           0.498
+\end{verbatim}}
+
+\subsection{Multivariate Regression with HC3 Robustness}
+Fits the ordinary-least-squares regression of each value composite on familiarity, field, and experience, refits with HC3-robust standard errors, and reports the coefficient table and standardized betas (methodology: \emph{Multivariate Model and Robustness}).
+\noindent\textbf{Code:}\nopagebreak
+{\scriptsize\begin{verbatim}
+import statsmodels.formula.api as smf
+
+reg = df.copy()
+reg["field4"] = pd.Categorical(
+    reg["Q6.3"].map({"Information Technology": "IT",
+                     "Information Assurance / Cyber Security": "IA",
+                     "Engineering": "Eng", "Other": "Other"}),
+    categories=["IA", "IT", "Eng", "Other"])          # IA/Cyber = reference
+reg["expc"] = pd.Categorical(
+    reg["Q6.4"].map({"1-5 Years": "1-5", "6-10 Years": "6-10",
+                     "11-15 Years": "11-15", "16+ Years": "16+"}),
+    categories=["1-5", "6-10", "11-15", "16+"])        # 1-5 years = reference
+reg["Fam"] = reg["Q1.1"]
+reg = reg.dropna(subset=["COMP_IT_Value", "COMP_Sec_Value", "field4", "expc", "Fam"])
+
+LABELS = {
+    "Intercept": "Intercept",
+    "Fam": "Familiarity (Q1.1)",
+    "C(field4, Treatment('IA'))[T.IT]":    "Field: Information Technology",
+    "C(field4, Treatment('IA'))[T.Eng]":   "Field: Engineering",
+    "C(field4, Treatment('IA'))[T.Other]": "Field: Other",
+    "C(expc, Treatment('1-5'))[T.6-10]":   "Experience: 6-10 years",
+    "C(expc, Treatment('1-5'))[T.11-15]":  "Experience: 11-15 years",
+    "C(expc, Treatment('1-5'))[T.16+]":    "Experience: 16+ years",
+}
+stars = lambda p: "***" if p < .001 else "**" if p < .01 else "*" if p < .05 else ""
+
+cols_out, fits = {}, {}
+for col, title in [("COMP_IT_Value", "IT Value"), ("COMP_Sec_Value", "Security Value")]:
+    m = smf.ols(f"{col} ~ Fam + C(field4, Treatment('IA')) + C(expc, Treatment('1-5'))",
+                data=reg).fit()
+    fits[title] = m
+    cols_out[title] = {LABELS.get(k, k): f"{v:.3f}{stars(m.pvalues[k])} ({m.bse[k]:.3f})"
+                       for k, v in m.params.items()}
+
+order = ["Familiarity (Q1.1)", "Field: Information Technology", "Field: Engineering",
+         "Field: Other", "Experience: 6-10 years", "Experience: 11-15 years",
+         "Experience: 16+ years", "Intercept"]
+tab = pd.DataFrame(cols_out).reindex(order)
+tab.loc["R-squared"]      = [f"{fits[t].rsquared:.3f}"     for t in tab.columns]
+tab.loc["Adj. R-squared"] = [f"{fits[t].rsquared_adj:.3f}" for t in tab.columns]
+tab.loc["N"]              = [f"{int(fits[t].nobs):,}"      for t in tab.columns]
+print("Reference categories: Information Assurance / Cyber Security; 1-5 years of experience.")
+print("Coefficients unstandardized (SE in parentheses); * p<.05, ** p<.01, *** p<.001.")
+print("The 11-15 year coefficient is large, negative, and significant in both models: the")
+print("mid-career dip persists net of field and familiarity, a genuine experience effect.")
+display(tab)
+
+# HC3 heteroscedasticity-robust refit (bounded, left-skewed composites)
+hc3_rows = []
+for col, title in [("COMP_IT_Value", "IT Value"), ("COMP_Sec_Value", "Security Value")]:
+    m = fits[title]; mh = m.get_robustcov_results(cov_type="HC3")
+    names = list(m.params.index)
+    for key, lab in [("Fam", "Familiarity (Q1.1)"),
+                     ("C(field4, Treatment('IA'))[T.IT]", "Field: Information Technology"),
+                     ("C(expc, Treatment('1-5'))[T.11-15]", "Experience: 11-15 years")]:
+        j = names.index(key)
+        hc3_rows.append({"Model": title, "Predictor": lab,
+                         "b": round(float(m.params[key]), 3),
+                         "SE (classical)": round(float(m.bse[key]), 3),
+                         "p (classical)": round(float(m.pvalues[key]), 3),
+                         "SE (HC3)": round(float(mh.bse[j]), 3),
+                         "p (HC3)": round(float(mh.pvalues[j]), 3)})
+print("\nHC3 robustness check (bounded, left-skewed composites):")
+print("Significance and direction are unchanged; the 11-15 coefficient stays significant.")
+pd.DataFrame(hc3_rows).set_index(["Model", "Predictor"])
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\tiny\begin{verbatim}
+Reference categories: Information Assurance / Cyber Security; 1-5 years of experience.
+Coefficients unstandardized (SE in parentheses); * p<.05, ** p<.01, *** p<.001.
+The 11-15 year coefficient is large, negative, and significant in both models: the
+mid-career dip persists net of field and familiarity, a genuine experience effect.
+                                        IT Value     Security Value
+Familiarity (Q1.1)              0.132*** (0.008)   0.142*** (0.008)
+Field: Information Technology   0.458*** (0.022)   0.496*** (0.023)
+Field: Engineering              0.301*** (0.020)   0.350*** (0.021)
+Field: Other                    0.232*** (0.036)   0.305*** (0.038)
+Experience: 6-10 years          0.082*** (0.017)    0.055** (0.018)
+Experience: 11-15 years        -0.402*** (0.019)  -0.534*** (0.020)
+Experience: 16+ years             0.168* (0.067)      0.092 (0.070)
+Intercept                       3.888*** (0.018)   3.759*** (0.019)
+R-squared                                  0.635              0.672
+Adj. R-squared                             0.633              0.670
+N                                          1,411              1,411
+HC3 robustness check (bounded, left-skewed composites):
+Significance and direction are unchanged; the 11-15 coefficient stays significant.
+                                                  b  SE (classical)  p (classical)  SE (HC3)  p (HC3)
+Model          Predictor
+IT Value       Familiarity (Q1.1)             0.132           0.008            0.0     0.007      0.0
+               Field: Information Technology  0.458           0.022            0.0     0.021      0.0
+               Experience: 11-15 years       -0.402           0.019            0.0     0.020      0.0
+Security Value Familiarity (Q1.1)             0.142           0.008            0.0     0.008      0.0
+               Field: Information Technology  0.496           0.023            0.0     0.023      0.0
+               Experience: 11-15 years       -0.534           0.020            0.0     0.020      0.0
+\end{verbatim}}
+
+\subsection{Spearman Rank-Order Correlations}
+Computes the Spearman rank-order correlations among familiarity, the Awareness composite, and the value composites (methodology: \emph{Rank-Order Correlation}).
+\noindent\textbf{Code:}\nopagebreak
+{\scriptsize\begin{verbatim}
+from scipy.stats import spearmanr
+
+pairs = [("Q1.1", "COMP_IT_Value", "Familiarity (Q1.1)", "IT Value"),
+         ("Q1.1", "COMP_Sec_Value", "Familiarity (Q1.1)", "Security Value"),
+         ("COMP_Awareness", "COMP_IT_Value", "Awareness composite", "IT Value"),
+         ("COMP_Awareness", "COMP_Sec_Value", "Awareness composite", "Security Value"),
+         ("COMP_IT_Value", "COMP_Sec_Value", "IT Value", "Security Value")]
+rows = []
+for a, b, la, lb in pairs:
+    s = df[[a, b]].dropna()
+    rho, p = spearmanr(s[a], s[b])
+    rows.append({"X": la, "Y": lb, "Spearman rho": round(rho, 3),
+                 "p": f"{p:.2e}", "n": len(s)})
+pd.DataFrame(rows)
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+                     X               Y  Spearman rho          p     n
+0   Familiarity (Q1.1)        IT Value         0.632  4.53e-158  1411
+1   Familiarity (Q1.1)  Security Value         0.616  2.27e-148  1411
+2  Awareness composite        IT Value         0.734  3.48e-239  1411
+3  Awareness composite  Security Value         0.731  4.90e-236  1411
+4             IT Value  Security Value         0.842   0.00e+00  1411
+\end{verbatim}}
+
+\subsection{Post-Hoc Common-Method Variance (Harman's Single-Factor Test)}
+A robustness check added after data collection and not specified in the proposal. It confirms that no single factor dominates the item covariances.
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+# Harman's single-factor test on the 23 composite items
+Z = (df[LIKERT] - df[LIKERT].mean()) / df[LIKERT].std(ddof=1)
+R = np.corrcoef(Z.dropna().values, rowvar=False)
+eig = np.sort(np.linalg.eigvalsh(R))[::-1]
+print("Items:", len(LIKERT))
+print("Factors with eigenvalue > 1:", int((eig > 1).sum()))
+print(f"First unrotated factor variance: {100*eig[0]/eig.sum():.1f}%")
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+Items: 23
+Factors with eigenvalue > 1: 2
+First unrotated factor variance: 44.0%
+\end{verbatim}}
+
+\subsection{Post-Hoc Construct Validity (CR, AVE, Fornell--Larcker)}
+A confirmatory three-factor model (semopy) yielding composite reliability, average variance extracted, the discriminant-validity check, and fit indices.
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+import semopy
+san = lambda s: s.replace(".", "_")
+X = df[LIKERT].dropna()
+desc = "\n".join(f"{n} =~ " + " + ".join(san(i) for i in items)
+                 for n, items in composites.items())
+cfa = semopy.Model(desc); cfa.fit(X.rename(columns=san))
+ins = cfa.inspect(std_est=True)
+load = {r["lval"]: abs(float(r["Est. Std"])) for _, r in ins[ins["op"] == "~"].iterrows()}
+for n, items in composites.items():
+    lam = np.array([load[san(i)] for i in items])
+    ave = np.mean(lam**2); cr = lam.sum()**2 / (lam.sum()**2 + np.sum(1 - lam**2))
+    print(f"{n:10s} CR={cr:.3f} AVE={ave:.3f} sqrtAVE={ave**0.5:.3f}")
+comp = pd.DataFrame({n: df[items].mean(axis=1) for n, items in composites.items()})
+print(comp.corr().round(3))
+stt = semopy.calc_stats(cfa).T
+print(f"CFI={float(stt.loc['CFI'].iloc[0]):.3f} RMSEA={float(stt.loc['RMSEA'].iloc[0]):.3f}")
+def htmt(a, b):
+    C = df[a + b].corr().abs()
+    het = np.mean([C.loc[i, j] for i in a for j in b])
+    mono = lambda g: np.mean([C.loc[g[i], g[j]] for i in range(len(g)) for j in range(i+1, len(g))])
+    return het / np.sqrt(mono(a) * mono(b))
+nm = list(composites); it = list(composites.values())
+for i in range(3):
+    for j in range(i+1, 3):
+        print(f"HTMT {nm[i]}-{nm[j]}: {htmt(it[i], it[j]):.3f}")
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+Awareness  CR=0.858 AVE=0.471 sqrtAVE=0.686
+IT_Value   CR=0.868 AVE=0.455 sqrtAVE=0.675
+Sec_Value  CR=0.867 AVE=0.453 sqrtAVE=0.673
+           Awareness  IT_Value  Sec_Value
+Awareness      1.000     0.740      0.737
+IT_Value       0.740     1.000      0.845
+Sec_Value      0.737     0.845      1.000
+CFI=0.966 RMSEA=0.040
+HTMT Awareness-IT_Value: 0.830
+HTMT Awareness-Sec_Value: 0.830
+HTMT IT_Value-Sec_Value: 0.987
+\end{verbatim}}
+
+\subsection{Post-Hoc Measurement Invariance: Linear DIF Screen (Zumbo's framework, linear implementation), IT vs IA}
+An item-level differential-item-functioning screen across the two focal fields, matching each item on its composite score.
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+import statsmodels.api as sm
+from scipy.stats import f as _f
+foc = df[df["Q6.3"].isin(["Information Technology",
+                          "Information Assurance / Cyber Security"])].copy()
+foc["grp"] = (foc["Q6.3"] == "Information Assurance / Cyber Security").astype(int)
+comp_of = {i: n for n, items in composites.items() for i in items}
+compcol = {n: df[items].mean(axis=1) for n, items in composites.items()}
+flagged = []
+for it in LIKERT:
+    sub = pd.DataFrame({"y": foc[it], "m": compcol[comp_of[it]].reindex(foc.index),
+                        "g": foc["grp"]}).dropna()
+    mm = (sub["m"] - sub["m"].mean()) / sub["m"].std()
+    y = sub["y"].values
+    r  = sm.OLS(y, sm.add_constant(np.column_stack([mm, sub["g"].values]))).fit()
+    m0 = sm.OLS(y, sm.add_constant(mm)).fit()
+    F = (m0.ssr - r.ssr) / (r.ssr / (len(y) - 3))
+    p = 1 - _f.cdf(F, 1, len(y) - 3)
+    if p < 0.001 and abs(r.params[2]) >= 0.20:
+        flagged.append((it, round(float(r.params[2]), 3)))
+print("Items tested:", len(LIKERT), "| flagged:", len(flagged))
+print(flagged)
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+Items tested: 23 | flagged: 2
+[('Q1.1', -0.988), ('Q2.5', 0.23)]
+\end{verbatim}}
+
+\subsection{Post-Hoc Awareness-Composite Item Diagnostics and Familiarity-Stratum Adjustment}
+Two checks added in revision 1.9. The first reports the corrected item-total correlations and alpha-if-deleted for the Awareness composite, documenting why the familiarity item is a deletion candidate on the conventional criteria and what the pre-specified retention decision costs. The second holds the composition of the bimodal familiarity distribution constant and re-estimates the professional-field gap.
+\noindent\textbf{Code:}\nopagebreak
+{\tiny\begin{verbatim}
+AWARE_Q2 = [f"Q2.{i}" for i in range(1, 7)]
+AWARE = ["Q1.1"] + AWARE_Q2
+
+def cronbach(frame):
+    k = frame.shape[1]
+    return k / (k - 1) * (1 - frame.var(ddof=1).sum() / frame.sum(axis=1).var(ddof=1))
+
+X = df[AWARE].dropna()
+print(f"alpha, all seven items : {cronbach(X):.4f}")
+print(f"alpha, Q1.1 deleted    : {cronbach(X[AWARE_Q2]):.4f}")
+for q in AWARE:
+    r = X[q].corr(X[[j for j in AWARE if j != q]].mean(axis=1))
+    print(f"  {q:6s} {r:+.3f}")
+
+# familiarity-stratum adjustment of the field gap
+IA = "Information Assurance / Cyber Security"
+work = df.copy()
+for _n, _items in composites.items():
+    work[_n] = df[_items].mean(axis=1)
+foc = work[work["Q6.3"].isin(["Information Technology", IA])].dropna(
+    subset=["Q1.1", "IT_Value", "Sec_Value"]).copy()
+foc["IT_field"] = (foc["Q6.3"] == "Information Technology").astype(int)
+foc["expo"]  = (foc["Q1.2"] == "Yes").astype(float)
+foc["famhi"] = (foc["Q1.1"] >= 4).astype(int)
+specs = {"field only": ["IT_field"], "+ exposure (Q1.2)": ["IT_field", "expo"],
+         "+ familiarity stratum": ["IT_field", "famhi"],
+         "+ both": ["IT_field", "expo", "famhi"]}
+for dv in ["IT_Value", "Sec_Value"]:
+    base = None
+    for name, cols in specs.items():
+        m = sm.OLS(foc[dv], sm.add_constant(foc[cols])).fit(cov_type="HC3")
+        b = m.params["IT_field"]; base = b if base is None else base
+        print(f"{dv} {name:22s} b={b:.3f} retained={100*b/base:5.1f}%")
+\end{verbatim}}
+\noindent\textbf{Output:}\nopagebreak
+{\scriptsize\begin{verbatim}
+alpha, all seven items : 0.7923
+alpha, Q1.1 deleted    : 0.8627
+  Q1.1   +0.315
+  Q2.1   +0.655
+  Q2.2   +0.613
+  Q2.3   +0.618
+  Q2.4   +0.671
+  Q2.5   +0.532
+  Q2.6   +0.671
+IT_Value  field only             b=0.689 retained=100.0%
+IT_Value  + exposure (Q1.2)      b=0.667 retained= 96.8%
+IT_Value  + familiarity stratum  b=0.602 retained= 87.3%
+IT_Value  + both                 b=0.589 retained= 85.5%
+Sec_Value field only             b=0.746 retained=100.0%
+Sec_Value + exposure (Q1.2)      b=0.724 retained= 97.0%
+Sec_Value + familiarity stratum  b=0.655 retained= 87.7%
+Sec_Value + both                 b=0.642 retained= 86.0%
+\end{verbatim}}
+
+\subsection{Synthesis and Points for Cross-Validation}
+
+The independent analysis reproduces the coherent story of Chapter~4 with three important wrinkles. For Research Question~1, self-reported familiarity and recent exposure are low (means near $1.9$; $22\%$ exposure), yet endorsement of specific capability descriptions is near-universal: a gap best described as low awareness coexisting with high capability-endorsement rather than as evidence of awareness as such. For Research Questions~2 and~3, perceived value and anticipated benefit are high and precisely estimated across the applicability, IT, and security blocks, with the caveat that the two investment-willingness items are at ceiling and contribute conviction but not discrimination. The comparative analyses are dominated by a very large Information Technology--versus--Information Assurance gap favoring Information Technology, and by a non-monotonic experience pattern in which mid-career respondents are the most reserved.
+
+The following are the points where analytic choices most affect the conclusions, and therefore where two good-faith analyses of the same data are most likely to diverge; each is addressed in Chapter~4 or its limitations.
+\begin{enumerate}[leftmargin=1.4em,itemsep=2pt]
+  \item \textbf{Field operationalization.} The instrument yields four field categories, not two. Whether Engineering and Other are excluded, pooled, or analyzed as a four-group Kruskal--Wallis changes the comparative section; the analysis honors the proposal's IT-vs-IA contrast but reports all four groups in the focused breakouts.
+  \item \textbf{Ceiling items.} Questions 4.5 and 5.7 are near-invariant. Treating them as ordinary outcomes versus acknowledging the ceiling materially changes how Research Question~2 receptiveness is reported; the analysis characterizes them as conviction rather than discrimination.
+  \item \textbf{Awareness composite composition.} Averaging Q1.1 with Q2.1--Q2.6 blends two constructs that move in opposite directions; Q1.1 is therefore reported separately alongside the composite so its low central tendency is not obscured.
+  \item \textbf{Experience shape.} The omnibus effect is real but non-linear; a monotonic narrative would misrepresent it. The $11$--$15$ year dip and the instability of the $16+$ cell ($n=18$) are reported explicitly.
+  \item \textbf{Wave (non-response) bias.} The early-versus-late comparison shows no meaningful difference on any composite (all $|d|\le0.04$, $p>.5$), so response timing gives no evidence of self-selection; the upper-bound caveat therefore rests on the recruitment frame rather than on a wave signal, and Chapter~5 treats it as such.
+\end{enumerate}
+
+A fully scripted pipeline produced every statistic, figure, and table above from the response file, so each value is reproducible and directly checkable against an independent analysis of the same data. Taken together, the methodology, the worked examples, and this executable code and output leave the analysis of Chapter~4 fully traceable from raw responses to reported result.

@@ -1,0 +1,12 @@
+\documentclass[border=10pt]{standalone}
+\input{sysml_style.tex}
+\begin{document}
+\begin{tikzpicture}
+  \blockbox{}{q11}{Question 1.1}{Likert( : LikertFamiliarity )}
+  \blockbox{right=10mm of q11.north east,anchor=north west}{q12}{Question 1.2}{Binary( : BinaryAffirmation )}
+  \begin{scope}[on background layer]
+    \node[fit=(q11)(q12), inner sep=9mm] (frame) {};
+  \end{scope}
+  \packageframe{\textbf{Package Diagram} Section 1 [\,OverviewDiagramOfPackageSection1\,]}
+\end{tikzpicture}
+\end{document}
